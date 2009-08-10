@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1234256539 source:/home/raph/Sources/libmoglk/trunk/src/moglk.cpp
+	<termios.h>
+	<fcntl.h>
+	<cstring>
+	<iostream>
+	<sstream>
+	"moglk.hpp"
+	"../utils/pixel/ematech.h"
+
+1233022527 /home/raph/Sources/libmoglk/trunk/src/moglk.h
+
+1234255516 source:/home/raph/Sources/libmoglk/trunk/src/test/test.cpp
+	"../moglk.hpp"
+	<iostream>
+
+1233017642 source:/home/raph/Sources/libmoglk/trunk/src/test/lmsb.cpp
+	<iostream>
+
+1234253744 /home/raph/Sources/libmoglk/trunk/src/moglk.hpp
+	<bitset>
+
+1233925511 source:/home/raph/Sources/libmoglk/trunk/utils/pixel/pixel.cpp
+	"../../src/moglk.hpp"
+	"tts.h"
+	<iostream>
+
+1233847111 /home/raph/Sources/libmoglk/trunk/utils/pixel/tts.h
+
+1234253609 /home/raph/Sources/libmoglk/trunk/utils/pixel/ematech.h
+
