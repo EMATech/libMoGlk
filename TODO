@@ -1,3 +1,4 @@
 Every TODO in sourcecode
 Somewhat manage size of display in functions using it.
 Use smaller (unsigned char most of the time) types when possible.
+Use the GNU Common C++ Library for portability

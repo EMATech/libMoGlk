@@ -1,0 +1,3061 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>libmoglk: Référence du fichier src/moglk.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.8 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Liste&nbsp;des&nbsp;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&nbsp;de&nbsp;fichier</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/moglk.hpp</h1><code>#include &lt;bitset&gt;</code><br>
+
+<p>
+<a href="moglk_8hpp-source.html">Aller au code source de ce fichier.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmoglk.html">moglk</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Macros</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#2677fc43f8393bcf3bafc8bbface003f">CMD_INIT</a>&nbsp;&nbsp;&nbsp;0xFE</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#70b5ff72ecc711fcc715cf43430f401d">CMD_FLOW_CONTROL_ON</a>&nbsp;&nbsp;&nbsp;0x3A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#4b471da90cbcf6c475bffa0f44cbfadd">RET_ALMOST_FULL</a>&nbsp;&nbsp;&nbsp;0xFE</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#169858fb664764ac67af17a0247cfdd2">RET_ALMOST_EMPTY</a>&nbsp;&nbsp;&nbsp;0xFF</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#90603314fb5b0719ebf25772e1f67874">CMD_FLOW_CONTROL_OFF</a>&nbsp;&nbsp;&nbsp;0x3B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#36c2782726bf271a8b0c3c6cad87ec9d">CMD_BAUDRATE</a>&nbsp;&nbsp;&nbsp;0x39</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#89d72bee69b33d0404d33f47608d16f0">BAUDRATE_9600</a>&nbsp;&nbsp;&nbsp;0xCF</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e2f5b77324e67cb996f9dcc389c25262">BAUDRATE_14400</a>&nbsp;&nbsp;&nbsp;0x8A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b94a89ecf1976f304764aec119e215e7">BAUDRATE_19200</a>&nbsp;&nbsp;&nbsp;0x67</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#39756d4e49263ae655c7281eb9f2d9e9">BAUDRATE_28800</a>&nbsp;&nbsp;&nbsp;0x44</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#9c74d2185a532185624b8dc3086f8e3e">BAUDRATE_38400</a>&nbsp;&nbsp;&nbsp;0x33</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3b3c2f84a5c215d317fcee25c3553aad">BAUDRATE_57600</a>&nbsp;&nbsp;&nbsp;0x22</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6fd7cc80139419a0001f1232c065fcc4">BAUDRATE_76800</a>&nbsp;&nbsp;&nbsp;0x19</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#cea5a86c00bb93e838804593843b30b7">BAUDRATE_115200</a>&nbsp;&nbsp;&nbsp;0x10</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#281cf206e585ed884d5d21198e941c25">BAUDRATE_DEFAULT</a>&nbsp;&nbsp;&nbsp;BAUDRATE_19200</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#52b8670f53f875e61b1e8b9a2cb5ce7a">CMD_NON_STANDARD_BAUDRATE</a>&nbsp;&nbsp;&nbsp;0xA4</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#cd0e15350d1d2bc5fedb4fd10be6e5ad">CMD_UPLOAD_FONT</a>&nbsp;&nbsp;&nbsp;0x24</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#88626a4d9b70e1429f7c8147f3dc215c">CMD_USE_FONT</a>&nbsp;&nbsp;&nbsp;0x31</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#82ce61ee79270ab46c423d6d1c6c8eb4">CMD_FONT_METRICS</a>&nbsp;&nbsp;&nbsp;0x32</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d417d767855361bc4047d175d04425b0">CMD_BOX_SPACE_MODE</a>&nbsp;&nbsp;&nbsp;0xAC</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#518ad4bde138ab70888c9d43a29d2dfd">CMD_HOME</a>&nbsp;&nbsp;&nbsp;0x48</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e0a25ea6ff931fb68fb2deab573f4916">CMD_CURSOR_POSITION</a>&nbsp;&nbsp;&nbsp;0x47</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d3196725dbc8d45d5d0ce23b7debbf2b">CMD_CURSOR_COORDINATE</a>&nbsp;&nbsp;&nbsp;0x79</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#0612901475d2b9ae4b01b0ad6124b48d">CMD_AUTO_SCROLL_ON</a>&nbsp;&nbsp;&nbsp;0x51</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#fe9a868f69610c26f0e71cc15d8eb4ec">CMD_AUTO_SCROLL_OFF</a>&nbsp;&nbsp;&nbsp;0x52</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#65eb413f264c36b6885dc24170eeb12f">CMD_UPLOAD_BMP</a>&nbsp;&nbsp;&nbsp;0x5E</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#687de46f37ca087dc3f8e65a7cadd25d">CMD_DRAW_MEMORY_BMP</a>&nbsp;&nbsp;&nbsp;0x62</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#40b3d6512b361349d51bf2fbe91303b1">CMD_DRAW_BMP</a>&nbsp;&nbsp;&nbsp;0x64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#cd0e980ba3801c24b7fb248fd0564238">CMD_DRAWING_COLOR</a>&nbsp;&nbsp;&nbsp;0x63</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#de324302e6839a0f9e34ac0a1f2260f0">CMD_DRAW_PIXEL</a>&nbsp;&nbsp;&nbsp;0x70</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#0f81ed0c98795d039aa0e25793fb0b76">CMD_DRAW_LINE</a>&nbsp;&nbsp;&nbsp;0x6C</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b4da313ea8c153d07e7dc95de3b4ca07">CMD_CONTINUE_LINE</a>&nbsp;&nbsp;&nbsp;0x65</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#37964d09f5ad1033796a5564af9c9249">CMD_DRAW_RECTANGLE</a>&nbsp;&nbsp;&nbsp;0x72</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#8d6c85b23cb9485bfbc425f12448e940">CMD_DRAW_SOLID_RECTANGLE</a>&nbsp;&nbsp;&nbsp;0x78</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#c865724bfdbff339f5a77d92ad2d6719">CMD_INITIALIZE_BAR_GRAPH</a>&nbsp;&nbsp;&nbsp;0x67</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6f0d57d13ed3b9939cf55fae9e377e3f">CMD_DRAW_BAR_GRAPH</a>&nbsp;&nbsp;&nbsp;0x69</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3c2363f07a48136cb18e8549edc94807">CMD_INITIALIZE_STRIP_CHART</a>&nbsp;&nbsp;&nbsp;0x6A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#0856e998a7da8118d45ca2e1c502f5ca">CMD_SHIFT_STRIP_CHART</a>&nbsp;&nbsp;&nbsp;0x6B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#afc99a143269c6955bfcd6ef2701556e">CMD_GPO_OFF</a>&nbsp;&nbsp;&nbsp;0x56</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b52d1795869eecf4c1ae3e084b75707c">CMD_GPO_ON</a>&nbsp;&nbsp;&nbsp;0x57</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#bae08748d93e6c959e12a1eaa6349601">CMD_STARTUP_GPO_STATE</a>&nbsp;&nbsp;&nbsp;0xC3</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#279dfab684e0d35c865be166c357ecba">RET_UP</a>&nbsp;&nbsp;&nbsp;0x42</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#59160eda3cc214bfa77232a7b11a2ac8">RET_DOWN</a>&nbsp;&nbsp;&nbsp;0x48</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#63862e2964b1f313f711834865f39e2e">RET_LEFT</a>&nbsp;&nbsp;&nbsp;0x44</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#fedba50bccad68862ee5a7b3836a24d5">RET_RIGHT</a>&nbsp;&nbsp;&nbsp;0x43</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e7fdc9581e8e1642d28113f7bbc9a550">RET_CENTER</a>&nbsp;&nbsp;&nbsp;0x45</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f21455529276d8b8100e53c42bf6b078">RET_TOP</a>&nbsp;&nbsp;&nbsp;0x41</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#344a228323c3a91179f8752d79e54110">RET_BOTTOM</a>&nbsp;&nbsp;&nbsp;0x47</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#05ba3cfcceba1293ecc3d09847d2ab4a">RET_RELEASE_UP</a>&nbsp;&nbsp;&nbsp;0x62</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d4dca7222e2f4fd0dea8f22384d6acb9">RET_RELEASE_DOWN</a>&nbsp;&nbsp;&nbsp;0x68</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#87387b5c875e7d2d7bb6f6bad768c35c">RET_RELEASE_LEFT</a>&nbsp;&nbsp;&nbsp;0x64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#300ca17cb85143c28d38cea8eec302fd">RET_RELEASE_RIGHT</a>&nbsp;&nbsp;&nbsp;0x63</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f2bc8db1d69eef68b5c647f3657e4005">RET_RELEASE_CENTER</a>&nbsp;&nbsp;&nbsp;0x65</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#19cb7f5e080b989193dd4b09e0de50b1">RET_RELEASE_TOP</a>&nbsp;&nbsp;&nbsp;0x61</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#abf46509fa711853c0026ad58ce4b54e">RET_RELEASE_BOTTOM</a>&nbsp;&nbsp;&nbsp;0x67</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#88470c18a65d14d512a5c1c59aeb8f78">CMD_AUTO_TRANSMIT_KEY_ON</a>&nbsp;&nbsp;&nbsp;0x41</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#144804024943f15515a52c087e30c5b8">CMD_AUTO_TRANSMIT_KEY_OFF</a>&nbsp;&nbsp;&nbsp;0x4F</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#96b8c8b03f033204533d1685ae93d27b">CMD_POLL_KEY</a>&nbsp;&nbsp;&nbsp;0x26</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#fc6225c9de284002def16e5e758b264a">RET_NO_KEY</a>&nbsp;&nbsp;&nbsp;0x00</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e5f53f2787edf050f7a592ddee205231">CMD_CLEAR_KEY_BUFFER</a>&nbsp;&nbsp;&nbsp;0x45</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3732f828c47725b4a1ac1a571b36485c">CMD_DEBOUNCE_TIME</a>&nbsp;&nbsp;&nbsp;0x55</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#c3cefc05acc646613016d0a9fc988d31">CMD_AUTO_REPEAT_MODE</a>&nbsp;&nbsp;&nbsp;0x7E</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#4fb9678392a79d8abf84437446e4039a">CMD_AUTO_REPEAT_OFF</a>&nbsp;&nbsp;&nbsp;0x60</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#bd40539d2c37f70c877034bc7bfe0dcc">CMD_CUSTOM_KEYPAD_CODES</a>&nbsp;&nbsp;&nbsp;0xD5</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f7d20188d2170d3ccf72af6bed5071be">CMD_CLEAR_SCREEN</a>&nbsp;&nbsp;&nbsp;0x58</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#1d811ed7f4bbdbe75186cf216e9cd63e">CMD_DISPLAY_ON</a>&nbsp;&nbsp;&nbsp;0x42</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#31769ae6ff11159dd0eebb3d4ef58a9c">CMD_DISPLAY_OFF</a>&nbsp;&nbsp;&nbsp;0x46</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#696fc1f40ac3af1f651ca8e677a1539e">CMD_BRIGHTNESS</a>&nbsp;&nbsp;&nbsp;0x99</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#268884981563741df66f5b6bed1ef1b7">CMD_DEFAULT_BRIGHTNESS</a>&nbsp;&nbsp;&nbsp;0x98</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#baa9ef6c1c9d51952b87deb3bf82ce16">CMD_CONTRAST</a>&nbsp;&nbsp;&nbsp;0x50</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#ed68f79a60f1e41ad8b0f05e45f92c74">CMD_DEFAULT_CONTRAST</a>&nbsp;&nbsp;&nbsp;0x91</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#945096ea02ac796078b9972b10946f93">RET_CONFIRM</a>&nbsp;&nbsp;&nbsp;0x01</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#98010fe9abb142ad24276513863088c3">RET_DECLINE</a>&nbsp;&nbsp;&nbsp;0x08</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#64ca8613c0ff612a46a9d4625467e078">CMD_CONFIRM</a>&nbsp;&nbsp;&nbsp;0x01</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e73dc094d1d37774c760c0930b2c33b5">CMD_DECLINE</a>&nbsp;&nbsp;&nbsp;0x08</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#0444b81d881dc4bb92384f8a98647bc0">CMD_WIPE_FILESYSTEM</a>&nbsp;&nbsp;&nbsp;0x21,0x59,0x21</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#c7e6d5fcc35c10096cf6154e1f4ec2fa">CMD_DELETE_FILE</a>&nbsp;&nbsp;&nbsp;0xAD</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d6c7182fe43f27031e8c6856fa1710a1">CMD_FREE_SPACE</a>&nbsp;&nbsp;&nbsp;0xAF</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#da9c69fc5d05f12cd697cb3bc1eba497">CMD_DIRECTORY</a>&nbsp;&nbsp;&nbsp;0xB3</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#60907de045b4b7b91f5e9d68aba5da53">CMD_UPLOAD_FS</a>&nbsp;&nbsp;&nbsp;0xB0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d2ca065a28fc423a55adb4bf25e8239c">CMD_DOWNLOAD_FILE</a>&nbsp;&nbsp;&nbsp;0xB2</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#be25eaf0d0568f65f6290547f43852df">CMD_MOVE_FILE</a>&nbsp;&nbsp;&nbsp;0xB4</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#326cdcef2f43df3954f2fa7a40bfd3a1">CMD_DUMP_FS</a>&nbsp;&nbsp;&nbsp;0x30</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#54afbce8dd65e46ec5e759b968555938">CMD_REMEMBER</a>&nbsp;&nbsp;&nbsp;0x93</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#aa1554ecd0b2d0aae20b652c176cc054">CMD_LOCK_LEVEL</a>&nbsp;&nbsp;&nbsp;0xCA,0xF5,0xA0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#29efccb6442f72c9340f8375622251de">CMD_DEFAULT_LOCK_LEVEL</a>&nbsp;&nbsp;&nbsp;0xCB,0xF5,0xA0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#af4209d7756f6cded02ef40f02c8e0cb">CMD_WRITE_CUSTOMER_DATA</a>&nbsp;&nbsp;&nbsp;0x34</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e732a9c842a1b66c20c97bc1a917023e">CMD_READ_CUSTOMER_DATA</a>&nbsp;&nbsp;&nbsp;0x35</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#1deca5185ff499b9a0dd6586d075bfc6">CMD_VERSION_NUMBER</a>&nbsp;&nbsp;&nbsp;0x36</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#ae646bda09d927c5a77d35423f1c46e1">CMD_MODULE_TYPE</a>&nbsp;&nbsp;&nbsp;0x37</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#cbe611581ba08a162692db1580241301">RET_LCD0821</a>&nbsp;&nbsp;&nbsp;0x01</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#e30488a41139de31ed299b242d8d6a79">RET_LCD2021</a>&nbsp;&nbsp;&nbsp;0x02</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#70955e5de09078e121f4ce23707dc9e7">RET_LCD2041</a>&nbsp;&nbsp;&nbsp;0x05</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#82ab698b2944d8a9d32ed0e6cb0e3b2e">RET_LCD4021</a>&nbsp;&nbsp;&nbsp;0x06</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b8a23f331f93c64916c9cd2be5b72789">RET_LCD4041</a>&nbsp;&nbsp;&nbsp;0x07</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#408c45cc4c48f48075a0b9cbdded0f65">RET_LK202_25</a>&nbsp;&nbsp;&nbsp;0x08</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#55b2360e41ceeffe4c360f2e44c7d7b2">RET_LK204_25</a>&nbsp;&nbsp;&nbsp;0x09</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#46b339c2c2726b96cfdfa9b27495e9c1">RET_LK404_55</a>&nbsp;&nbsp;&nbsp;0x0A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3862c1ffb9bdf4be7e9874cfec778886">RET_VFD2021</a>&nbsp;&nbsp;&nbsp;0x0B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#8a3679cfba1b5223447a57472d969d10">RET_VFD2041</a>&nbsp;&nbsp;&nbsp;0x0C</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6485dd1da3495c8ce8c6a079c69a8ce7">RET_VFD4021</a>&nbsp;&nbsp;&nbsp;0x0D</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#2a285690cd631a31ba75161c4cfd4145">RET_VK202_25</a>&nbsp;&nbsp;&nbsp;0x0E</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#bcb38b2e732904173a6af0b07c45a26b">RET_VK204_25</a>&nbsp;&nbsp;&nbsp;0x0F</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b1e22f54af3ad356dc62175edbc65eeb">RET_GLC12232</a>&nbsp;&nbsp;&nbsp;0x10</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#c051f16d03fa10f24bfeea5c73233bf3">RET_GLC24064</a>&nbsp;&nbsp;&nbsp;0x13</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#396dbd7be03efe5e39efe47af95cd510">RET_GLK24064_25</a>&nbsp;&nbsp;&nbsp;0x15</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#359f67459d427580646efa47977926f6">RET_GLK12232_25</a>&nbsp;&nbsp;&nbsp;0x22</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#71260809d7b9a8763e00979155879d51">RET_GLK12232_25_SM</a>&nbsp;&nbsp;&nbsp;0x24</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#4bb5b2cf08a83e9b5f38c85a8bb9099c">RET_GLK24064_16_1U_USB</a>&nbsp;&nbsp;&nbsp;0x25</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#7022e8ed25f3b7bf333c0a78ed015ff3">RET_GLK24064_16_1U</a>&nbsp;&nbsp;&nbsp;0x26</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3e48fdd61251852973b1b43c2d885173">RET_GLK19264_7T_1U_USB</a>&nbsp;&nbsp;&nbsp;0x27</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#0b36df0f8e084b913be68632d76a7d6f">RET_GLK12236_16</a>&nbsp;&nbsp;&nbsp;0x28</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#656e7c34a48aa131635b745811a1df0a">RET_GLK12232_16_SM</a>&nbsp;&nbsp;&nbsp;0x29</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#b9aedf69054bd1230aac5db3aea07b66">RET_GLK19264_7T_1U</a>&nbsp;&nbsp;&nbsp;0x2A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#793a42fb6ee4dd8d0abbe3b6c1fdc5ec">RET_LK204_7T_1U</a>&nbsp;&nbsp;&nbsp;0x2B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#4959887272c9b37116b7bce1b7ee3da0">RET_LK204_7T_1U_USB</a>&nbsp;&nbsp;&nbsp;0x2C</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#8cf930dd373a451029cfed125c9e177f">RET_LK404_AT</a>&nbsp;&nbsp;&nbsp;0x31</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#2e3fa6ed5a2b03d9faa6f3175d58bac0">RET_MOS_AV_162A</a>&nbsp;&nbsp;&nbsp;0x32</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#7fc5833052857b0b1d751f88f9a1349e">RET_LK402_12</a>&nbsp;&nbsp;&nbsp;0x33</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#8dfe59e2e098a355d7121e596add04e9">RET_LK162_12</a>&nbsp;&nbsp;&nbsp;0x34</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#357c861256d5e0e07449cc99107d1c91">RET_LK204_25PC</a>&nbsp;&nbsp;&nbsp;0x35</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#7875537cb432b9bf0666405d26674d7c">RET_LK202_24_USB</a>&nbsp;&nbsp;&nbsp;0x36</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#71291bb43c088d82eef4e375d68cd0e9">RET_VK202_24_USB</a>&nbsp;&nbsp;&nbsp;0x37</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#847b4d24b409361c7a734b28fa731658">RET_LK204_24_USB</a>&nbsp;&nbsp;&nbsp;0x38</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#54a410e1dea984f99a7e6241838e48f3">RET_VK204_24_USB</a>&nbsp;&nbsp;&nbsp;0x39</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#3681fa6244450eefde22cab49c3e5fc0">RET_PK162_12</a>&nbsp;&nbsp;&nbsp;0x3A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#1ecd5c37dc5c7ade7a4f684c65bb1a54">RET_VK162_12</a>&nbsp;&nbsp;&nbsp;0x3B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#282409b8617c09746d0377e12e0e16ce">RET_MOS_AP_162A</a>&nbsp;&nbsp;&nbsp;0x3C</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#13f964f1c764ae8a56a60c1d834129d8">RET_PK202_25</a>&nbsp;&nbsp;&nbsp;0x3D</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#89ebca55f4895bc6318385feca7f0688">RET_MOS_AL_162A</a>&nbsp;&nbsp;&nbsp;0x3E</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#62b3d9e4161165ed3134fea972b4ad64">RET_MOS_AL_202A</a>&nbsp;&nbsp;&nbsp;0x3F</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#ab37d1eb18f99f7c5a3e05b9cebe0428">RET_MOS_AV_202A</a>&nbsp;&nbsp;&nbsp;0x40</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#96dedb9c67a14b00ce28da02e329e051">RET_MOS_AP_202A</a>&nbsp;&nbsp;&nbsp;0x41</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6099cf5aba5a9aa17e43ef6f08a7ff73">RET_PK202_24_USB</a>&nbsp;&nbsp;&nbsp;0x42</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#7cd8ae5999266d47929826fdedd31a82">RET_MOS_AL_082</a>&nbsp;&nbsp;&nbsp;0x43</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#7106bc65aebae525d2e563e7b8a50ec8">RET_MOS_AL_204</a>&nbsp;&nbsp;&nbsp;0x44</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f80d3f28bd4155fbda48ecbf85529eb4">RET_MOS_AV_204</a>&nbsp;&nbsp;&nbsp;0x45</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#458357d6bd50ec5df0485f088b780ea9">RET_MOS_AL_402</a>&nbsp;&nbsp;&nbsp;0x46</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#ffadc5ef6806f97a20183435d30210ba">RET_MOS_AV_402</a>&nbsp;&nbsp;&nbsp;0x47</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#87b602c5e40b849aba45a84a52ad742c">RET_LK082_12</a>&nbsp;&nbsp;&nbsp;0x48</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f1011d90ae5c3a4906b69dc1de375a72">RET_VK402_12</a>&nbsp;&nbsp;&nbsp;0x49</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#ee0c0f00657e09074a0e681b5511711c">RET_VK404_55</a>&nbsp;&nbsp;&nbsp;0x4A</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#39159d5789a2dc95029529357b1a94d4">RET_LK402_25</a>&nbsp;&nbsp;&nbsp;0x4B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d1795928ed4272bb521ac51d619357eb">RET_VK402_25</a>&nbsp;&nbsp;&nbsp;0x4C</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#24a73f530565a0f85d2c0846a830da06">RET_PK204_25</a>&nbsp;&nbsp;&nbsp;0x4D</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#112e74c7faad35103a8ed3f8c4e39c7c">RET_MOS</a>&nbsp;&nbsp;&nbsp;0x4F</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#f7e2b42f27946332c2e902da5ed493e5">RET_MOI</a>&nbsp;&nbsp;&nbsp;0x50</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#45c65bb79133ac85019696b60f8cd896">RET_XBOARD_S</a>&nbsp;&nbsp;&nbsp;0x51</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6c0c645e96e2e781d8d9490ebf055b34">RET_XBOARD_I</a>&nbsp;&nbsp;&nbsp;0x52</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#2d108f0c78bd747cd0d7630cc68904bc">RET_MOU</a>&nbsp;&nbsp;&nbsp;0x53</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#6459844dac5270d851816c8c85d12559">RET_XBOARD_U</a>&nbsp;&nbsp;&nbsp;0x54</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#18bd30fc586c66504820a0bd3b0f053a">RET_LK202_25_USB</a>&nbsp;&nbsp;&nbsp;0x55</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#43a95a25b10130ea566f8e21174436a0">RET_VK202_25_USB</a>&nbsp;&nbsp;&nbsp;0x56</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#d930fadf0eb26c60243551d69d7e352c">RET_LK204_25_USB</a>&nbsp;&nbsp;&nbsp;0x57</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#88b0fa49c4d5513a6b4881492cfa581a">RET_VK204_25_USB</a>&nbsp;&nbsp;&nbsp;0x58</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#c46950b824197a0e1a4fdf077366271f">RET_LK162_12_TC</a>&nbsp;&nbsp;&nbsp;0x5B</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#9a93ecdb3e79046d28ec5ba7695c16d5">RET_GLK240128_25</a>&nbsp;&nbsp;&nbsp;0x72</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#42b3ee381c06bee19fae920ce4afdb2d">RET_LK404_25</a>&nbsp;&nbsp;&nbsp;0x73</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="moglk_8hpp.html#349b3bd62e78b9b3b2f9e83133b14f8c">RET_VK404_25</a>&nbsp;&nbsp;&nbsp;0x74</td></tr>
+
+</table>
+<hr><h2>Documentation des macros</h2>
+<a class="anchor" name="cea5a86c00bb93e838804593843b30b7"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_115200" ref="cea5a86c00bb93e838804593843b30b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_115200&nbsp;&nbsp;&nbsp;0x10          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00090">90</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e2f5b77324e67cb996f9dcc389c25262"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_14400" ref="e2f5b77324e67cb996f9dcc389c25262" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_14400&nbsp;&nbsp;&nbsp;0x8A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00084">84</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b94a89ecf1976f304764aec119e215e7"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_19200" ref="b94a89ecf1976f304764aec119e215e7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_19200&nbsp;&nbsp;&nbsp;0x67          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00085">85</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="39756d4e49263ae655c7281eb9f2d9e9"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_28800" ref="39756d4e49263ae655c7281eb9f2d9e9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_28800&nbsp;&nbsp;&nbsp;0x44          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00086">86</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9c74d2185a532185624b8dc3086f8e3e"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_38400" ref="9c74d2185a532185624b8dc3086f8e3e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_38400&nbsp;&nbsp;&nbsp;0x33          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00087">87</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3b3c2f84a5c215d317fcee25c3553aad"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_57600" ref="3b3c2f84a5c215d317fcee25c3553aad" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_57600&nbsp;&nbsp;&nbsp;0x22          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00088">88</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6fd7cc80139419a0001f1232c065fcc4"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_76800" ref="6fd7cc80139419a0001f1232c065fcc4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_76800&nbsp;&nbsp;&nbsp;0x19          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00089">89</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="89d72bee69b33d0404d33f47608d16f0"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_9600" ref="89d72bee69b33d0404d33f47608d16f0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_9600&nbsp;&nbsp;&nbsp;0xCF          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00083">83</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="281cf206e585ed884d5d21198e941c25"></a><!-- doxytag: member="moglk.hpp::BAUDRATE_DEFAULT" ref="281cf206e585ed884d5d21198e941c25" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUDRATE_DEFAULT&nbsp;&nbsp;&nbsp;BAUDRATE_19200          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00092">92</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3cefc05acc646613016d0a9fc988d31"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_REPEAT_MODE" ref="c3cefc05acc646613016d0a9fc988d31" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_REPEAT_MODE&nbsp;&nbsp;&nbsp;0x7E          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00307">307</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4fb9678392a79d8abf84437446e4039a"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_REPEAT_OFF" ref="4fb9678392a79d8abf84437446e4039a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_REPEAT_OFF&nbsp;&nbsp;&nbsp;0x60          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00311">311</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fe9a868f69610c26f0e71cc15d8eb4ec"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_SCROLL_OFF" ref="fe9a868f69610c26f0e71cc15d8eb4ec" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_SCROLL_OFF&nbsp;&nbsp;&nbsp;0x52          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00163">163</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0612901475d2b9ae4b01b0ad6124b48d"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_SCROLL_ON" ref="0612901475d2b9ae4b01b0ad6124b48d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_SCROLL_ON&nbsp;&nbsp;&nbsp;0x51          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00162">162</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="144804024943f15515a52c087e30c5b8"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_TRANSMIT_KEY_OFF" ref="144804024943f15515a52c087e30c5b8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_TRANSMIT_KEY_OFF&nbsp;&nbsp;&nbsp;0x4F          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00295">295</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="88470c18a65d14d512a5c1c59aeb8f78"></a><!-- doxytag: member="moglk.hpp::CMD_AUTO_TRANSMIT_KEY_ON" ref="88470c18a65d14d512a5c1c59aeb8f78" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_AUTO_TRANSMIT_KEY_ON&nbsp;&nbsp;&nbsp;0x41          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00294">294</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="36c2782726bf271a8b0c3c6cad87ec9d"></a><!-- doxytag: member="moglk.hpp::CMD_BAUDRATE" ref="36c2782726bf271a8b0c3c6cad87ec9d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_BAUDRATE&nbsp;&nbsp;&nbsp;0x39          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00080">80</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d417d767855361bc4047d175d04425b0"></a><!-- doxytag: member="moglk.hpp::CMD_BOX_SPACE_MODE" ref="d417d767855361bc4047d175d04425b0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_BOX_SPACE_MODE&nbsp;&nbsp;&nbsp;0xAC          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00148">148</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="696fc1f40ac3af1f651ca8e677a1539e"></a><!-- doxytag: member="moglk.hpp::CMD_BRIGHTNESS" ref="696fc1f40ac3af1f651ca8e677a1539e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_BRIGHTNESS&nbsp;&nbsp;&nbsp;0x99          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00336">336</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e5f53f2787edf050f7a592ddee205231"></a><!-- doxytag: member="moglk.hpp::CMD_CLEAR_KEY_BUFFER" ref="e5f53f2787edf050f7a592ddee205231" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CLEAR_KEY_BUFFER&nbsp;&nbsp;&nbsp;0x45          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00302">302</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f7d20188d2170d3ccf72af6bed5071be"></a><!-- doxytag: member="moglk.hpp::CMD_CLEAR_SCREEN" ref="f7d20188d2170d3ccf72af6bed5071be" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CLEAR_SCREEN&nbsp;&nbsp;&nbsp;0x58          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00332">332</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="64ca8613c0ff612a46a9d4625467e078"></a><!-- doxytag: member="moglk.hpp::CMD_CONFIRM" ref="64ca8613c0ff612a46a9d4625467e078" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CONFIRM&nbsp;&nbsp;&nbsp;0x01          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00369">369</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b4da313ea8c153d07e7dc95de3b4ca07"></a><!-- doxytag: member="moglk.hpp::CMD_CONTINUE_LINE" ref="b4da313ea8c153d07e7dc95de3b4ca07" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CONTINUE_LINE&nbsp;&nbsp;&nbsp;0x65          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00202">202</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="baa9ef6c1c9d51952b87deb3bf82ce16"></a><!-- doxytag: member="moglk.hpp::CMD_CONTRAST" ref="baa9ef6c1c9d51952b87deb3bf82ce16" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CONTRAST&nbsp;&nbsp;&nbsp;0x50          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00342">342</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d3196725dbc8d45d5d0ce23b7debbf2b"></a><!-- doxytag: member="moglk.hpp::CMD_CURSOR_COORDINATE" ref="d3196725dbc8d45d5d0ce23b7debbf2b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CURSOR_COORDINATE&nbsp;&nbsp;&nbsp;0x79          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00159">159</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e0a25ea6ff931fb68fb2deab573f4916"></a><!-- doxytag: member="moglk.hpp::CMD_CURSOR_POSITION" ref="e0a25ea6ff931fb68fb2deab573f4916" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CURSOR_POSITION&nbsp;&nbsp;&nbsp;0x47          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00155">155</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bd40539d2c37f70c877034bc7bfe0dcc"></a><!-- doxytag: member="moglk.hpp::CMD_CUSTOM_KEYPAD_CODES" ref="bd40539d2c37f70c877034bc7bfe0dcc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_CUSTOM_KEYPAD_CODES&nbsp;&nbsp;&nbsp;0xD5          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00312">312</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3732f828c47725b4a1ac1a571b36485c"></a><!-- doxytag: member="moglk.hpp::CMD_DEBOUNCE_TIME" ref="3732f828c47725b4a1ac1a571b36485c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DEBOUNCE_TIME&nbsp;&nbsp;&nbsp;0x55          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00303">303</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e73dc094d1d37774c760c0930b2c33b5"></a><!-- doxytag: member="moglk.hpp::CMD_DECLINE" ref="e73dc094d1d37774c760c0930b2c33b5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DECLINE&nbsp;&nbsp;&nbsp;0x08          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00370">370</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="268884981563741df66f5b6bed1ef1b7"></a><!-- doxytag: member="moglk.hpp::CMD_DEFAULT_BRIGHTNESS" ref="268884981563741df66f5b6bed1ef1b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DEFAULT_BRIGHTNESS&nbsp;&nbsp;&nbsp;0x98          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00339">339</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ed68f79a60f1e41ad8b0f05e45f92c74"></a><!-- doxytag: member="moglk.hpp::CMD_DEFAULT_CONTRAST" ref="ed68f79a60f1e41ad8b0f05e45f92c74" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DEFAULT_CONTRAST&nbsp;&nbsp;&nbsp;0x91          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00345">345</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="29efccb6442f72c9340f8375622251de"></a><!-- doxytag: member="moglk.hpp::CMD_DEFAULT_LOCK_LEVEL" ref="29efccb6442f72c9340f8375622251de" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DEFAULT_LOCK_LEVEL&nbsp;&nbsp;&nbsp;0xCB,0xF5,0xA0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00443">443</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c7e6d5fcc35c10096cf6154e1f4ec2fa"></a><!-- doxytag: member="moglk.hpp::CMD_DELETE_FILE" ref="c7e6d5fcc35c10096cf6154e1f4ec2fa" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DELETE_FILE&nbsp;&nbsp;&nbsp;0xAD          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00374">374</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="da9c69fc5d05f12cd697cb3bc1eba497"></a><!-- doxytag: member="moglk.hpp::CMD_DIRECTORY" ref="da9c69fc5d05f12cd697cb3bc1eba497" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DIRECTORY&nbsp;&nbsp;&nbsp;0xB3          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00386">386</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="31769ae6ff11159dd0eebb3d4ef58a9c"></a><!-- doxytag: member="moglk.hpp::CMD_DISPLAY_OFF" ref="31769ae6ff11159dd0eebb3d4ef58a9c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DISPLAY_OFF&nbsp;&nbsp;&nbsp;0x46          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00335">335</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1d811ed7f4bbdbe75186cf216e9cd63e"></a><!-- doxytag: member="moglk.hpp::CMD_DISPLAY_ON" ref="1d811ed7f4bbdbe75186cf216e9cd63e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DISPLAY_ON&nbsp;&nbsp;&nbsp;0x42          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00333">333</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d2ca065a28fc423a55adb4bf25e8239c"></a><!-- doxytag: member="moglk.hpp::CMD_DOWNLOAD_FILE" ref="d2ca065a28fc423a55adb4bf25e8239c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DOWNLOAD_FILE&nbsp;&nbsp;&nbsp;0xB2          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00405">405</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6f0d57d13ed3b9939cf55fae9e377e3f"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_BAR_GRAPH" ref="6f0d57d13ed3b9939cf55fae9e377e3f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_BAR_GRAPH&nbsp;&nbsp;&nbsp;0x69          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00235">235</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="40b3d6512b361349d51bf2fbe91303b1"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_BMP" ref="40b3d6512b361349d51bf2fbe91303b1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_BMP&nbsp;&nbsp;&nbsp;0x64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00181">181</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0f81ed0c98795d039aa0e25793fb0b76"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_LINE" ref="0f81ed0c98795d039aa0e25793fb0b76" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_LINE&nbsp;&nbsp;&nbsp;0x6C          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00196">196</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="687de46f37ca087dc3f8e65a7cadd25d"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_MEMORY_BMP" ref="687de46f37ca087dc3f8e65a7cadd25d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_MEMORY_BMP&nbsp;&nbsp;&nbsp;0x62          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00177">177</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="de324302e6839a0f9e34ac0a1f2260f0"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_PIXEL" ref="de324302e6839a0f9e34ac0a1f2260f0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_PIXEL&nbsp;&nbsp;&nbsp;0x70          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00193">193</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="37964d09f5ad1033796a5564af9c9249"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_RECTANGLE" ref="37964d09f5ad1033796a5564af9c9249" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_RECTANGLE&nbsp;&nbsp;&nbsp;0x72          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00205">205</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8d6c85b23cb9485bfbc425f12448e940"></a><!-- doxytag: member="moglk.hpp::CMD_DRAW_SOLID_RECTANGLE" ref="8d6c85b23cb9485bfbc425f12448e940" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAW_SOLID_RECTANGLE&nbsp;&nbsp;&nbsp;0x78          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00213">213</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd0e980ba3801c24b7fb248fd0564238"></a><!-- doxytag: member="moglk.hpp::CMD_DRAWING_COLOR" ref="cd0e980ba3801c24b7fb248fd0564238" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DRAWING_COLOR&nbsp;&nbsp;&nbsp;0x63          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00189">189</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="326cdcef2f43df3954f2fa7a40bfd3a1"></a><!-- doxytag: member="moglk.hpp::CMD_DUMP_FS" ref="326cdcef2f43df3954f2fa7a40bfd3a1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_DUMP_FS&nbsp;&nbsp;&nbsp;0x30          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00420">420</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="90603314fb5b0719ebf25772e1f67874"></a><!-- doxytag: member="moglk.hpp::CMD_FLOW_CONTROL_OFF" ref="90603314fb5b0719ebf25772e1f67874" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_FLOW_CONTROL_OFF&nbsp;&nbsp;&nbsp;0x3B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00078">78</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="70b5ff72ecc711fcc715cf43430f401d"></a><!-- doxytag: member="moglk.hpp::CMD_FLOW_CONTROL_ON" ref="70b5ff72ecc711fcc715cf43430f401d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_FLOW_CONTROL_ON&nbsp;&nbsp;&nbsp;0x3A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00067">67</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="82ce61ee79270ab46c423d6d1c6c8eb4"></a><!-- doxytag: member="moglk.hpp::CMD_FONT_METRICS" ref="82ce61ee79270ab46c423d6d1c6c8eb4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_FONT_METRICS&nbsp;&nbsp;&nbsp;0x32          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00136">136</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d6c7182fe43f27031e8c6856fa1710a1"></a><!-- doxytag: member="moglk.hpp::CMD_FREE_SPACE" ref="d6c7182fe43f27031e8c6856fa1710a1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_FREE_SPACE&nbsp;&nbsp;&nbsp;0xAF          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00379">379</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="afc99a143269c6955bfcd6ef2701556e"></a><!-- doxytag: member="moglk.hpp::CMD_GPO_OFF" ref="afc99a143269c6955bfcd6ef2701556e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_GPO_OFF&nbsp;&nbsp;&nbsp;0x56          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00266">266</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b52d1795869eecf4c1ae3e084b75707c"></a><!-- doxytag: member="moglk.hpp::CMD_GPO_ON" ref="b52d1795869eecf4c1ae3e084b75707c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_GPO_ON&nbsp;&nbsp;&nbsp;0x57          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00268">268</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="518ad4bde138ab70888c9d43a29d2dfd"></a><!-- doxytag: member="moglk.hpp::CMD_HOME" ref="518ad4bde138ab70888c9d43a29d2dfd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_HOME&nbsp;&nbsp;&nbsp;0x48          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00154">154</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2677fc43f8393bcf3bafc8bbface003f"></a><!-- doxytag: member="moglk.hpp::CMD_INIT" ref="2677fc43f8393bcf3bafc8bbface003f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_INIT&nbsp;&nbsp;&nbsp;0xFE          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00065">65</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c865724bfdbff339f5a77d92ad2d6719"></a><!-- doxytag: member="moglk.hpp::CMD_INITIALIZE_BAR_GRAPH" ref="c865724bfdbff339f5a77d92ad2d6719" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_INITIALIZE_BAR_GRAPH&nbsp;&nbsp;&nbsp;0x67          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00221">221</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3c2363f07a48136cb18e8549edc94807"></a><!-- doxytag: member="moglk.hpp::CMD_INITIALIZE_STRIP_CHART" ref="3c2363f07a48136cb18e8549edc94807" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_INITIALIZE_STRIP_CHART&nbsp;&nbsp;&nbsp;0x6A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00239">239</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aa1554ecd0b2d0aae20b652c176cc054"></a><!-- doxytag: member="moglk.hpp::CMD_LOCK_LEVEL" ref="aa1554ecd0b2d0aae20b652c176cc054" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_LOCK_LEVEL&nbsp;&nbsp;&nbsp;0xCA,0xF5,0xA0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00434">434</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ae646bda09d927c5a77d35423f1c46e1"></a><!-- doxytag: member="moglk.hpp::CMD_MODULE_TYPE" ref="ae646bda09d927c5a77d35423f1c46e1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_MODULE_TYPE&nbsp;&nbsp;&nbsp;0x37          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00475">475</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="be25eaf0d0568f65f6290547f43852df"></a><!-- doxytag: member="moglk.hpp::CMD_MOVE_FILE" ref="be25eaf0d0568f65f6290547f43852df" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_MOVE_FILE&nbsp;&nbsp;&nbsp;0xB4          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00411">411</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="52b8670f53f875e61b1e8b9a2cb5ce7a"></a><!-- doxytag: member="moglk.hpp::CMD_NON_STANDARD_BAUDRATE" ref="52b8670f53f875e61b1e8b9a2cb5ce7a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_NON_STANDARD_BAUDRATE&nbsp;&nbsp;&nbsp;0xA4          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00094">94</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="96b8c8b03f033204533d1685ae93d27b"></a><!-- doxytag: member="moglk.hpp::CMD_POLL_KEY" ref="96b8c8b03f033204533d1685ae93d27b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_POLL_KEY&nbsp;&nbsp;&nbsp;0x26          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00297">297</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e732a9c842a1b66c20c97bc1a917023e"></a><!-- doxytag: member="moglk.hpp::CMD_READ_CUSTOMER_DATA" ref="e732a9c842a1b66c20c97bc1a917023e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_READ_CUSTOMER_DATA&nbsp;&nbsp;&nbsp;0x35          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00456">456</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="54afbce8dd65e46ec5e759b968555938"></a><!-- doxytag: member="moglk.hpp::CMD_REMEMBER" ref="54afbce8dd65e46ec5e759b968555938" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_REMEMBER&nbsp;&nbsp;&nbsp;0x93          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00430">430</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0856e998a7da8118d45ca2e1c502f5ca"></a><!-- doxytag: member="moglk.hpp::CMD_SHIFT_STRIP_CHART" ref="0856e998a7da8118d45ca2e1c502f5ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_SHIFT_STRIP_CHART&nbsp;&nbsp;&nbsp;0x6B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00247">247</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bae08748d93e6c959e12a1eaa6349601"></a><!-- doxytag: member="moglk.hpp::CMD_STARTUP_GPO_STATE" ref="bae08748d93e6c959e12a1eaa6349601" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_STARTUP_GPO_STATE&nbsp;&nbsp;&nbsp;0xC3          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00270">270</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="65eb413f264c36b6885dc24170eeb12f"></a><!-- doxytag: member="moglk.hpp::CMD_UPLOAD_BMP" ref="65eb413f264c36b6885dc24170eeb12f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_UPLOAD_BMP&nbsp;&nbsp;&nbsp;0x5E          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00171">171</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd0e15350d1d2bc5fedb4fd10be6e5ad"></a><!-- doxytag: member="moglk.hpp::CMD_UPLOAD_FONT" ref="cd0e15350d1d2bc5fedb4fd10be6e5ad" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_UPLOAD_FONT&nbsp;&nbsp;&nbsp;0x24          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00127">127</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="60907de045b4b7b91f5e9d68aba5da53"></a><!-- doxytag: member="moglk.hpp::CMD_UPLOAD_FS" ref="60907de045b4b7b91f5e9d68aba5da53" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_UPLOAD_FS&nbsp;&nbsp;&nbsp;0xB0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00402">402</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="88626a4d9b70e1429f7c8147f3dc215c"></a><!-- doxytag: member="moglk.hpp::CMD_USE_FONT" ref="88626a4d9b70e1429f7c8147f3dc215c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_USE_FONT&nbsp;&nbsp;&nbsp;0x31          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00134">134</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1deca5185ff499b9a0dd6586d075bfc6"></a><!-- doxytag: member="moglk.hpp::CMD_VERSION_NUMBER" ref="1deca5185ff499b9a0dd6586d075bfc6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_VERSION_NUMBER&nbsp;&nbsp;&nbsp;0x36          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00464">464</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0444b81d881dc4bb92384f8a98647bc0"></a><!-- doxytag: member="moglk.hpp::CMD_WIPE_FILESYSTEM" ref="0444b81d881dc4bb92384f8a98647bc0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_WIPE_FILESYSTEM&nbsp;&nbsp;&nbsp;0x21,0x59,0x21          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00372">372</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="af4209d7756f6cded02ef40f02c8e0cb"></a><!-- doxytag: member="moglk.hpp::CMD_WRITE_CUSTOMER_DATA" ref="af4209d7756f6cded02ef40f02c8e0cb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_WRITE_CUSTOMER_DATA&nbsp;&nbsp;&nbsp;0x34          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00453">453</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="169858fb664764ac67af17a0247cfdd2"></a><!-- doxytag: member="moglk.hpp::RET_ALMOST_EMPTY" ref="169858fb664764ac67af17a0247cfdd2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_ALMOST_EMPTY&nbsp;&nbsp;&nbsp;0xFF          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00076">76</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4b471da90cbcf6c475bffa0f44cbfadd"></a><!-- doxytag: member="moglk.hpp::RET_ALMOST_FULL" ref="4b471da90cbcf6c475bffa0f44cbfadd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_ALMOST_FULL&nbsp;&nbsp;&nbsp;0xFE          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00075">75</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="344a228323c3a91179f8752d79e54110"></a><!-- doxytag: member="moglk.hpp::RET_BOTTOM" ref="344a228323c3a91179f8752d79e54110" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_BOTTOM&nbsp;&nbsp;&nbsp;0x47          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00285">285</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e7fdc9581e8e1642d28113f7bbc9a550"></a><!-- doxytag: member="moglk.hpp::RET_CENTER" ref="e7fdc9581e8e1642d28113f7bbc9a550" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_CENTER&nbsp;&nbsp;&nbsp;0x45          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00283">283</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="945096ea02ac796078b9972b10946f93"></a><!-- doxytag: member="moglk.hpp::RET_CONFIRM" ref="945096ea02ac796078b9972b10946f93" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_CONFIRM&nbsp;&nbsp;&nbsp;0x01          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00366">366</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="98010fe9abb142ad24276513863088c3"></a><!-- doxytag: member="moglk.hpp::RET_DECLINE" ref="98010fe9abb142ad24276513863088c3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_DECLINE&nbsp;&nbsp;&nbsp;0x08          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00367">367</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="59160eda3cc214bfa77232a7b11a2ac8"></a><!-- doxytag: member="moglk.hpp::RET_DOWN" ref="59160eda3cc214bfa77232a7b11a2ac8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_DOWN&nbsp;&nbsp;&nbsp;0x48          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00280">280</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b1e22f54af3ad356dc62175edbc65eeb"></a><!-- doxytag: member="moglk.hpp::RET_GLC12232" ref="b1e22f54af3ad356dc62175edbc65eeb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLC12232&nbsp;&nbsp;&nbsp;0x10          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00495">495</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c051f16d03fa10f24bfeea5c73233bf3"></a><!-- doxytag: member="moglk.hpp::RET_GLC24064" ref="c051f16d03fa10f24bfeea5c73233bf3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLC24064&nbsp;&nbsp;&nbsp;0x13          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00496">496</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="656e7c34a48aa131635b745811a1df0a"></a><!-- doxytag: member="moglk.hpp::RET_GLK12232_16_SM" ref="656e7c34a48aa131635b745811a1df0a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK12232_16_SM&nbsp;&nbsp;&nbsp;0x29          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00504">504</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="359f67459d427580646efa47977926f6"></a><!-- doxytag: member="moglk.hpp::RET_GLK12232_25" ref="359f67459d427580646efa47977926f6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK12232_25&nbsp;&nbsp;&nbsp;0x22          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00498">498</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="71260809d7b9a8763e00979155879d51"></a><!-- doxytag: member="moglk.hpp::RET_GLK12232_25_SM" ref="71260809d7b9a8763e00979155879d51" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK12232_25_SM&nbsp;&nbsp;&nbsp;0x24          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00499">499</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0b36df0f8e084b913be68632d76a7d6f"></a><!-- doxytag: member="moglk.hpp::RET_GLK12236_16" ref="0b36df0f8e084b913be68632d76a7d6f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK12236_16&nbsp;&nbsp;&nbsp;0x28          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00503">503</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b9aedf69054bd1230aac5db3aea07b66"></a><!-- doxytag: member="moglk.hpp::RET_GLK19264_7T_1U" ref="b9aedf69054bd1230aac5db3aea07b66" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK19264_7T_1U&nbsp;&nbsp;&nbsp;0x2A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00505">505</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3e48fdd61251852973b1b43c2d885173"></a><!-- doxytag: member="moglk.hpp::RET_GLK19264_7T_1U_USB" ref="3e48fdd61251852973b1b43c2d885173" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK19264_7T_1U_USB&nbsp;&nbsp;&nbsp;0x27          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00502">502</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9a93ecdb3e79046d28ec5ba7695c16d5"></a><!-- doxytag: member="moglk.hpp::RET_GLK240128_25" ref="9a93ecdb3e79046d28ec5ba7695c16d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK240128_25&nbsp;&nbsp;&nbsp;0x72          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00548">548</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7022e8ed25f3b7bf333c0a78ed015ff3"></a><!-- doxytag: member="moglk.hpp::RET_GLK24064_16_1U" ref="7022e8ed25f3b7bf333c0a78ed015ff3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK24064_16_1U&nbsp;&nbsp;&nbsp;0x26          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00501">501</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4bb5b2cf08a83e9b5f38c85a8bb9099c"></a><!-- doxytag: member="moglk.hpp::RET_GLK24064_16_1U_USB" ref="4bb5b2cf08a83e9b5f38c85a8bb9099c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK24064_16_1U_USB&nbsp;&nbsp;&nbsp;0x25          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00500">500</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="396dbd7be03efe5e39efe47af95cd510"></a><!-- doxytag: member="moglk.hpp::RET_GLK24064_25" ref="396dbd7be03efe5e39efe47af95cd510" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_GLK24064_25&nbsp;&nbsp;&nbsp;0x15          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00497">497</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cbe611581ba08a162692db1580241301"></a><!-- doxytag: member="moglk.hpp::RET_LCD0821" ref="cbe611581ba08a162692db1580241301" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LCD0821&nbsp;&nbsp;&nbsp;0x01          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00482">482</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e30488a41139de31ed299b242d8d6a79"></a><!-- doxytag: member="moglk.hpp::RET_LCD2021" ref="e30488a41139de31ed299b242d8d6a79" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LCD2021&nbsp;&nbsp;&nbsp;0x02          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00483">483</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="70955e5de09078e121f4ce23707dc9e7"></a><!-- doxytag: member="moglk.hpp::RET_LCD2041" ref="70955e5de09078e121f4ce23707dc9e7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LCD2041&nbsp;&nbsp;&nbsp;0x05          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00484">484</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="82ab698b2944d8a9d32ed0e6cb0e3b2e"></a><!-- doxytag: member="moglk.hpp::RET_LCD4021" ref="82ab698b2944d8a9d32ed0e6cb0e3b2e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LCD4021&nbsp;&nbsp;&nbsp;0x06          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00485">485</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b8a23f331f93c64916c9cd2be5b72789"></a><!-- doxytag: member="moglk.hpp::RET_LCD4041" ref="b8a23f331f93c64916c9cd2be5b72789" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LCD4041&nbsp;&nbsp;&nbsp;0x07          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00486">486</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="63862e2964b1f313f711834865f39e2e"></a><!-- doxytag: member="moglk.hpp::RET_LEFT" ref="63862e2964b1f313f711834865f39e2e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LEFT&nbsp;&nbsp;&nbsp;0x44          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00281">281</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="87b602c5e40b849aba45a84a52ad742c"></a><!-- doxytag: member="moglk.hpp::RET_LK082_12" ref="87b602c5e40b849aba45a84a52ad742c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK082_12&nbsp;&nbsp;&nbsp;0x48          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00531">531</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8dfe59e2e098a355d7121e596add04e9"></a><!-- doxytag: member="moglk.hpp::RET_LK162_12" ref="8dfe59e2e098a355d7121e596add04e9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK162_12&nbsp;&nbsp;&nbsp;0x34          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00511">511</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c46950b824197a0e1a4fdf077366271f"></a><!-- doxytag: member="moglk.hpp::RET_LK162_12_TC" ref="c46950b824197a0e1a4fdf077366271f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK162_12_TC&nbsp;&nbsp;&nbsp;0x5B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00547">547</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7875537cb432b9bf0666405d26674d7c"></a><!-- doxytag: member="moglk.hpp::RET_LK202_24_USB" ref="7875537cb432b9bf0666405d26674d7c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK202_24_USB&nbsp;&nbsp;&nbsp;0x36          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00513">513</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="408c45cc4c48f48075a0b9cbdded0f65"></a><!-- doxytag: member="moglk.hpp::RET_LK202_25" ref="408c45cc4c48f48075a0b9cbdded0f65" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK202_25&nbsp;&nbsp;&nbsp;0x08          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00487">487</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="18bd30fc586c66504820a0bd3b0f053a"></a><!-- doxytag: member="moglk.hpp::RET_LK202_25_USB" ref="18bd30fc586c66504820a0bd3b0f053a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK202_25_USB&nbsp;&nbsp;&nbsp;0x55          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00543">543</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="847b4d24b409361c7a734b28fa731658"></a><!-- doxytag: member="moglk.hpp::RET_LK204_24_USB" ref="847b4d24b409361c7a734b28fa731658" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_24_USB&nbsp;&nbsp;&nbsp;0x38          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00515">515</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="55b2360e41ceeffe4c360f2e44c7d7b2"></a><!-- doxytag: member="moglk.hpp::RET_LK204_25" ref="55b2360e41ceeffe4c360f2e44c7d7b2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_25&nbsp;&nbsp;&nbsp;0x09          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00488">488</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d930fadf0eb26c60243551d69d7e352c"></a><!-- doxytag: member="moglk.hpp::RET_LK204_25_USB" ref="d930fadf0eb26c60243551d69d7e352c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_25_USB&nbsp;&nbsp;&nbsp;0x57          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00545">545</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="357c861256d5e0e07449cc99107d1c91"></a><!-- doxytag: member="moglk.hpp::RET_LK204_25PC" ref="357c861256d5e0e07449cc99107d1c91" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_25PC&nbsp;&nbsp;&nbsp;0x35          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00512">512</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="793a42fb6ee4dd8d0abbe3b6c1fdc5ec"></a><!-- doxytag: member="moglk.hpp::RET_LK204_7T_1U" ref="793a42fb6ee4dd8d0abbe3b6c1fdc5ec" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_7T_1U&nbsp;&nbsp;&nbsp;0x2B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00506">506</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4959887272c9b37116b7bce1b7ee3da0"></a><!-- doxytag: member="moglk.hpp::RET_LK204_7T_1U_USB" ref="4959887272c9b37116b7bce1b7ee3da0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK204_7T_1U_USB&nbsp;&nbsp;&nbsp;0x2C          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00507">507</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7fc5833052857b0b1d751f88f9a1349e"></a><!-- doxytag: member="moglk.hpp::RET_LK402_12" ref="7fc5833052857b0b1d751f88f9a1349e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK402_12&nbsp;&nbsp;&nbsp;0x33          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00510">510</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="39159d5789a2dc95029529357b1a94d4"></a><!-- doxytag: member="moglk.hpp::RET_LK402_25" ref="39159d5789a2dc95029529357b1a94d4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK402_25&nbsp;&nbsp;&nbsp;0x4B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00534">534</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="42b3ee381c06bee19fae920ce4afdb2d"></a><!-- doxytag: member="moglk.hpp::RET_LK404_25" ref="42b3ee381c06bee19fae920ce4afdb2d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK404_25&nbsp;&nbsp;&nbsp;0x73          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00549">549</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="46b339c2c2726b96cfdfa9b27495e9c1"></a><!-- doxytag: member="moglk.hpp::RET_LK404_55" ref="46b339c2c2726b96cfdfa9b27495e9c1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK404_55&nbsp;&nbsp;&nbsp;0x0A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00489">489</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8cf930dd373a451029cfed125c9e177f"></a><!-- doxytag: member="moglk.hpp::RET_LK404_AT" ref="8cf930dd373a451029cfed125c9e177f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_LK404_AT&nbsp;&nbsp;&nbsp;0x31          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00508">508</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f7e2b42f27946332c2e902da5ed493e5"></a><!-- doxytag: member="moglk.hpp::RET_MOI" ref="f7e2b42f27946332c2e902da5ed493e5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOI&nbsp;&nbsp;&nbsp;0x50          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00538">538</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="112e74c7faad35103a8ed3f8c4e39c7c"></a><!-- doxytag: member="moglk.hpp::RET_MOS" ref="112e74c7faad35103a8ed3f8c4e39c7c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS&nbsp;&nbsp;&nbsp;0x4F          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00537">537</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7cd8ae5999266d47929826fdedd31a82"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AL_082" ref="7cd8ae5999266d47929826fdedd31a82" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AL_082&nbsp;&nbsp;&nbsp;0x43          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00526">526</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="89ebca55f4895bc6318385feca7f0688"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AL_162A" ref="89ebca55f4895bc6318385feca7f0688" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AL_162A&nbsp;&nbsp;&nbsp;0x3E          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00521">521</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="62b3d9e4161165ed3134fea972b4ad64"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AL_202A" ref="62b3d9e4161165ed3134fea972b4ad64" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AL_202A&nbsp;&nbsp;&nbsp;0x3F          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00522">522</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7106bc65aebae525d2e563e7b8a50ec8"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AL_204" ref="7106bc65aebae525d2e563e7b8a50ec8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AL_204&nbsp;&nbsp;&nbsp;0x44          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00527">527</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="458357d6bd50ec5df0485f088b780ea9"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AL_402" ref="458357d6bd50ec5df0485f088b780ea9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AL_402&nbsp;&nbsp;&nbsp;0x46          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00529">529</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="282409b8617c09746d0377e12e0e16ce"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AP_162A" ref="282409b8617c09746d0377e12e0e16ce" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AP_162A&nbsp;&nbsp;&nbsp;0x3C          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00519">519</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="96dedb9c67a14b00ce28da02e329e051"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AP_202A" ref="96dedb9c67a14b00ce28da02e329e051" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AP_202A&nbsp;&nbsp;&nbsp;0x41          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00524">524</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2e3fa6ed5a2b03d9faa6f3175d58bac0"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AV_162A" ref="2e3fa6ed5a2b03d9faa6f3175d58bac0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AV_162A&nbsp;&nbsp;&nbsp;0x32          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00509">509</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ab37d1eb18f99f7c5a3e05b9cebe0428"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AV_202A" ref="ab37d1eb18f99f7c5a3e05b9cebe0428" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AV_202A&nbsp;&nbsp;&nbsp;0x40          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00523">523</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f80d3f28bd4155fbda48ecbf85529eb4"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AV_204" ref="f80d3f28bd4155fbda48ecbf85529eb4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AV_204&nbsp;&nbsp;&nbsp;0x45          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00528">528</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ffadc5ef6806f97a20183435d30210ba"></a><!-- doxytag: member="moglk.hpp::RET_MOS_AV_402" ref="ffadc5ef6806f97a20183435d30210ba" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOS_AV_402&nbsp;&nbsp;&nbsp;0x47          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00530">530</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2d108f0c78bd747cd0d7630cc68904bc"></a><!-- doxytag: member="moglk.hpp::RET_MOU" ref="2d108f0c78bd747cd0d7630cc68904bc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_MOU&nbsp;&nbsp;&nbsp;0x53          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00541">541</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fc6225c9de284002def16e5e758b264a"></a><!-- doxytag: member="moglk.hpp::RET_NO_KEY" ref="fc6225c9de284002def16e5e758b264a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_NO_KEY&nbsp;&nbsp;&nbsp;0x00          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00300">300</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3681fa6244450eefde22cab49c3e5fc0"></a><!-- doxytag: member="moglk.hpp::RET_PK162_12" ref="3681fa6244450eefde22cab49c3e5fc0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_PK162_12&nbsp;&nbsp;&nbsp;0x3A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00517">517</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6099cf5aba5a9aa17e43ef6f08a7ff73"></a><!-- doxytag: member="moglk.hpp::RET_PK202_24_USB" ref="6099cf5aba5a9aa17e43ef6f08a7ff73" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_PK202_24_USB&nbsp;&nbsp;&nbsp;0x42          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00525">525</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="13f964f1c764ae8a56a60c1d834129d8"></a><!-- doxytag: member="moglk.hpp::RET_PK202_25" ref="13f964f1c764ae8a56a60c1d834129d8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_PK202_25&nbsp;&nbsp;&nbsp;0x3D          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00520">520</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="24a73f530565a0f85d2c0846a830da06"></a><!-- doxytag: member="moglk.hpp::RET_PK204_25" ref="24a73f530565a0f85d2c0846a830da06" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_PK204_25&nbsp;&nbsp;&nbsp;0x4D          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00536">536</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="abf46509fa711853c0026ad58ce4b54e"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_BOTTOM" ref="abf46509fa711853c0026ad58ce4b54e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_BOTTOM&nbsp;&nbsp;&nbsp;0x67          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00292">292</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f2bc8db1d69eef68b5c647f3657e4005"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_CENTER" ref="f2bc8db1d69eef68b5c647f3657e4005" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_CENTER&nbsp;&nbsp;&nbsp;0x65          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00290">290</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d4dca7222e2f4fd0dea8f22384d6acb9"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_DOWN" ref="d4dca7222e2f4fd0dea8f22384d6acb9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_DOWN&nbsp;&nbsp;&nbsp;0x68          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00287">287</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="87387b5c875e7d2d7bb6f6bad768c35c"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_LEFT" ref="87387b5c875e7d2d7bb6f6bad768c35c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_LEFT&nbsp;&nbsp;&nbsp;0x64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00288">288</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="300ca17cb85143c28d38cea8eec302fd"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_RIGHT" ref="300ca17cb85143c28d38cea8eec302fd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_RIGHT&nbsp;&nbsp;&nbsp;0x63          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00289">289</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="19cb7f5e080b989193dd4b09e0de50b1"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_TOP" ref="19cb7f5e080b989193dd4b09e0de50b1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_TOP&nbsp;&nbsp;&nbsp;0x61          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00291">291</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="05ba3cfcceba1293ecc3d09847d2ab4a"></a><!-- doxytag: member="moglk.hpp::RET_RELEASE_UP" ref="05ba3cfcceba1293ecc3d09847d2ab4a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RELEASE_UP&nbsp;&nbsp;&nbsp;0x62          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00286">286</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fedba50bccad68862ee5a7b3836a24d5"></a><!-- doxytag: member="moglk.hpp::RET_RIGHT" ref="fedba50bccad68862ee5a7b3836a24d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_RIGHT&nbsp;&nbsp;&nbsp;0x43          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00282">282</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f21455529276d8b8100e53c42bf6b078"></a><!-- doxytag: member="moglk.hpp::RET_TOP" ref="f21455529276d8b8100e53c42bf6b078" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_TOP&nbsp;&nbsp;&nbsp;0x41          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00284">284</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="279dfab684e0d35c865be166c357ecba"></a><!-- doxytag: member="moglk.hpp::RET_UP" ref="279dfab684e0d35c865be166c357ecba" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_UP&nbsp;&nbsp;&nbsp;0x42          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00279">279</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3862c1ffb9bdf4be7e9874cfec778886"></a><!-- doxytag: member="moglk.hpp::RET_VFD2021" ref="3862c1ffb9bdf4be7e9874cfec778886" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VFD2021&nbsp;&nbsp;&nbsp;0x0B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00490">490</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8a3679cfba1b5223447a57472d969d10"></a><!-- doxytag: member="moglk.hpp::RET_VFD2041" ref="8a3679cfba1b5223447a57472d969d10" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VFD2041&nbsp;&nbsp;&nbsp;0x0C          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00491">491</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6485dd1da3495c8ce8c6a079c69a8ce7"></a><!-- doxytag: member="moglk.hpp::RET_VFD4021" ref="6485dd1da3495c8ce8c6a079c69a8ce7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VFD4021&nbsp;&nbsp;&nbsp;0x0D          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00492">492</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1ecd5c37dc5c7ade7a4f684c65bb1a54"></a><!-- doxytag: member="moglk.hpp::RET_VK162_12" ref="1ecd5c37dc5c7ade7a4f684c65bb1a54" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK162_12&nbsp;&nbsp;&nbsp;0x3B          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00518">518</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="71291bb43c088d82eef4e375d68cd0e9"></a><!-- doxytag: member="moglk.hpp::RET_VK202_24_USB" ref="71291bb43c088d82eef4e375d68cd0e9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK202_24_USB&nbsp;&nbsp;&nbsp;0x37          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00514">514</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a285690cd631a31ba75161c4cfd4145"></a><!-- doxytag: member="moglk.hpp::RET_VK202_25" ref="2a285690cd631a31ba75161c4cfd4145" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK202_25&nbsp;&nbsp;&nbsp;0x0E          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00493">493</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="43a95a25b10130ea566f8e21174436a0"></a><!-- doxytag: member="moglk.hpp::RET_VK202_25_USB" ref="43a95a25b10130ea566f8e21174436a0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK202_25_USB&nbsp;&nbsp;&nbsp;0x56          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00544">544</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="54a410e1dea984f99a7e6241838e48f3"></a><!-- doxytag: member="moglk.hpp::RET_VK204_24_USB" ref="54a410e1dea984f99a7e6241838e48f3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK204_24_USB&nbsp;&nbsp;&nbsp;0x39          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00516">516</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bcb38b2e732904173a6af0b07c45a26b"></a><!-- doxytag: member="moglk.hpp::RET_VK204_25" ref="bcb38b2e732904173a6af0b07c45a26b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK204_25&nbsp;&nbsp;&nbsp;0x0F          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00494">494</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="88b0fa49c4d5513a6b4881492cfa581a"></a><!-- doxytag: member="moglk.hpp::RET_VK204_25_USB" ref="88b0fa49c4d5513a6b4881492cfa581a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK204_25_USB&nbsp;&nbsp;&nbsp;0x58          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00546">546</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f1011d90ae5c3a4906b69dc1de375a72"></a><!-- doxytag: member="moglk.hpp::RET_VK402_12" ref="f1011d90ae5c3a4906b69dc1de375a72" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK402_12&nbsp;&nbsp;&nbsp;0x49          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00532">532</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d1795928ed4272bb521ac51d619357eb"></a><!-- doxytag: member="moglk.hpp::RET_VK402_25" ref="d1795928ed4272bb521ac51d619357eb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK402_25&nbsp;&nbsp;&nbsp;0x4C          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00535">535</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="349b3bd62e78b9b3b2f9e83133b14f8c"></a><!-- doxytag: member="moglk.hpp::RET_VK404_25" ref="349b3bd62e78b9b3b2f9e83133b14f8c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK404_25&nbsp;&nbsp;&nbsp;0x74          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00550">550</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ee0c0f00657e09074a0e681b5511711c"></a><!-- doxytag: member="moglk.hpp::RET_VK404_55" ref="ee0c0f00657e09074a0e681b5511711c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_VK404_55&nbsp;&nbsp;&nbsp;0x4A          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00533">533</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6c0c645e96e2e781d8d9490ebf055b34"></a><!-- doxytag: member="moglk.hpp::RET_XBOARD_I" ref="6c0c645e96e2e781d8d9490ebf055b34" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_XBOARD_I&nbsp;&nbsp;&nbsp;0x52          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00540">540</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="45c65bb79133ac85019696b60f8cd896"></a><!-- doxytag: member="moglk.hpp::RET_XBOARD_S" ref="45c65bb79133ac85019696b60f8cd896" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_XBOARD_S&nbsp;&nbsp;&nbsp;0x51          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00539">539</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6459844dac5270d851816c8c85d12559"></a><!-- doxytag: member="moglk.hpp::RET_XBOARD_U" ref="6459844dac5270d851816c8c85d12559" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RET_XBOARD_U&nbsp;&nbsp;&nbsp;0x54          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Définition à la ligne <a class="el" href="moglk_8hpp-source.html#l00542">542</a> du fichier <a class="el" href="moglk_8hpp-source.html">moglk.hpp</a>.</p>
+
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Aug 19 01:34:27 2009 pour libmoglk par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
+</body>
+</html>

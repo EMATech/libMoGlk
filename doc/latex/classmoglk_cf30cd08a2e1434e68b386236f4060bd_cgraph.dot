@@ -1,0 +1,13 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="moglk::display",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="moglk::setCursor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmoglk.html#15e0fbeefcab8874138e8865c53e204c"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="moglk::setFont",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmoglk.html#cfb8813e8db8de6ef0f34e479952589b"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="moglk::setFontMetrics",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmoglk.html#17c4f023df63951df9f19f08c56f8786"];
+}
