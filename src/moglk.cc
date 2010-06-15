@@ -72,6 +72,29 @@ bool moglk::init(char* device,
 
 } /* init() */
 
+unsigned long int moglk::autodetectBaudRate(char* device)
+{
+
+        unsigned long int detectedBaudrate = 0;
+        unsigned char moduleType;
+        long int baudrate[] = {9600, 19200, 38400, 115200, EOF};
+
+        for (unsigned char n = 0;baudrate[n] != EOF;n++)
+        {
+                //Contenu de la boucle
+                init(device, baudrate[n]);
+                moduleType = getModuleType();
+                if (moduleType)
+                        {
+                                detectedBaudrate = baudrate[n];
+                        }
+        }
+
+        return detectedBaudrate;
+
+} /* autodetectBaudRate */
+
+
 bool moglk::openPort(char* device)
 {
 	// Open serial port:

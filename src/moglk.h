@@ -584,7 +584,7 @@ class moglk
 
         //int autodetectPort(void);
 
-        //int autodetectBaudRate(void);
+        unsigned long int autodetectBaudRate(char* device = "/dev/ttyS0");
 
         bool setBaudRate(unsigned long int baudrate = 19200);
 
