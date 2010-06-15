@@ -26,10 +26,10 @@
 int main(void)
 {
 	char port[] = "/dev/ttyUSB0";
-	unsigned long int speed = 19200;
+//	unsigned long int speed = 19200;
 
 	moglk lcd;
-	int check = lcd.init(port,speed);
+	int check = lcd.init(port);
 	if (check > 0)
 	{
 	// Achtung!!! Marche pô clearScreen semble prendre trop de temps et avoir pour effet de faire ignorer quelques messages suivants soit => Bordel

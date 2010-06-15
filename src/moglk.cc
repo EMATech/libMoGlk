@@ -53,10 +53,14 @@ bool moglk::init(char* device,
                 unsigned long int baudrate)
 {
 
+    if (!baudrate)
+        {
+                baudrate = autodetectBaudRate(device);
+        }
+
     if(openPort(device))
     {
         configurePort();
-        //setBaudRate(baudrate);
         setPortBaudRate(baudrate);
         //setFlowControl(1,8,119);
 

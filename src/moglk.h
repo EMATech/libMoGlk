@@ -578,7 +578,7 @@ class moglk
         moglk(void);
         ~moglk(void);
 
-        bool init(char* device = "/dev/ttyS0", unsigned long int baudrate = 19200);
+        bool init(char* device = "/dev/ttyS0", unsigned long int baudrate = 0);
 
         //int autodetect(void);
 
