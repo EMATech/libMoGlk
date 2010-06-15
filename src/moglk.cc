@@ -292,13 +292,9 @@ unsigned char moglk::receive(void)
 
     ssize_t retval = -1;
 
-	// Read data from the serial port
-	while (retval <= -1)
-	{
-	        retval = read(serial_port,
-                          &byte,
-                          1);
-	}
+    retval = read(serial_port,
+                  &byte,
+                  1);
 
 #ifndef NDEBUG
         if (!retval) 
