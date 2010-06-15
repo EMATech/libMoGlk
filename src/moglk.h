@@ -62,7 +62,7 @@ http://www.matrixorbital.ca/manuals/GLK_series/GLK19264-7T-1U/GLK19264-7T-1U.pdf
 
 
 // COMMUNICATION
-#define CMD_INIT						0xFE //Done
+#define CMD_INIT					0xFE //Done
 // (Must be issued before any command)
 #define CMD_FLOW_CONTROL_ON				0x3A //Done
 //										full[0-128]
@@ -75,7 +75,7 @@ http://www.matrixorbital.ca/manuals/GLK_series/GLK19264-7T-1U/GLK19264-7T-1U.pdf
 #define RET_ALMOST_FULL					0xFE //Done
 #define RET_ALMOST_EMPTY				0xFF //Done
 
-#define CMD_FLOW_CONTROL_OFF			0x3B //Done
+#define CMD_FLOW_CONTROL_OFF			        0x3B //Done
 
 #define CMD_BAUDRATE					0x39 //Done
 //										speed[See table below]
@@ -91,7 +91,7 @@ http://www.matrixorbital.ca/manuals/GLK_series/GLK19264-7T-1U/GLK19264-7T-1U.pdf
 
 #define BAUDRATE_DEFAULT				BAUDRATE_19200 //Done
 
-#define CMD_NON_STANDARD_BAUDRATE		0xA4 //Done
+#define CMD_NON_STANDARD_BAUDRATE		        0xA4 //Done
 //										speed[12-2047]
 //										(2 bytes,
 //										LSB then MSB,
@@ -124,7 +124,7 @@ Each character is encoded horizontally then padded to form a full last byte
 */
 //TODO: implement font file format
 
-#define CMD_UPLOAD_FONT					0x24
+#define CMD_UPLOAD_FONT					0x24 //
 //										fontid
 //										lsbsize
 //                                      msbsize
@@ -151,12 +151,12 @@ Each character is encoded horizontally then padded to form a full last byte
 //										 1: On)
 
 // TEXT
-#define CMD_HOME						0x48 //Done
+#define CMD_HOME					0x48 //Done
 #define CMD_CURSOR_POSITION				0x47 //Done
 //										col
 //										row
 //										(Derived from current font base size)
-#define CMD_CURSOR_COORDINATE			0x79 //Done
+#define CMD_CURSOR_COORDINATE			        0x79 //Done
 //										x
 //										y
 #define CMD_AUTO_SCROLL_ON				0x51 //Done
@@ -210,7 +210,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										y1
 //										x2
 //										y2
-#define CMD_DRAW_SOLID_RECTANGLE		0x78 //Done
+#define CMD_DRAW_SOLID_RECTANGLE		        0x78 //Done
 //										color[0-255]
 //										(0: 	White,
 //										 1-255: Black)
@@ -218,7 +218,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										y1
 //										x2
 //										y2
-#define CMD_INITIALIZE_BAR_GRAPH		0x67 //Done
+#define CMD_INITIALIZE_BAR_GRAPH		        0x67 //Done
 //										bgid[0-15]
 //										type[0-3]
 //										(0: Vertical from bottom,
@@ -236,7 +236,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										bgid[0-15]
 //										value
 //										(In pixels)
-#define CMD_INITIALIZE_STRIP_CHART		0x6A //Done
+#define CMD_INITIALIZE_STRIP_CHART		        0x6A //Done
 //										scid[0-6]
 //										x1
 //										y1
@@ -244,7 +244,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										(x1<x2)
 //										y2
 //										(y1<y2)
-#define CMD_SHIFT_STRIP_CHART			0x6B //Done
+#define CMD_SHIFT_STRIP_CHART			        0x6B //Done
 //										ref
 //										(LSB: scid,
 //										 MSB: direction
@@ -255,19 +255,19 @@ Each character is encoded horizontally then padded to form a full last byte
 // (Hardwired to 3 tricolor LEDs)
 /*
   LEDS LAYOUT
-		LED 1 - Top		GPO 2	GPO 1
+		LED 1 - Top	GPO 2	GPO 1
 		LED 2 - Middle	GPO 4	GPO 3
 		LED 3 - Bottom	GPO 6	GPO 5
-		Yellow			0		0
-		Green			0		1
-		Red				1		0
-		Off				1		1
+		Yellow		0	0
+		Green		0	1
+		Red		1	0
+		Off		1	1
 */
-#define CMD_GPO_OFF						0x56 //Done
+#define CMD_GPO_OFF					0x56 //Done
 //										num[1-6]
-#define CMD_GPO_ON						0x57 //Done
+#define CMD_GPO_ON					0x57 //Done
 //										num[1-6]
-#define CMD_STARTUP_GPO_STATE			0xC3 //Done
+#define CMD_STARTUP_GPO_STATE                           0xC3 //Done
 //										num[1-6]
 //										state[0-1]
 //										(0: Off,
@@ -276,13 +276,13 @@ Each character is encoded horizontally then padded to form a full last byte
 
 // KEYPAD
 // Default layout:
-#define RET_UP							0x42 //Done
-#define RET_DOWN						0x48 //Done
-#define RET_LEFT						0x44 //Done
-#define RET_RIGHT						0x43 //Done
-#define RET_CENTER						0x45 //Done
-#define RET_TOP							0x41 //Done
-#define RET_BOTTOM						0x47 //Done
+#define RET_UP						0x42 //Done
+#define RET_DOWN					0x48 //Done
+#define RET_LEFT					0x44 //Done
+#define RET_RIGHT					0x43 //Done
+#define RET_CENTER					0x45 //Done
+#define RET_TOP						0x41 //Done
+#define RET_BOTTOM					0x47 //Done
 #define RET_RELEASE_UP					0x62 //Done
 #define RET_RELEASE_DOWN				0x68 //Done
 #define RET_RELEASE_LEFT				0x64 //Done
@@ -291,25 +291,25 @@ Each character is encoded horizontally then padded to form a full last byte
 #define RET_RELEASE_TOP					0x61 //Done
 #define RET_RELEASE_BOTTOM				0x67 //Done
 
-#define CMD_AUTO_TRANSMIT_KEY_ON		0x41 //Done
-#define CMD_AUTO_TRANSMIT_KEY_OFF		0x4F //Done
+#define CMD_AUTO_TRANSMIT_KEY_ON		        0x41 //Done
+#define CMD_AUTO_TRANSMIT_KEY_OFF		        0x4F //Done
 // (The keypad buffer is reset after 10 key presses)
 #define CMD_POLL_KEY					0x26 //Done
 // (Returned code MSB flags 'more than one key press in buffer')
 
-#define RET_NO_KEY						0x00 //Done
+#define RET_NO_KEY					0x00 //Done
 
-#define CMD_CLEAR_KEY_BUFFER			0x45 //Done
+#define CMD_CLEAR_KEY_BUFFER			        0x45 //Done
 #define CMD_DEBOUNCE_TIME				0x55 //Done
 //										time[0-255]
 //										(6.554ms increments,
 //										 Default: 8)
-#define CMD_AUTO_REPEAT_MODE			0x7E //Done
+#define CMD_AUTO_REPEAT_MODE			        0x7E //Done
 //										mode[0-1]
 //										(0: Resend Key,
 //										 1: Key Up/Down)
 #define CMD_AUTO_REPEAT_OFF				0x60 //Done
-#define CMD_CUSTOM_KEYPAD_CODES			0xD5 //Done
+#define CMD_CUSTOM_KEYPAD_CODES			        0xD5 //Done
 //										kdown[See table bellow]
 //										(9 bytes)
 //										kup[See table bellow]
@@ -336,13 +336,13 @@ Each character is encoded horizontally then padded to form a full last byte
 #define CMD_BRIGHTNESS					0x99 //Done
 //										brightness[0-255]
 //										(Default: 255)
-#define CMD_DEFAULT_BRIGHTNESS			0x98 //Done
+#define CMD_DEFAULT_BRIGHTNESS			        0x98 //Done
 //										brightness[0-255]
 //										(Default: 255)
 #define CMD_CONTRAST					0x50 //Done
 //										contrast[0-255]
 //										(Default: 128)
-#define CMD_DEFAULT_CONTRAST			0x91 //Done
+#define CMD_DEFAULT_CONTRAST			        0x91 //Done
 //										contrast[0-255]
 //										(Default: 128)
 
@@ -363,11 +363,11 @@ Each character is encoded horizontally then padded to form a full last byte
 */
 //TODO: Implement file transfer protocol
 
-#define RET_CONFIRM						0x01
-#define RET_DECLINE						0x08
+#define RET_CONFIRM					0x01    //
+#define RET_DECLINE					0x08    //
 
-#define CMD_CONFIRM						0x01
-#define CMD_DECLINE						0x08
+#define CMD_CONFIRM					0x01    //
+#define CMD_DECLINE					0x08    //
 
 #define CMD_WIPE_FILESYSTEM				0x21,0x59,0x21 //Done
 // (Be carefull with this one!)
@@ -388,6 +388,7 @@ Each character is encoded horizontally then padded to form a full last byte
 /*
   DIRECTORY RETURN FORMAT
 	Header (1 byte)
+		Number of entries (1 byte)1 byte)
 		Number of entries (1 byte)
 	File Entry (4 bytes)
 		Flag (1 byte)
@@ -399,7 +400,7 @@ Each character is encoded horizontally then padded to form a full last byte
 		File size MSB (1 byte)
 */
 
-#define CMD_UPLOAD_FS					0xB0
+#define CMD_UPLOAD_FS					0xB0 //
 //										fsimagefile
 //										(Must be 16KB)
 #define CMD_DOWNLOAD_FILE				0xB2 //WIP
@@ -417,7 +418,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										(0: Font,
 //										 1: Bitmap)
 //										newid
-#define CMD_DUMP_FS						0x30 //Done
+#define CMD_DUMP_FS					0x30 //WIP
 
 /*
   DOWNLOAD_FILE AND DUMP_FS RETURN FORMAT
@@ -440,7 +441,7 @@ Each character is encoded horizontally then padded to form a full last byte
 //										 5: 	Filesystem,
 //										 6: 	Command,
 //										 7: 	Display)
-#define CMD_DEFAULT_LOCK_LEVEL			0xCB,0xF5,0xA0 //Done
+#define CMD_DEFAULT_LOCK_LEVEL			        0xCB,0xF5,0xA0 //Done
 //										level
 //										(Lock bits:
 //										 0-2: 	Reserved leave 0,
@@ -450,10 +451,10 @@ Each character is encoded horizontally then padded to form a full last byte
 //										 6: 	Command,
 //										 7: 	Display)
 //FIXME: Report it missing from codes list
-#define CMD_WRITE_CUSTOMER_DATA			0x34 //Done
+#define CMD_WRITE_CUSTOMER_DATA			        0x34 //Done
 //										data
 //										(16B are accessible)
-#define CMD_READ_CUSTOMER_DATA			0x35 //Done
+#define CMD_READ_CUSTOMER_DATA			        0x35 //Done
 
 /*
   READ_CUSTOMER_DATA RETURN FORMAT
@@ -479,17 +480,17 @@ Each character is encoded horizontally then padded to form a full last byte
     Type (1 byte)
 	(One of the following return codes)
 */
-#define RET_LCD0821						0x01 //Done
-#define RET_LCD2021						0x02 //Done
-#define RET_LCD2041						0x05 //Done
-#define RET_LCD4021						0x06 //Done
-#define RET_LCD4041						0x07 //Done
+#define RET_LCD0821					0x01 //Done
+#define RET_LCD2021					0x02 //Done
+#define RET_LCD2041					0x05 //Done
+#define RET_LCD4021					0x06 //Done
+#define RET_LCD4041					0x07 //Done
 #define RET_LK202_25					0x08 //Done
 #define RET_LK204_25					0x09 //Done
 #define RET_LK404_55					0x0A //Done
-#define RET_VFD2021						0x0B //Done
-#define RET_VFD2041						0x0C //Done
-#define RET_VFD4021						0x0D //Done
+#define RET_VFD2021					0x0B //Done
+#define RET_VFD2041					0x0C //Done
+#define RET_VFD4021					0x0D //Done
 #define RET_VK202_25					0x0E //Done
 #define RET_VK204_25					0x0F //Done
 #define RET_GLC12232					0x10 //Done
@@ -497,9 +498,9 @@ Each character is encoded horizontally then padded to form a full last byte
 #define RET_GLK24064_25					0x15 //Done
 #define RET_GLK12232_25					0x22 //Done
 #define RET_GLK12232_25_SM				0x24 //Done
-#define RET_GLK24064_16_1U_USB			0x25 //Done
+#define RET_GLK24064_16_1U_USB			        0x25 //Done
 #define RET_GLK24064_16_1U				0x26 //Done
-#define RET_GLK19264_7T_1U_USB			0x27 //Done
+#define RET_GLK19264_7T_1U_USB		        	0x27 //Done
 #define RET_GLK12236_16					0x28 //Done
 #define RET_GLK12232_16_SM				0x29 //Done
 #define RET_GLK19264_7T_1U				0x2A //Done
@@ -534,11 +535,11 @@ Each character is encoded horizontally then padded to form a full last byte
 #define RET_LK402_25					0x4B //Done
 #define RET_VK402_25					0x4C //Done
 #define RET_PK204_25					0x4D //Done
-#define RET_MOS							0x4F //Done
-#define RET_MOI							0x50 //Done
+#define RET_MOS						0x4F //Done
+#define RET_MOI						0x50 //Done
 #define RET_XBOARD_S					0x51 //Done
 #define RET_XBOARD_I					0x52 //Done
-#define RET_MOU							0x53 //Done
+#define RET_MOU						0x53 //Done
 #define RET_XBOARD_U					0x54 //Done
 #define RET_LK202_25_USB				0x55 //Done
 #define RET_VK202_25_USB				0x56 //Done
@@ -551,6 +552,13 @@ Each character is encoded horizontally then padded to form a full last byte
 
 //Includes
 #include <bitset>       // C++ bit structure
+//#include <cc++/common.h>//GNU Common C++
+
+//Namespaces
+#ifdef	CCXX_NAMESPACES
+using namespace std;
+using namespace ost;
+#endif
 
 // Class definition
 class moglk
@@ -578,9 +586,9 @@ class moglk
 
         //int autodetectBaudRate(void);
 
-        bool setBaudRate(unsigned long int baudrate);
+        bool setBaudRate(unsigned long int baudrate = 19200);
 
-        void setFlowControl(bool state, unsigned char full = 0, unsigned char empty = 0);
+        void setFlowControl(bool state = 0, unsigned char full = 0, unsigned char empty = 0);
 
         void display(const char text[], unsigned char font = 0, unsigned char x = 255, unsigned char y = 255);
 
@@ -640,7 +648,7 @@ class moglk
 
         void clearScreen(void);
 
-        bool setBacklight(bool state, unsigned char time = 0);
+        bool setBacklight(bool state = 1, unsigned char time = 0);
 
         void setBrightness(unsigned char value = 255);
 
@@ -654,7 +662,7 @@ class moglk
 
         unsigned short int getFreeSpace(void);
 
-        void setRemember(bool mode);
+        void setRemember(bool mode = 1);
 
         void setCustomerData(const char data[15]);
 

@@ -20,7 +20,7 @@
 
 // C headers
 #include <termios.h>	// POSIX Terminal IOs
-#include <fcntl.h>		// POSIX File Control Operations
+#include <fcntl.h>	// POSIX File Control Operations
 
 // C++ headers
 #include <cstring>      // ISO C99 String handling
@@ -28,10 +28,11 @@
 #include <sstream>      // C++ string stream
 
 // libmoglk header
-#include "moglk.hpp"
+#include "moglk.h"
 
 //#define NDEBUG
 
+//Namespaces
 using namespace std;
 
 int serial_port;
@@ -55,8 +56,8 @@ bool moglk::init(char* device,
     if(openPort(device))
     {
         configurePort();
-        setBaudRate(baudrate);
-        setFlowControl(1,8,119);
+        //setBaudRate(baudrate);
+        //setFlowControl(1,8,119);
 
 #ifndef NDEBUG
         cout << "DEBUG init(): libmoglk initialized!" << endl;
@@ -1111,7 +1112,7 @@ void moglk::getCustomerData(unsigned char data[16])
 #ifndef NDEBUG
 	cout << "DEBUG getCustomerData(): " << data << endl;
 #endif /* #ifndef NDEBUG */
-} /* getModuleType() */
+} /* getConsumerData() */
 
 void moglk::drawMemBmp(unsigned char id,
                        unsigned char x,
@@ -1965,15 +1966,15 @@ void moglk::getDirectory(void)
     int message[] = {CMD_INIT,CMD_DIRECTORY,EOF};
     send(message);
 
-    unsigned char header;
+    unsigned char entriesCount;
 
-    header = receive();
+    entriesCount = receive();
 
 #ifndef NDEBUG
-    cout << "DEBUG getDirectory(): " << dec << (int)header << " files" << endl;
+    cout << "DEBUG getDirectory(): " << dec << (int)entriesCount << " files" << endl;
 #endif /* #ifndef NDEBUG */
 
-    for (unsigned int i = 0;i < header;i++)
+    for (unsigned int i = 0;i < entriesCount;i++)
     {
         unsigned char flag;
         bitset<8> id;
@@ -1986,9 +1987,9 @@ void moglk::getDirectory(void)
         size_lsb = receive();
         size_msb = receive();
 
-        // Extract type from id
+        // Extract type from id (first bit)
         bool type = id[7];
-        // Strip type from id
+        // Strip type from id (first bit)
         id[7] = 0;
 
 #ifndef NDEBUG
@@ -2067,11 +2068,16 @@ void moglk::downloadFile(bool type,
         n++;
     }
 
-    unsigned short int file_size = size[0] + size[1] * 256 + size[2] * 65536 + size[3] * 16777216;
+    unsigned int file_size = size[0] + size[1] * (2^8) + size[2] * (2^16) + size[3] * (2^24);
+
+#ifndef NDEBUG
+    cout << "DEBUG file_size = ";
+    cout << (int)file_size << endl;
+#endif /* #ifndef NDEBUG */
 
     unsigned char file[file_size + 1];
 
-    unsigned int i = 0;
+    unsigned long int i = 0;
     while (i < file_size)
     {
         file[i] = receive();
@@ -2457,14 +2463,14 @@ void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsig
     send(message);
 
     unsigned int n = 0;
-	int value = data[n];
-	while (value != EOF)
-	{
-	    int data_message[] = {value,EOF};
+    int value = data[n];
+    while (value != EOF)
+    {
+	int data_message[] = {value,EOF};
         send(data_message);
         n++;
         value = data[n];
-	}
+    }
 
 } /* drawBmp() */
 
@@ -2475,9 +2481,9 @@ bool moglk::upload(void)
     cout << "DEBUG upload()"<< endl;
 #endif /* #ifndef NDEBUG */
 
-//  unsigned char reply;
-//    int c_message[] = {CMD_CONFIRM,EOF};
-//  int d_message[] = {CMD_DECLINE,EOF};
+  unsigned char reply;
+  int c_message[] = {CMD_CONFIRM,EOF};
+  int d_message[] = {CMD_DECLINE,EOF};
 /*
     reply = receive();
     if (reply != RET_CONFIRM)
