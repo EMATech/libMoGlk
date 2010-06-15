@@ -25,8 +25,8 @@ CFLAGS=-Wall -fpic -fPIC
 
 all: libmoglk
 
-libmoglk: moglk.cpp
-	$(CC) $(CFLAGS) -c -o moglk.o moglk.cpp
+libmoglk: moglk.cc
+	$(CC) $(CFLAGS) -c -o moglk.o moglk.cc
 	ar rcs libmoglk.a moglk.o
 	$(CC) $(CFLAGS) -shared -o libmoglk.so moglk.o
 
