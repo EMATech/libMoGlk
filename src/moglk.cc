@@ -37,8 +37,6 @@ using namespace std;
 
 int serial_port;
 
-volatile int STOP = false;
-
 moglk::moglk(void)
 {
 }
