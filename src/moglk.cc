@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2010 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -37,6 +37,8 @@ using namespace std;
 
 int serial_port;
 
+volatile int STOP = false;
+
 moglk::moglk(void)
 {
 }
@@ -57,6 +59,7 @@ bool moglk::init(char* device,
     {
         configurePort();
         //setBaudRate(baudrate);
+        setPortBaudRate(baudrate);
         //setFlowControl(1,8,119);
 
 #ifndef NDEBUG
@@ -81,7 +84,6 @@ unsigned long int moglk::autodetectBaudRate(char* device)
 
         for (unsigned char n = 0;baudrate[n] != EOF;n++)
         {
-                //Contenu de la boucle
                 init(device, baudrate[n]);
                 moduleType = getModuleType();
                 if (moduleType)
@@ -89,6 +91,10 @@ unsigned long int moglk::autodetectBaudRate(char* device)
                                 detectedBaudrate = baudrate[n];
                         }
         }
+
+#ifndef NDEBUG
+	cout << "DEBUG autodetectBaudRate() : detectedBaudrate = " << dec << detectedBaudrate << endl;
+#endif /* #ifndef NDEBUG */
 
         return detectedBaudrate;
 
@@ -98,10 +104,10 @@ unsigned long int moglk::autodetectBaudRate(char* device)
 bool moglk::openPort(char* device)
 {
 	// Open serial port:
-	// read/write, no control terminal, non-blocking mode
-	serial_port = open(device, O_RDWR | O_NOCTTY | O_NONBLOCK);
+	// read/write, no control terminal
+	serial_port = open(device, O_RDWR | O_NOCTTY);
 
-    // Handle errors
+        // Handle errors
 	if (serial_port < 0)
 	{
 		cerr << "ERROR openPort(): can't open serial port on " << device << endl;
@@ -137,6 +143,10 @@ void moglk::configurePort(void)
 	// Output options:
 	// Raw output
 	options.c_oflag &= ~OPOST;
+
+        // Set timeout & minimum character input
+        options.c_cc[VTIME] = 1; // Timeout after X*0.1 sec
+        options.c_cc[VMIN] = 0;  // No minimum number of bytes received
 
 	// Flush line
 	tcflush(serial_port, TCIFLUSH);
@@ -189,7 +199,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 		}
 	} /* switch(baudrate) */
 
-    // Port options
+        // Port options
 	struct termios options;
 
 	// Get current port options
@@ -199,7 +209,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 	// global baud rate
 	options.c_cflag |= (port_rate);
 
-    // Set input baud rate
+        // Set input baud rate
 	cfsetispeed(&options, port_rate);
 
 	// Set output baud rate
@@ -219,7 +229,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 
 void moglk::setPortFlowControl(bool state)
 {
-    // Port options
+        // Port options
 	struct termios options;
 
 	// Get current port options
@@ -244,7 +254,7 @@ void moglk::setPortFlowControl(bool state)
 	{
 		// Input options:
 		// disable flow control
-        options.c_iflag &= ~(IXON | IXOFF | IXANY);
+                options.c_iflag &= ~(IXON | IXOFF | IXANY);
 
 #ifndef NDEBUG
         cout << "DEBUG setPortFlowControl(): disabled" << endl;
@@ -252,7 +262,7 @@ void moglk::setPortFlowControl(bool state)
 
 	}
 
-    // Flush line
+        // Flush line
 	tcflush(serial_port, TCIFLUSH);
 
 	// Set port options
@@ -262,14 +272,9 @@ void moglk::setPortFlowControl(bool state)
 
 void moglk::transmit(unsigned char data)
 {
-
-#ifndef NDEBUG
-    cout << "DEBUG transmit(): 0x" << hex << (int)data << endl;
-#endif /* #ifndef NDEBUG */
-
     ssize_t retval = 0;
 
-    // Write data to the serial port
+        // Write data to the serial port
 	while (retval <= 0)
 	{
 	    retval = write(serial_port,
@@ -277,20 +282,20 @@ void moglk::transmit(unsigned char data)
                        1);
 	}
 
+#ifndef NDEBUG
+    cout << "DEBUG transmit(): transmited 0x" << hex << (int)data << endl;
+#endif /* #ifndef NDEBUG */
+
 } /* transmit() */
 
 unsigned char moglk::receive(void)
 {
-#ifndef NDEBUG
-	cout << "DEBUG receive()" << endl;
-#endif /* #ifndef NDEBUG */
-
     unsigned char byte;
 
     ssize_t retval = -1;
 
 	// Read data from the serial port
-	while (retval <= 0)
+	while (retval <= -1)
 	{
 	        retval = read(serial_port,
                           &byte,
@@ -298,7 +303,14 @@ unsigned char moglk::receive(void)
 	}
 
 #ifndef NDEBUG
-	cout << "DEBUG receive(): 0x" << hex << (int)byte << endl;
+        if (!retval) 
+        {
+                cout << "DEBUG receive(): WARNING read timed out" << endl;
+        }
+	else
+        {
+                cout << "DEBUG receive(): received 0x" << hex << (int)byte << endl;
+        }
 #endif /* #ifndef NDEBUG */
 
     return byte;
@@ -307,10 +319,6 @@ unsigned char moglk::receive(void)
 
 void moglk::send(int message[])
 {
-#ifndef NDEBUG
-    cout << "DEBUG send()" << endl;
-#endif /* #ifndef NDEBUG */
-
     unsigned int n = 0;
 	int value = message[n];
 	while (value != EOF)
@@ -651,7 +659,7 @@ unsigned char moglk::getVersion(void)
 	int message[] = {CMD_INIT,CMD_VERSION_NUMBER,EOF};
 	send(message);
 
-    unsigned char version;
+        unsigned char version;
 	version = receive();
 
 #ifndef NDEBUG
@@ -679,7 +687,7 @@ unsigned char moglk::getModuleType(void)
 	int message[] = {CMD_INIT,CMD_MODULE_TYPE,EOF};
 	send(message);
 
-    unsigned char type;
+        unsigned char type;
 	type = receive();
 
 #ifndef NDEBUG
@@ -1107,6 +1115,7 @@ unsigned char moglk::getModuleType(void)
             break;
         }
     } /* switch(type) */
+
     cout << " (0x" << hex << (int)type << ")" << endl;
 #endif /* #ifndef NDEBUG */
 

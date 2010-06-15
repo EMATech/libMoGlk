@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2010 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
