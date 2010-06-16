@@ -43,20 +43,19 @@ moglk::moglk(void)
 
 moglk::~moglk(void)
 {
-	close(serial_port);
+        close(serial_port);
 }
 
-//TODO: Autodetect baudrate
 //TODO: Autodetect device
 //FIXME: Use a portable serial I/O library
 bool moglk::init(char* device,
-                unsigned long int baudrate)
+                 unsigned long int baudrate)
 {
 
     if (!baudrate)
-        {
-                baudrate = autodetectBaudRate(device);
-        }
+    {
+        baudrate = autodetectBaudRate(device);
+    }
 
     if(openPort(device))
     {
@@ -89,9 +88,9 @@ unsigned long int moglk::autodetectBaudRate(char* device)
                 init(device, baudrate[n]);
                 moduleType = getModuleType();
                 if (moduleType)
-                        {
-                                detectedBaudrate = baudrate[n];
-                        }
+                {
+                        detectedBaudrate = baudrate[n];
+                }
         }
 
 #ifndef NDEBUG
@@ -105,7 +104,7 @@ unsigned long int moglk::autodetectBaudRate(char* device)
 
 bool moglk::openPort(char* device)
 {
-	// Open serial port:
+        // Open serial port:
 	// read/write, no control terminal
 	serial_port = open(device, O_RDWR | O_NOCTTY);
 
@@ -115,20 +114,20 @@ bool moglk::openPort(char* device)
 		cerr << "ERROR openPort(): can't open serial port on " << device << endl;
 		return false;
 	}
-    else
-    {
+        else
+        {
 #ifndef NDEBUG
         cout << "DEBUG openPort(): sucessfully opened serial port on " << device << endl;
 #endif /* #ifndef NDEBUG */
-    }
+        }
 
-    return true;
+        return true;
 
 } /* openPort() */
 
 void moglk::configurePort(void)
 {
-    // Port options
+        // Port options
 	struct termios options;
 
 	// Get current port options
@@ -146,9 +145,11 @@ void moglk::configurePort(void)
 	// Raw output
 	options.c_oflag &= ~OPOST;
 
-        // Set timeout & minimum character input
-        options.c_cc[VTIME] = 1; // Timeout after X*0.1 sec
-        options.c_cc[VMIN] = 0;  // No minimum number of bytes received
+        // Character control options:
+        // Timeout after X*0.1 sec
+        options.c_cc[VTIME] = 1;
+        // No minimum number of bytes received
+        options.c_cc[VMIN] = 0;
 
 	// Flush line
 	tcflush(serial_port, TCIFLUSH);
@@ -157,14 +158,14 @@ void moglk::configurePort(void)
 	tcsetattr(serial_port,TCSANOW,&options);
 
 #ifndef NDEBUG
-    cout << "DEBUG configurePort()" << endl;
+        cout << "DEBUG configurePort()" << endl;
 #endif /* #ifndef NDEBUG */
 
 } /* configurePort() */
 
 void moglk::setPortBaudRate(unsigned long int baudrate)
 {
-    // Port rate flag
+        // Port rate flag
 	tcflag_t port_rate;
 
 	// baudrate to rate flag
@@ -224,7 +225,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 	tcsetattr(serial_port,TCSANOW,&options);
 
 #ifndef NDEBUG
-    cout << "DEBUG setPortBaudRate(): " << dec << baudrate << " bauds" << endl;
+        cout << "DEBUG setPortBaudRate(): " << dec << baudrate << " bauds" << endl;
 #endif /* #ifndef NDEBUG */
 
 } /* setPortBaudRate() */
@@ -259,7 +260,7 @@ void moglk::setPortFlowControl(bool state)
                 options.c_iflag &= ~(IXON | IXOFF | IXANY);
 
 #ifndef NDEBUG
-        cout << "DEBUG setPortFlowControl(): disabled" << endl;
+                cout << "DEBUG setPortFlowControl(): disabled" << endl;
 #endif /* #ifndef NDEBUG */
 
 	}
@@ -274,7 +275,7 @@ void moglk::setPortFlowControl(bool state)
 
 void moglk::transmit(unsigned char data)
 {
-    ssize_t retval = 0;
+        ssize_t retval = 0;
 
         // Write data to the serial port
 	while (retval <= 0)
@@ -285,20 +286,20 @@ void moglk::transmit(unsigned char data)
 	}
 
 #ifndef NDEBUG
-    cout << "DEBUG transmit(): transmited 0x" << hex << (int)data << endl;
+        cout << "DEBUG transmit(): transmited 0x" << hex << (int)data << endl;
 #endif /* #ifndef NDEBUG */
 
 } /* transmit() */
 
 unsigned char moglk::receive(void)
 {
-    unsigned char byte;
+        unsigned char byte;
 
-    ssize_t retval = -1;
+        ssize_t retval = -1;
 
-    retval = read(serial_port,
-                  &byte,
-                  1);
+        retval = read(serial_port,
+                      &byte,
+                      1);
 
 #ifndef NDEBUG
         if (!retval) 
@@ -317,13 +318,13 @@ unsigned char moglk::receive(void)
 
 void moglk::send(int message[])
 {
-    unsigned int n = 0;
+        unsigned int n = 0;
 	int value = message[n];
 	while (value != EOF)
 	{
-        transmit((unsigned char)value);
-        n++;
-        value = message[n];
+                transmit((unsigned char)value);
+                n++;
+                value = message[n];
 	}
 
 #ifndef NDEBUG
@@ -331,6 +332,50 @@ void moglk::send(int message[])
 #endif /* #ifndef NDEBUG */
 
 } /* send() */
+
+//FIXME: properly return file
+void moglk::receiveFile(void)
+{
+    unsigned char size[3];
+
+    unsigned int n = 0;
+    while (n < 4)
+    {
+        size[n] = receive();
+        n++;
+    }
+
+    unsigned int file_size = size[0] + size[1] * 256 + size[2] * 65536 + size[3] * 16777216;
+
+#ifndef NDEBUG
+    cout << "DEBUG receiveFile(): File size = " << dec << (int)file_size << "B" << endl;
+#endif /* #ifndef NDEBUG */
+
+    unsigned char file[file_size + 2];
+
+    unsigned long int i = 0;
+    while (i < (file_size + 1))
+    {
+#ifndef NDEBUG
+        cout << "DEBUG receiveFile(): Byte #" << dec << i << " : ";
+#endif /* #ifndef NDEBUG */
+        file[i] = receive();
+        i++;
+    }
+    file[i] = EOF;
+
+#ifndef NDEBUG
+    cout << "DEBUG receiveFile(): Received file data = ";
+    unsigned long int j = 0;
+    while (j < file_size)
+    {
+        cout << hex << (int)file[j];
+        j++;
+    }
+
+    cout << endl;
+#endif /* #ifndef NDEBUG */
+}
 
 bool moglk::setBaudRate(unsigned long int baudrate)
 {
@@ -342,12 +387,11 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 
 	switch (baudrate)
 	{
-	    case 0:
-	    {
-            device_rate = BAUDRATE_DEFAULT;
-            break;
-	    }
-
+                case 0:
+                {
+                        device_rate = BAUDRATE_DEFAULT;
+                        break;
+                }
 		case 9600:
 		{
 			device_rate = BAUDRATE_9600;
@@ -401,52 +445,52 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 		}
 		default:
 		{
-		    standard = 0;
-		    if (baudrate >= 977 && baudrate <= 153800)
-		    {
-                unsigned short int non_standard_rate = (16000000 / 8 * baudrate) - 1;
-                cout << "WARNING Linux host doesn't support custom rates (" << baudrate << ")" << endl;
-                non_standard_rate_lsb = non_standard_rate;
-                non_standard_rate_msb = non_standard_rate / 256;
-		    }
-		    else
-		    {
-		       cout << "WARNING Device doesn't support " << dec << baudrate << " bauds rate" << endl;
-		    }
+                        standard = 0;
+                        if (baudrate >= 977 && baudrate <= 153800)
+                        {
+                                unsigned short int non_standard_rate = (16000000 / 8 * baudrate) - 1;
+                                cout << "WARNING Linux host doesn't support custom rates (" << baudrate << ")" << endl;
+                                non_standard_rate_lsb = non_standard_rate;
+                                non_standard_rate_msb = non_standard_rate / 256;
+                        }
+                        else
+                        {
+                                cout << "WARNING Device doesn't support " << dec << baudrate << " bauds rate" << endl;
+                        }
 			break;
 		}
 
 	} /* switch(baudrate) */
 
-    if (!standard)
-    {
-#ifndef NDEBUG
-        cout << "DEBUG setbaudrate(): non-standard "<< dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
-#endif /* #ifndef NDEBUG */
-        if ((non_standard_rate_lsb < 12 && non_standard_rate_msb == 0) || (non_standard_rate_lsb == 0xFF && non_standard_rate_msb > 0x07))
+        if (!standard)
         {
-            int message[] = {CMD_INIT,CMD_NON_STANDARD_BAUDRATE,non_standard_rate_lsb,non_standard_rate_msb,EOF};
-            send(message);
+#ifndef NDEBUG
+                cout << "DEBUG setbaudrate(): non-standard "<< dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
+#endif /* #ifndef NDEBUG */
+                if ((non_standard_rate_lsb < 12 && non_standard_rate_msb == 0) || (non_standard_rate_lsb == 0xFF && non_standard_rate_msb > 0x07))
+                {
+                        int message[] = {CMD_INIT,CMD_NON_STANDARD_BAUDRATE,non_standard_rate_lsb,non_standard_rate_msb,EOF};
+                        send(message);
+                }
+                else
+                {
+                        cerr << "ERROR command ignored" << endl;
+                        return false;
+                }
         }
         else
         {
-            cerr << "ERROR command ignored" << endl;
-            return false;
-        }
-    }
-    else
-    {
 #ifndef NDEBUG
-        cout << "DEBUG setbaudrate(): " << dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
+                cout << "DEBUG setbaudrate(): " << dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_BAUDRATE,device_rate,EOF};
-        send(message);
-    }
+                int message[] = {CMD_INIT,CMD_BAUDRATE,device_rate,EOF};
+                send(message);
+        }
 
-    setPortBaudRate(baudrate);
+        setPortBaudRate(baudrate);
 
-    return true;
+        return true;
 
 } /* setBaudRate */
 
@@ -541,7 +585,7 @@ void moglk::setFont(unsigned char id, unsigned char lm, unsigned char tm, unsign
 {
 
 #ifndef NDEBUG
-	cout << "DEBUG setFont(): font n°" << dec << (int)id << endl;
+	cout << "DEBUG setFont(): font #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
 	int message[] = {CMD_INIT,CMD_USE_FONT,id,EOF};
@@ -1150,7 +1194,7 @@ void moglk::drawMemBmp(unsigned char id,
 {
 
 #ifndef NDEBUG
-	cout << "DEBUG drawMemBmp(): bitmap n°" << dec << (int)id << ", X=" << (int)x << "px ,Y=" << (int)y << "px"<< endl;
+	cout << "DEBUG drawMemBmp(): bitmap #" << dec << (int)id << ", X=" << (int)x << "px ,Y=" << (int)y << "px"<< endl;
 #endif /* #ifndef NDEBUG */
 
 	int message[] = {CMD_INIT,CMD_DRAW_MEMORY_BMP,id,x,y,EOF};
@@ -1303,7 +1347,7 @@ bool moglk::initBarGraph(unsigned char x1,
     }
 
 #ifndef NDEBUG
-    cout << "DEBUG initBarGraph(): bar graph n°" << dec << (int)id << ", ";
+    cout << "DEBUG initBarGraph(): bar graph #" << dec << (int)id << ", ";
     switch (type)
     {
         case 0:
@@ -1350,7 +1394,7 @@ bool moglk::drawBarGraph(unsigned char value,
     }
 
 #ifndef NDEBUG
-    cout << "DEBUG drawBarGraph(): bar graph n°" << dec << (int)id << " to " << (int)value << "px" << endl;
+    cout << "DEBUG drawBarGraph(): bar graph #" << dec << (int)id << " to " << (int)value << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
     int message[] = {CMD_INIT,CMD_DRAW_BAR_GRAPH,id,value,EOF};
@@ -1386,7 +1430,7 @@ bool moglk::initStripChart(unsigned char x1,
     }
 
 #ifndef NDEBUG
-    cout << "DEBUG initStripChart(): strip chart n°" << dec << (int)id << ", X1=" << (int)x1 << ", Y1=" << (int)y1 << ", X2=" << (int)x2 << ", Y2=" << (int)y2 << endl;
+    cout << "DEBUG initStripChart(): strip chart #" << dec << (int)id << ", X1=" << (int)x1 << ", Y1=" << (int)y1 << ", X2=" << (int)x2 << ", Y2=" << (int)y2 << endl;
 #endif /* #ifndef NDEBUG */
 
     int message[] = {CMD_INIT,CMD_INITIALIZE_STRIP_CHART,id,x1,y1,x2,y2,EOF};
@@ -1408,7 +1452,7 @@ bool moglk::shiftStripChart(bool direction,
 
 
 #ifndef NDEBUG
-    cout << "DEBUG shiftStripChart(): strip chart n°" << dec << (int)id << ", shifted";
+    cout << "DEBUG shiftStripChart(): strip chart #" << dec << (int)id << ", shifted";
     if (!direction)
     {
         cout << "left";
@@ -1442,7 +1486,7 @@ bool moglk::setGpo(unsigned char id,
     if (!state)
     {
 #ifndef NDEBUG
-        cout << "DEBUG setGpo(): GPO n°" << dec << (int)id << ", off" << endl;
+        cout << "DEBUG setGpo(): GPO #" << dec << (int)id << ", off" << endl;
 #endif /* #ifndef NDEBUG */
 
         int message[] = {CMD_INIT,CMD_GPO_OFF,id,EOF};
@@ -1451,7 +1495,7 @@ bool moglk::setGpo(unsigned char id,
     else
     {
 #ifndef NDEBUG
-        cout << "DEBUG setGpo(): GPO n°" << dec << (int)id << ", on" << endl;
+        cout << "DEBUG setGpo(): GPO #" << dec << (int)id << ", on" << endl;
 #endif /* #ifndef NDEBUG */
 
         int message[] = {CMD_INIT,CMD_GPO_ON,id,EOF};
@@ -1721,7 +1765,7 @@ bool moglk::startupGpo(unsigned char id,
     }
 
 #ifndef NDEBUG
-    cout << "DEBUG startupGpo(): GPO n°" << dec << (int)id << ", ";
+    cout << "DEBUG startupGpo(): GPO #" << dec << (int)id << ", ";
     if (!state)
     {
         cout << "off";
@@ -2023,7 +2067,7 @@ void moglk::getDirectory(void)
         id[7] = 0;
 
 #ifndef NDEBUG
-        cout << "DEBUG getDirectory(): file n°" << dec << i << ", ";
+        cout << "DEBUG getDirectory(): file #" << dec << i << ", ";
         if (!flag)
         {
             cout << "unused" << endl;
@@ -2040,7 +2084,7 @@ void moglk::getDirectory(void)
                 cout << "bitmap";
             }
 
-            cout << " n°" << id.to_ulong() << ", " << dec << (int)size_lsb + (int)size_msb * 256 << "B" << endl;
+            cout << " #" << id.to_ulong() << ", " << dec << (int)size_lsb + (int)size_msb * 256 << "B" << endl;
         }
 #endif /* #ifndef NDEBUG */
 
@@ -2061,7 +2105,7 @@ void moglk::deleteFile(bool type,
     {
         cout << "bitmap";
     }
-    cout << " n°" << dec << (int)id << endl;
+    cout << " #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
     int message[] = {CMD_INIT,CMD_DELETE_FILE,type,id,EOF};
@@ -2083,41 +2127,13 @@ void moglk::downloadFile(bool type,
     {
         cout << "bitmap";
     }
-    cout << " n°" << dec << (int)id << endl;
+    cout << " #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
     int message[] = {CMD_INIT,CMD_DOWNLOAD_FILE,type,id,EOF};
     send(message);
 
-    unsigned char size[3];
-
-    unsigned int n = 0;
-    while (n < 4)
-    {
-        size[n] = receive();
-        n++;
-    }
-
-    unsigned int file_size = size[0] + size[1] * (2^8) + size[2] * (2^16) + size[3] * (2^24);
-
-#ifndef NDEBUG
-    cout << "DEBUG file_size = ";
-    cout << (int)file_size << endl;
-#endif /* #ifndef NDEBUG */
-
-    unsigned char file[file_size + 1];
-
-    unsigned long int i = 0;
-    while (i < file_size)
-    {
-        file[i] = receive();
-        i++;
-    }
-    file[i] = EOF;
-
-#ifndef NDEBUG
-    cout << hex << file;
-#endif /* #ifndef NDEBUG */
+    receiveFile();
 
 } /* downloadFile() */
 
@@ -2136,7 +2152,7 @@ void moglk::moveFile(bool old_type,
     {
         cout << "bitmap";
     }
-    cout << " n°" << dec << (int)old_id << " to ";
+    cout << " #" << dec << (int)old_id << " to ";
     if (!new_type)
     {
         cout << "font";
@@ -2145,7 +2161,7 @@ void moglk::moveFile(bool old_type,
     {
         cout << "bitmap";
     }
-    cout << " n°" << dec << (int)new_id << endl;
+    cout << " #" << dec << (int)new_id << endl;
 #endif /* #ifndef NDEBUG */
 
     int message[] = {CMD_INIT,CMD_MOVE_FILE,old_type,old_id,new_type,new_id,EOF};
@@ -2448,37 +2464,10 @@ void moglk::setCustomKeyCodes(unsigned char kup_top,
 //FIXME: properly return filesystem
 void moglk::dumpFs(void)
 {
-#ifndef NDEBUG
-    cout << "DEBUG dumpFs()" << endl;
-#endif /* #ifndef NDEBUG */
-
     int message[] = {CMD_INIT,CMD_DUMP_FS,EOF};
     send(message);
 
-    unsigned char size[3];
-
-    unsigned int n = 0;
-    while (n < 4)
-    {
-        size[n] = receive();
-        n++;
-    }
-
-    unsigned short int file_size = size[0] + size[1] * 256 + size[2] * 65536 + size[3] * 16777216;
-
-    unsigned char file[file_size + 1];
-
-    unsigned int i = 0;
-    while (i < file_size)
-    {
-        file[i] = receive();
-        i++;
-    }
-    file[i] = EOF;
-
-#ifndef NDEBUG
-    cout << hex << file;
-#endif /* #ifndef NDEBUG */
+    receiveFile();
 
 } /* dumpFs() */
 

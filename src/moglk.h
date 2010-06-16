@@ -571,8 +571,9 @@ class moglk
 
         void transmit(unsigned char data);
         unsigned char receive(void);
+        void receiveFile(void);
 
-		void send(int message[]);
+	void send(int message[]);
 
 	public:
         moglk(void);
