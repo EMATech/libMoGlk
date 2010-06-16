@@ -420,6 +420,9 @@ Each character is encoded horizontally then padded to form a full last byte
 //										newid
 #define CMD_DUMP_FS					0x30 //WIP
 
+// Undocumented command!
+#define CMD_DUMP_FW                                     0xD0 //WIP
+
 /*
   DOWNLOAD_FILE AND DUMP_FS RETURN FORMAT
 	File size (4 bytes)
@@ -570,7 +573,7 @@ class moglk
         void setPortFlowControl(bool state);
 
         void transmit(unsigned char data);
-        unsigned char receive(void);
+        int receive(void);
         void receiveFile(void);
 
 	void send(int message[]);
@@ -680,6 +683,8 @@ class moglk
         void downloadFile(bool type, unsigned char id);
 
         void dumpFs(void);
+
+        void dumpFw(void);
 
         void moveFile(bool old_type, unsigned char old_id, bool new_type, unsigned char new_id);
 

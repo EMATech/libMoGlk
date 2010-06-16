@@ -291,7 +291,7 @@ void moglk::transmit(unsigned char data)
 
 } /* transmit() */
 
-unsigned char moglk::receive(void)
+int moglk::receive(void)
 {
         unsigned char byte;
 
@@ -301,18 +301,21 @@ unsigned char moglk::receive(void)
                       &byte,
                       1);
 
-#ifndef NDEBUG
+
         if (!retval) 
         {
-                cout << "DEBUG receive(): WARNING read timed out" << endl;
+                clog << "WARNING receive(): read timed out" << endl;
+        return -1;
         }
 	else
         {
+#ifndef NDEBUG
                 cout << "DEBUG receive(): received 0x" << hex << (int)byte << endl;
-        }
 #endif /* #ifndef NDEBUG */
+        return byte;
+        }
 
-    return byte;
+    return -1;
 
 } /* receive() */
 
@@ -348,34 +351,42 @@ void moglk::receiveFile(void)
     unsigned int file_size = size[0] + size[1] * 256 + size[2] * 65536 + size[3] * 16777216;
 
 #ifndef NDEBUG
-    cout << "DEBUG receiveFile(): File size = " << dec << (int)file_size << "B" << endl;
+    cout << "DEBUG receiveFile(): file size = " << dec << file_size << "B" << endl;
 #endif /* #ifndef NDEBUG */
 
-    unsigned char file[file_size + 2];
+if (file_size)
+{
+    int file[file_size + 1];
 
     unsigned long int i = 0;
     while (i < (file_size + 1))
     {
 #ifndef NDEBUG
-        cout << "DEBUG receiveFile(): Byte #" << dec << i << " : ";
+        cout << "DEBUG receiveFile(): byte #" << dec << i << " : ";
 #endif /* #ifndef NDEBUG */
+
         file[i] = receive();
         i++;
     }
-    file[i] = EOF;
+file[i] = EOF;
 
 #ifndef NDEBUG
-    cout << "DEBUG receiveFile(): Received file data = ";
-    unsigned long int j = 0;
-    while (j < file_size)
+    cout << "DEBUG receiveFile(): received file data = ";
+    unsigned long int k = 0;
+    while (file[k] != EOF)
     {
-        cout << hex << (int)file[j];
-        j++;
+        cout << hex << (int)file[k];
+        k++;
     }
-
     cout << endl;
+    cout << "DEBUG receiveFile(): " << dec << k - 1 << "B" << endl;
 #endif /* #ifndef NDEBUG */
 }
+else
+{
+        cerr << "ERROR receiveFile(): file doesn't exist" << endl;
+}
+} /* receiveFile() */
 
 bool moglk::setBaudRate(unsigned long int baudrate)
 {
@@ -401,7 +412,7 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 		case 14400:
 		{
 			device_rate = BAUDRATE_14400;
-			cout << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
 			break;
 		}
 
@@ -414,7 +425,7 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 		case 28800:
 		{
 			device_rate = BAUDRATE_28800;
-			cout << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
 			break;
 		}
 
@@ -427,14 +438,14 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 		case 57600:
 		{
 			device_rate = BAUDRATE_57600;
-			cout << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
 			break;
 		}
 
 		case 76800:
 		{
 			device_rate = BAUDRATE_76800;
-			cout << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
 			break;
 		}
 
@@ -449,13 +460,13 @@ bool moglk::setBaudRate(unsigned long int baudrate)
                         if (baudrate >= 977 && baudrate <= 153800)
                         {
                                 unsigned short int non_standard_rate = (16000000 / 8 * baudrate) - 1;
-                                cout << "WARNING Linux host doesn't support custom rates (" << baudrate << ")" << endl;
+                                clog << "WARNING Linux host doesn't support custom rates (" << baudrate << ")" << endl;
                                 non_standard_rate_lsb = non_standard_rate;
                                 non_standard_rate_msb = non_standard_rate / 256;
                         }
                         else
                         {
-                                cout << "WARNING Device doesn't support " << dec << baudrate << " bauds rate" << endl;
+                                clog << "WARNING Device doesn't support " << dec << baudrate << " bauds rate" << endl;
                         }
 			break;
 		}
@@ -474,7 +485,7 @@ bool moglk::setBaudRate(unsigned long int baudrate)
                 }
                 else
                 {
-                        cerr << "ERROR command ignored" << endl;
+                        cerr << "ERROR setbaudrate(): command ignored" << endl;
                         return false;
                 }
         }
@@ -674,7 +685,7 @@ void moglk::setCursor(unsigned char x,
 	if (!mode)
 	{
 #ifndef NDEBUG
-		cout << "DEBUG setCursor(): Absolute pixel mode, X=" << dec << (int)x << "px, Y=" << (int)y << "px" << endl;
+		cout << "DEBUG setCursor(): absolute pixel mode, X=" << dec << (int)x << "px, Y=" << (int)y << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
 		int message[] = {CMD_INIT,CMD_CURSOR_COORDINATE,x,y,EOF};
@@ -683,7 +694,7 @@ void moglk::setCursor(unsigned char x,
     else
     {
 #ifndef NDEBUG
-			cout << "DEBUG setCursor(): Absolute character size relative mode, X=" << dec << (int)x << ", Y=" << (int)y << endl;
+			cout << "DEBUG setCursor(): absolute character size relative mode, X=" << dec << (int)x << ", Y=" << (int)y << endl;
 #endif /* #ifndef NDEBUG */
 
 		int message[] = {CMD_INIT,CMD_CURSOR_POSITION,x,y,EOF};
@@ -1832,7 +1843,7 @@ bool moglk::setBacklight(bool state,
 #endif /* #ifndef NDEBUG */
         if (time)
         {
-            cout << "WARNING setBacklight(): unused time value only available for set backlight on" << endl;
+            clog << "WARNING setBacklight(): unused time value only available for set backlight on" << endl;
         };
 
         int message[] = {CMD_INIT,CMD_DISPLAY_OFF,EOF};
@@ -2117,6 +2128,8 @@ void moglk::deleteFile(bool type,
 void moglk::downloadFile(bool type,
                          unsigned char id)
 {
+if (id)
+{
 #ifndef NDEBUG
     cout << "DEBUG downloadFile(): ";
     if (!type)
@@ -2134,7 +2147,11 @@ void moglk::downloadFile(bool type,
     send(message);
 
     receiveFile();
-
+}
+else
+{
+    cerr << "ERROR downloadFile(): ID should not be null";
+}
 } /* downloadFile() */
 
 void moglk::moveFile(bool old_type,
@@ -2470,6 +2487,40 @@ void moglk::dumpFs(void)
     receiveFile();
 
 } /* dumpFs() */
+
+void moglk::dumpFw(void)
+{
+    int message[] = {CMD_INIT,CMD_DUMP_FW,EOF};
+    send(message);
+
+    unsigned int file_size = 466;
+
+    int file[file_size + 1];
+
+    unsigned long int i = 0;
+    while (i < (file_size + 1))
+    {
+#ifndef NDEBUG
+        cout << "DEBUG receiveFile(): byte #" << dec << i << " : ";
+#endif /* #ifndef NDEBUG */
+        file[i] = receive();
+        i++;
+    }
+    file[i] = EOF;
+
+#ifndef NDEBUG
+    cout << "DEBUG receiveFile(): received file data = ";
+    unsigned long int j = 0;
+    while (file[j] != EOF)
+    {
+        cout << hex << (int)file[j];
+        j++;
+    }
+    cout << endl;
+    cout << "DEBUG receiveFile(): " << dec << j - 1 << "B" << endl;
+#endif /* #ifndef NDEBUG */
+
+} /* dumpFW() */
 
 //TODO: use pointer for data
 void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int data[])
