@@ -77,21 +77,21 @@ http://www.matrixorbital.ca/manuals/GLK_series/GLK19264-7T-1U/GLK19264-7T-1U.pdf
 
 #define CMD_FLOW_CONTROL_OFF			        0x3B //Done
 
-#define CMD_BAUDRATE					0x39 //Done
+#define CMD_BAUD_RATE					0x39 //Done
 //										speed[See table below]
 
-#define BAUDRATE_9600					0xCF //Done
-#define BAUDRATE_14400					0x8A //Done
-#define BAUDRATE_19200					0x67 //Done
-#define BAUDRATE_28800					0x44 //Done
-#define BAUDRATE_38400					0x33 //Done
-#define BAUDRATE_57600					0x22 //Done
-#define BAUDRATE_76800					0x19 //Done
-#define BAUDRATE_115200					0x10 //Done
+#define BAUD_RATE_9600					0xCF //Done
+#define BAUD_RATE_14400					0x8A //Done
+#define BAUD_RATE_19200					0x67 //Done
+#define BAUD_RATE_28800					0x44 //Done
+#define BAUD_RATE_38400					0x33 //Done
+#define BAUD_RATE_57600					0x22 //Done
+#define BAUD_RATE_76800					0x19 //Done
+#define BAUD_RATE_115200					0x10 //Done
 
-#define BAUDRATE_DEFAULT				BAUDRATE_19200 //Done
+#define BAUD_RATE_DEFAULT				BAUD_RATE_19200 //Done
 
-#define CMD_NON_STANDARD_BAUDRATE		        0xA4 //Done
+#define CMD_NON_STANDARD_BAUD_RATE		        0xA4 //Done
 //										speed[12-2047]
 //										(2 bytes,
 //										LSB then MSB,
@@ -569,7 +569,7 @@ class moglk
 	private:
         bool openPort(char * device_ptr = "/dev/ttyS0");
         void configurePort(void);
-        void setPortBaudRate(unsigned long int baudrate);
+        void setPortBaudRate(unsigned long int baud_rate);
         void setPortFlowControl(bool state);
 
         void transmit(int * data_ptr);
@@ -584,7 +584,7 @@ class moglk
         moglk(void);
         ~moglk(void);
 
-        bool init(char * device_ptr = "/dev/ttyS0", unsigned long int baudrate = 0);
+        bool init(char * device_ptr = "/dev/ttyS0", unsigned long int baud_rate = 0);
 
         //int autodetect(void);
 
@@ -592,7 +592,7 @@ class moglk
 
         unsigned long int autodetectBaudRate(char * device_ptr = "/dev/ttyS0");
 
-        bool setBaudRate(unsigned long int baudrate = 19200);
+        bool setBaudRate(unsigned long int baud_rate = 19200);
 
         void setFlowControl(bool state = 0, unsigned char full = 0, unsigned char empty = 0);
 

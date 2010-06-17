@@ -49,18 +49,18 @@ moglk::~moglk(void)
 //TODO: Autodetect device
 //FIXME: Use a portable serial I/O library
 bool moglk::init(char * device_ptr,
-                 unsigned long int baudrate)
+                 unsigned long int baud_rate)
 {
 
-    if (!baudrate)
+    if (!baud_rate)
     {
-        baudrate = autodetectBaudRate(device_ptr);
+        baud_rate = autodetectBaudRate(device_ptr);
     }
 
     if(openPort(device_ptr))
     {
         configurePort();
-        setPortBaudRate(baudrate);
+        setPortBaudRate(baud_rate);
         //setFlowControl(1,8,119);
 
 #ifndef NDEBUG
@@ -79,17 +79,17 @@ bool moglk::init(char * device_ptr,
 unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 {
 
-        unsigned long int detectedBaudrate = 0;
-        unsigned char moduleType;
-        long int baudrate[] = {9600, 19200, 38400, 115200, EOF};
+        unsigned long int detected_baud_rate = 0;
+        unsigned char module_type;
+        long int baud_rate[] = {9600, 19200, 38400, 115200, EOF};
 
-        for (unsigned char n = 0;baudrate[n] != EOF;n++)
+        for (unsigned char n = 0;baud_rate[n] != EOF;n++)
         {
-                init(device_ptr, baudrate[n]);
-                moduleType = getModuleType();
-                if (moduleType)
+                init(device_ptr, baud_rate[n]);
+                module_type = getModuleType();
+                if (module_type)
                 {
-                        detectedBaudrate = baudrate[n];
+                        detectedBaudrate = baud_rate[n];
                 }
         }
 
@@ -97,7 +97,7 @@ unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 	cout << "DEBUG autodetectBaudRate() : detectedBaudrate = " << dec << detectedBaudrate << endl;
 #endif /* #ifndef NDEBUG */
 
-        return detectedBaudrate;
+        return detected_baud_rate;
 
 } /* autodetectBaudRate */
 
@@ -163,13 +163,13 @@ void moglk::configurePort(void)
 
 } /* configurePort() */
 
-void moglk::setPortBaudRate(unsigned long int baudrate)
+void moglk::setPortBaudRate(unsigned long int baud_rate)
 {
         // Port rate flag
 	tcflag_t port_rate;
 
 	// baudrate to rate flag
-	switch (baudrate)
+	switch (baud_rate)
 	{
 		case 9600:
 		{
@@ -200,7 +200,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 			port_rate = B19200;
 			break;
 		}
-	} /* switch(baudrate) */
+	} /* switch(baud_rate) */
 
         // Port options
 	struct termios options;
@@ -225,7 +225,7 @@ void moglk::setPortBaudRate(unsigned long int baudrate)
 	tcsetattr(serial_port,TCSANOW,&options);
 
 #ifndef NDEBUG
-        cout << "DEBUG setPortBaudRate(): " << dec << baudrate << " bauds" << endl;
+        cout << "DEBUG setPortBaudRate(): " << dec << baud_rate << " bauds" << endl;
 #endif /* #ifndef NDEBUG */
 
 } /* setPortBaudRate() */
@@ -394,7 +394,7 @@ else
 
 } /* receiveFile() */
 
-bool moglk::setBaudRate(unsigned long int baudrate)
+bool moglk::setBaudRate(unsigned long int baud_rate)
 {
 
 	unsigned char device_rate;
@@ -402,110 +402,110 @@ bool moglk::setBaudRate(unsigned long int baudrate)
 	unsigned char non_standard_rate_msb;
 	bool standard = 1;
 
-	switch (baudrate)
+	switch (baud_rate)
 	{
                 case 0:
                 {
-                        device_rate = BAUDRATE_DEFAULT;
+                        device_rate = BAUD_RATE_DEFAULT;
                         break;
                 }
 		case 9600:
 		{
-			device_rate = BAUDRATE_9600;
+			device_rate = BAUD_RATE_9600;
 			break;
 		}
 
 		case 14400:
 		{
-			device_rate = BAUDRATE_14400;
-			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			device_rate = BAUD_RATE_14400;
+			clog << "WARNING Linux host doesn't support "<< baud_rate << "bauds rate" << endl;
 			break;
 		}
 
 		case 19200:
 		{
-			device_rate = BAUDRATE_19200;
+			device_rate = BAUD_RATE_19200;
 			break;
 		}
 
 		case 28800:
 		{
-			device_rate = BAUDRATE_28800;
-			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			device_rate = BAUD_RATE_28800;
+			clog << "WARNING Linux host doesn't support "<< baud_rate << "bauds rate" << endl;
 			break;
 		}
 
 		case 38400:
 		{
-			device_rate = BAUDRATE_38400;
+			device_rate = BAUD_RATE_38400;
 			break;
 		}
 
 		case 57600:
 		{
-			device_rate = BAUDRATE_57600;
-			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			device_rate = BAUD_RATE_57600;
+			clog << "WARNING Linux host doesn't support "<< baud_rate << "bauds rate" << endl;
 			break;
 		}
 
 		case 76800:
 		{
-			device_rate = BAUDRATE_76800;
-			clog << "WARNING Linux host doesn't support "<< baudrate << "bauds rate" << endl;
+			device_rate = BAUD_RATE_76800;
+			clog << "WARNING Linux host doesn't support "<< baud_rate << "bauds rate" << endl;
 			break;
 		}
 
 		case 115200:
 		{
-			device_rate = BAUDRATE_115200;
+			device_rate = BAUD_RATE_115200;
 			break;
 		}
 		default:
 		{
                         standard = 0;
-                        if (baudrate >= 977 && baudrate <= 153800)
+                        if (baud_rate >= 977 && baud_rate <= 153800)
                         {
-                                unsigned short int non_standard_rate = (16000000 / 8 * baudrate) - 1;
-                                clog << "WARNING Linux host doesn't support custom rates (" << baudrate << ")" << endl;
+                                unsigned short int non_standard_rate = (16000000 / 8 * baud_rate) - 1;
+                                clog << "WARNING Linux host doesn't support custom rates (" << baud_rate << ")" << endl;
                                 non_standard_rate_lsb = non_standard_rate;
                                 non_standard_rate_msb = non_standard_rate / 256;
                         }
                         else
                         {
-                                clog << "WARNING Device doesn't support " << dec << baudrate << " bauds rate" << endl;
+                                clog << "WARNING Device doesn't support " << dec << baud_rate << " bauds rate" << endl;
                         }
 			break;
 		}
 
-	} /* switch(baudrate) */
+	} /* switch(baud_rate) */
 
         if (!standard)
         {
 #ifndef NDEBUG
-                cout << "DEBUG setbaudrate(): non-standard "<< dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
+                cout << "DEBUG setBaudRate(): non-standard "<< dec << baud_rate << " (0x" << hex << (int)device_rate << ")" << endl;
 #endif /* #ifndef NDEBUG */
                 if ((non_standard_rate_lsb < 12 && non_standard_rate_msb == 0) || (non_standard_rate_lsb == 0xFF && non_standard_rate_msb > 0x07))
                 {
-                        int message[] = {CMD_INIT,CMD_NON_STANDARD_BAUDRATE,non_standard_rate_lsb,non_standard_rate_msb,EOF};
+                        int message[] = {CMD_INIT,CMD_NON_STANDARD_BAUD_RATE,non_standard_rate_lsb,non_standard_rate_msb,EOF};
                         send(&message[0]);
                 }
                 else
                 {
-                        cerr << "ERROR setbaudrate(): command ignored" << endl;
+                        cerr << "ERROR setBaudRate(): command ignored" << endl;
                         return false;
                 }
         }
         else
         {
 #ifndef NDEBUG
-                cout << "DEBUG setbaudrate(): " << dec << baudrate << " (0x" << hex << (int)device_rate << ")" << endl;
+                cout << "DEBUG setBaudRate(): " << dec << baud_rate << " (0x" << hex << (int)device_rate << ")" << endl;
 #endif /* #ifndef NDEBUG */
 
-                int message[] = {CMD_INIT,CMD_BAUDRATE,device_rate,EOF};
+                int message[] = {CMD_INIT,CMD_BAUD_RATE,device_rate,EOF};
                 send(&message[0]);
         }
 
-        setPortBaudRate(baudrate);
+        setPortBaudRate(baud_rate);
 
         return true;
 
@@ -680,7 +680,7 @@ void moglk::setAutoScroll(bool mode)
 
 void moglk::setCursor(unsigned char x,
                       unsigned char y,
-					  bool mode)
+		      bool mode)
 {
 
     if (x < 0 || y < 0)

@@ -24,8 +24,7 @@ CFLAGS=-Wall
 all: display
 
 display: display.cc
-	$(CC) $(CFLAGS) -I ../../src -c -o display.o display.cc
-	$(CC) $(CFLAGS) -L ../../src -static -o display display.o -lmoglk
+	$(CC) $(CFLAGS) -I../../src -L../../src display.cc -lmoglk -o display
 
 clean:
 	rm display.o
