@@ -1267,7 +1267,7 @@ unsigned char Moglk::getModuleType(void)
 
 } /* getModuleType() */
 
-void Moglk::getCustomerData(unsigned char * data[16])
+void Moglk::getCustomerData(unsigned char * data)
 {
 #ifndef NDEBUG
 	cout << "DEBUG getCustomerData()" << endl;
@@ -2232,7 +2232,7 @@ void Moglk::setRemember(bool mode)
 } /* setRemember() */
 
 //FIXME: use pointers
-void Moglk::setCustomerData(unsigned char * data[15])
+void Moglk::setCustomerData(const char * data)
 {
 #ifndef NDEBUG
     cout << "DEBUG setCustomerData(): " << data << endl;
