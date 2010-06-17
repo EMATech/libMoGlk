@@ -578,7 +578,7 @@ class moglk
 
         bool upload(char * data_ptr);
 
-	void send(int message[]);
+	void send(int * message_ptr);
 
 	public:
         moglk(void);
