@@ -273,7 +273,7 @@ void moglk::setPortFlowControl(bool state)
 
 } /* setPortFlowControl() */
 
-void moglk::transmit(unsigned char data)
+void moglk::transmit(unsigned char * data_ptr)
 {
         ssize_t retval = 0;
 
@@ -281,12 +281,12 @@ void moglk::transmit(unsigned char data)
 	while (retval <= 0)
 	{
 	    retval = write(serial_port,
-                       &data,
+                       data_ptr,
                        1);
 	}
 
 #ifndef NDEBUG
-        cout << "DEBUG transmit(): transmited 0x" << hex << (int)data << endl;
+        cout << "DEBUG transmit(): transmited 0x" << hex << (int)*data_ptr << endl;
 #endif /* #ifndef NDEBUG */
 
 } /* transmit() */
@@ -325,7 +325,9 @@ void moglk::send(int message[])
 	int value = message[n];
 	while (value != EOF)
 	{
-                transmit((unsigned char)value);
+                unsigned char * data_ptr;
+                *data_ptr = (unsigned char)value;
+                transmit(data_ptr);
                 n++;
                 value = message[n];
 	}

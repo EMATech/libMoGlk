@@ -572,7 +572,7 @@ class moglk
         void setPortBaudRate(unsigned long int baudrate);
         void setPortFlowControl(bool state);
 
-        void transmit(unsigned char data);
+        void transmit(unsigned char * data_ptr);
         int receive(void);
         int * receiveFile(int * file_ptr);
 
