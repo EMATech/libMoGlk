@@ -2231,7 +2231,6 @@ void Moglk::setRemember(bool mode)
 
 } /* setRemember() */
 
-//FIXME: use pointers
 void Moglk::setCustomerData(const char * data)
 {
 #ifndef NDEBUG
