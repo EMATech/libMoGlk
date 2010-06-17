@@ -57,7 +57,7 @@ bool moglk::init(char * device_ptr,
         baud_rate = autodetectBaudRate(device_ptr);
     }
 
-    if(openPort(device_ptr))
+    if(!openPort(device_ptr))
     {
         configurePort();
         setPortBaudRate(baud_rate);
@@ -71,12 +71,10 @@ bool moglk::init(char * device_ptr,
         cout << "DEBUG init(): libmoglk initialized!" << endl;
 #endif /* #ifndef NDEBUG */
 
-        return true;
-    }
-    else
-    {
         return false;
     }
+
+    return true;
 
 } /* init() */
 
@@ -121,13 +119,14 @@ bool moglk::openPort(char * device_ptr)
 	if (serial_port < 0)
 	{
 		cerr << "ERROR openPort(): can't open serial port on " << device_ptr << endl;
-		return false;
+		return true;
 	}
         else
         {
 #ifndef NDEBUG
         cout << "DEBUG openPort(): sucessfully opened serial port on " << device_ptr << endl;
 #endif /* #ifndef NDEBUG */
+                return false;
         }
 
         return true;
@@ -328,18 +327,18 @@ bool moglk::receive(unsigned char * data_ptr)
         if (!retval) 
         {
                 clog << "WARNING receive(): read timed out" << endl;
-                return -1;
+                return true;
         }
 	else
         {
 #ifndef NDEBUG
                 cout << "DEBUG receive(): received 0x" << hex << (int)byte << endl;
 #endif /* #ifndef NDEBUG */
-        *data_ptr = byte;
-        return 1;
+                *data_ptr = byte;
+                return false;
         }
 
-return 0;
+return true;
 
 } /* receive() */
 
@@ -380,46 +379,46 @@ bool moglk::receiveFile(int * file_ptr)
     cout << "DEBUG receiveFile(): file size = " << dec << file_size << "B" << endl;
 #endif /* #ifndef NDEBUG */
 
-if (file_size)
-{
-    int file[file_size + 1];
+        if (file_size)
+        {
+            int file[file_size + 1];
 
-    file_ptr = &file[0];
+            file_ptr = &file[0];
 
-    unsigned long int i = 0;
-    while (i < (file_size + 1))
-    {
+            unsigned long int i = 0;
+            while (i < (file_size + 1))
+            {
 #ifndef NDEBUG
-        cout << "DEBUG receiveFile(): receiving byte #" << dec << i << " : ";
+            cout << "DEBUG receiveFile(): receiving byte #" << dec << i << " : ";
 #endif /* #ifndef NDEBUG */
 
-        unsigned char * byte_ptr;
-        receive(byte_ptr);
-        file[i] = *byte_ptr;
-        i++;
-    }
-file[i] = EOF;
+                unsigned char * byte_ptr;
+                receive(byte_ptr);
+                file[i] = *byte_ptr;
+                i++;
+            }
+            file[i] = EOF;
 
 #ifndef NDEBUG
-    cout << "DEBUG receiveFile(): received file data = ";
-    unsigned long int k = 0;
-    while (file[k] != EOF)
-    {
-        cout << hex << (int)file[k];
-        k++;
-    }
-    cout << endl;
-    cout << "DEBUG receiveFile(): received " << dec << k - 1 << "B" << endl;
+            cout << "DEBUG receiveFile(): received file data = ";
+            unsigned long int k = 0;
+            while (file[k] != EOF)
+            {
+                cout << hex << (int)file[k];
+                k++;
+            }
+            cout << endl;
+            cout << "DEBUG receiveFile(): received " << dec << k - 1 << "B" << endl;
 #endif /* #ifndef NDEBUG */
-        return 1;
-}
-else
-{
-        cerr << "ERROR receiveFile(): file doesn't exist" << endl;
-        return -1;
-}
+            return false;
+        }
+        else
+        {
+                cerr << "ERROR receiveFile(): file doesn't exist" << endl;
+                return true;
+        }
 
-        return 0;
+        return true;
 
 } /* receiveFile() */
 
@@ -525,7 +524,7 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
                 else
                 {
                         cerr << "ERROR setBaudRate(): command ignored" << endl;
-                        return false;
+                        return true;
                 }
         }
         else
@@ -543,7 +542,7 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
 
         setPortBaudRate(baud_rate);
 
-        return true;
+        return false;
 
 } /* setBaudRate */
 
@@ -1384,7 +1383,7 @@ bool moglk::drawLine(unsigned char x1,
     if (x2 == 255 || y2 == 255)
     {
             cerr << "ERROR drawLine(): command ignored, only one value of X2 or Y2 set!" << endl;
-            return false;
+            return true;
     }
     if (x2 == 255 && y2 == 255)
     {
@@ -1401,7 +1400,7 @@ bool moglk::drawLine(unsigned char x1,
         send(&message[0]);
     }
 
-    return true;
+    return false;
 
 } /* drawLine() */
 
@@ -1465,25 +1464,25 @@ bool moglk::initBarGraph(unsigned char x1,
     if (id > 15)
     {
         cerr << "ERROR initBarGraph(): id should be within 0-15" << endl;
-        return false;
+        return true;
     }
 
     if (type > 3)
     {
         cerr << "ERROR initBarGraph(): type should be within 0-3" << endl;
-        return false;
+        return true;
     }
 
     if (x1 > x2)
     {
         cerr << "ERROR initBarGraph(): x1 should be less than x2, please use type to choose the direction" << endl;
-        return false;
+        return true;
     }
 
     if (y1 > y2)
     {
         cerr << "ERROR initBarGraph(): y1 should be less than y2, please use type to choose the direction" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1528,7 +1527,7 @@ bool moglk::initBarGraph(unsigned char x1,
                      EOF};
     send(&message[0]);
 
-    return true;
+    return false;
 
 } /* initBarGraph() */
 
@@ -1538,7 +1537,7 @@ bool moglk::drawBarGraph(unsigned char value,
     if (id > 15)
     {
         cerr << "ERROR drawBarGraph(): id should be within 0-15" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1552,7 +1551,7 @@ bool moglk::drawBarGraph(unsigned char value,
                      EOF};
     send(&message[0]);
 
-    return true;
+    return false;
 
 } /* drawBarGraph() */
 
@@ -1566,19 +1565,19 @@ bool moglk::initStripChart(unsigned char x1,
     if (id > 6)
     {
         cerr << "ERROR initStripChart(): id should be within 0-6" << endl;
-        return false;
+        return true;
     }
 
     if (x1 > x2)
     {
         cerr << "ERROR initStripChart(): x1 should be less than x2, please use type to choose the direction" << endl;
-        return false;
+        return true;
     }
 
     if (y1 > y2)
     {
         cerr << "ERROR initStripChart(): y1 should be less than y2, please use type to choose the direction" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1595,7 +1594,7 @@ bool moglk::initStripChart(unsigned char x1,
                      EOF};
     send(&message[0]);
 
-    return true;
+    return false;
 
 } /* initStripChart() */
 
@@ -1606,7 +1605,7 @@ bool moglk::shiftStripChart(bool direction,
     if (id > 6)
     {
         cerr << "ERROR initStripChart(): id should be within 0-6" << endl;
-        return false;
+        return true;
     }
 
 
@@ -1631,7 +1630,7 @@ bool moglk::shiftStripChart(bool direction,
                      EOF};
     send(&message[0]);
 
-    return true;
+    return false;
 
 } /* shiftStripChart() */
 
@@ -1642,7 +1641,7 @@ bool moglk::setGpo(unsigned char id,
     if (id == 0 || id > 6)
     {
         cerr << "ERROR setGpo(): id should be within 1-6" << endl;
-        return false;
+        return true;
     }
 
     if (!state)
@@ -1670,7 +1669,7 @@ bool moglk::setGpo(unsigned char id,
         send(&message[0]);
     }
 
-    return true;
+    return false;
 
 } /* setGpo() */
 
@@ -1681,13 +1680,13 @@ bool moglk::setLed(unsigned char id,
     if (id == 0 || id > 3)
     {
         cerr << "ERROR setLed(): id should be within 1-3" << endl;
-        return false;
+        return true;
     };
 
     if (state > 3)
     {
         cerr << "ERROR setLed(): state should be within 0-3" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1770,7 +1769,7 @@ bool moglk::setLed(unsigned char id,
         }
     } /* switch (state)*/
 
-    return true;
+    return false;
 
 } /* setLed() */
 
@@ -1779,7 +1778,7 @@ bool moglk::ledYellow(unsigned char id)
     if (id == 0 || id > 3)
     {
         cerr << "ERROR ledYellow(): id should be within 1-3" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1810,7 +1809,7 @@ bool moglk::ledYellow(unsigned char id)
     setLed(id,
            0);
 
-    return true;
+    return false;
 
 } /* ledYellow */
 
@@ -1819,7 +1818,7 @@ bool moglk::ledGreen(unsigned char id)
     if (id == 0 || id > 3)
     {
         cerr << "ERROR ledGreen(): id should be within 1-3" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1850,7 +1849,7 @@ bool moglk::ledGreen(unsigned char id)
     setLed(id,
            1);
 
-    return true;
+    return false;
 
 } /* ledGreen*/
 
@@ -1859,7 +1858,7 @@ bool moglk::ledRed(unsigned char id)
     if (id == 0 || id > 3)
     {
         cerr << "ERROR ledRed(): id should be within 1-3" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1890,7 +1889,7 @@ bool moglk::ledRed(unsigned char id)
     setLed(id,
            2);
 
-    return true;
+    return false;
 
 } /* ledRed */
 
@@ -1899,7 +1898,7 @@ bool moglk::ledOff(unsigned char id)
     if (id == 0 || id > 3)
     {
         cerr << "ERROR ledOff(): id should be within 1-3" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1930,7 +1929,7 @@ bool moglk::ledOff(unsigned char id)
     setLed(id,
            3);
 
-    return true;
+    return false;
 
 } /* ledOff */
 
@@ -1941,7 +1940,7 @@ bool moglk::startupGpo(unsigned char id,
     if (id == 0 || id > 6)
     {
         cerr << "ERROR startupGpo(): id should be within 1-6" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -1964,7 +1963,7 @@ bool moglk::startupGpo(unsigned char id,
                      EOF};
     send(&message[0]);
 
-    return true;
+    return false;
 
 } /* startupGpo() */
 
@@ -2006,7 +2005,7 @@ bool moglk::setBacklight(bool state,
     if (time > 90)
     {
         cerr << "ERROR setBacklight(): time must be less than 90 minutes" << endl;
-        return false;
+        return true;
     }
 
 #ifndef NDEBUG
@@ -2041,7 +2040,7 @@ bool moglk::setBacklight(bool state,
         send(&message[0]);
     }
 
-    return true;
+    return false;
 
 } /* setBacklight() */
 
@@ -2841,7 +2840,7 @@ bool moglk::upload(char * data_ptr)
   int d_message[] = {CMD_DECLINE,
                      EOF};
 
-
+//Upload code goes here
 
   return true;
 
