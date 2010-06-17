@@ -2534,8 +2534,7 @@ int * moglk::dumpFw(int * file_ptr)
 
 } /* dumpFW() */
 
-//TODO: use pointer for data
-void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int data[])
+void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data_ptr)
 {
 #ifndef NDEBUG
     cout << "DEBUG drawBmp(): " << "X=" << dec << (int)x << "px, Y=" << (int)y << "px, " << (int)width << "x" << (int)height << "px" << endl;
@@ -2545,13 +2544,13 @@ void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsig
     send(message);
 
     unsigned int n = 0;
-    int value = data[n];
+    int value = *(data_ptr + n);
     while (value != EOF)
     {
 	int data_message[] = {value,EOF};
         send(data_message);
         n++;
-        value = data[n];
+        value = *(data_ptr + n);
     }
 
 } /* drawBmp() */

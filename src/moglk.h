@@ -699,7 +699,7 @@ class moglk
 
         void setCustomKeyCodes(unsigned char kup_top, unsigned char kup_up, unsigned char kup_right, unsigned char kup_left, unsigned char kup_center, unsigned char kup_bottom, unsigned char kup_down, unsigned char kdown_top, unsigned char kdown_up, unsigned char kdown_right, unsigned char kdown_left, unsigned char kdown_center, unsigned char kdown_bottom, unsigned char kdown_down);
 
-        void drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int data[]);
+        void drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data);
 
         void uploadFont(unsigned char id, unsigned int size, char * data_ptr);
 
