@@ -84,10 +84,10 @@ unsigned long int Moglk::autodetectBaudRate(char * device_ptr)
 
         unsigned long int detected_baud_rate = 0;
         unsigned char module_type;
-        long int baud_rate[] = {9600,
-                                19200,
-                                38400,
-                                115200,
+        long int baud_rate[] = {B9600,
+                                B19200,
+                                B38400,
+                                B115200,
                                 EOF};
 
         for (unsigned char n = 0;baud_rate[n] != EOF;n++)

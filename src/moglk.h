@@ -715,9 +715,9 @@ class Moglk
 
         void setRemember(bool mode = 1);
 
-        void setCustomerData(const char data[15]);
+        void setCustomerData(const char * data[15]);
 
-        void getCustomerData(unsigned char * data);
+        void getCustomerData(unsigned char * data[16]);
 
         unsigned char getVersion(void);
 
