@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
 
 	moglk lcd;
 	lcd.init(port,baudrate);
-	lcd.downloadFile(0,1);
+	int * file_ptr;
+	lcd.downloadFile(0,1,file_ptr);
 	
 	return 0;
 }

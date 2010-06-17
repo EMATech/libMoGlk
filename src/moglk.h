@@ -573,7 +573,7 @@ class moglk
         void setPortFlowControl(bool state);
 
         void transmit(int * data_ptr);
-        int receive(void);
+        bool receive(unsigned char * data_ptr);
         int * receiveFile(int * file_ptr);
 
         bool upload(char * data_ptr);

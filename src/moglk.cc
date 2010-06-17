@@ -110,7 +110,6 @@ unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 
 } /* autodetectBaudRate */
 
-
 bool moglk::openPort(char * device_ptr)
 {
         // Open serial port:
@@ -315,7 +314,7 @@ void moglk::transmit(int * data_ptr)
 
 } /* transmit() */
 
-int moglk::receive(void)
+bool moglk::receive(unsigned char * data_ptr)
 {
         unsigned char byte;
 
@@ -329,17 +328,18 @@ int moglk::receive(void)
         if (!retval) 
         {
                 clog << "WARNING receive(): read timed out" << endl;
-        return -1;
+                return -1;
         }
 	else
         {
 #ifndef NDEBUG
                 cout << "DEBUG receive(): received 0x" << hex << (int)byte << endl;
 #endif /* #ifndef NDEBUG */
-        return byte;
+        *data_ptr = byte;
+        return 1;
         }
 
-    return -1;
+return 0;
 
 } /* receive() */
 
@@ -370,7 +370,7 @@ int * moglk::receiveFile(int * file_ptr)
     unsigned int n = 0;
     while (n < 4)
     {
-        size[n] = receive();
+        receive(&size[n]);
         n++;
     }
 
@@ -383,16 +383,19 @@ int * moglk::receiveFile(int * file_ptr)
 if (file_size)
 {
     int file[file_size + 1];
+
     file_ptr = &file[0];
 
     unsigned long int i = 0;
     while (i < (file_size + 1))
     {
 #ifndef NDEBUG
-        cout << "DEBUG receiveFile(): byte #" << dec << i << " : ";
+        cout << "DEBUG receiveFile(): receiving byte #" << dec << i << " : ";
 #endif /* #ifndef NDEBUG */
 
-        file[i] = receive();
+        unsigned char * byte_ptr;
+        receive(byte_ptr);
+        file[i] = *byte_ptr;
         i++;
     }
 file[i] = EOF;
@@ -406,7 +409,7 @@ file[i] = EOF;
         k++;
     }
     cout << endl;
-    cout << "DEBUG receiveFile(): " << dec << k - 1 << "B" << endl;
+    cout << "DEBUG receiveFile(): received " << dec << k - 1 << "B" << endl;
 #endif /* #ifndef NDEBUG */
 }
 else
@@ -797,7 +800,7 @@ unsigned char moglk::getVersion(void)
 	send(&message[0]);
 
         unsigned char version;
-	version = receive();
+	receive(&version);
 
 #ifndef NDEBUG
     stringstream tmp;
@@ -827,7 +830,7 @@ unsigned char moglk::getModuleType(void)
 	send(&message[0]);
 
         unsigned char type;
-	type = receive();
+	receive(&type);
 
 #ifndef NDEBUG
 	cout << "DEBUG getModuleType(): ";
@@ -1277,7 +1280,7 @@ void moglk::getCustomerData(unsigned char data[16])
     unsigned int n = 0;
     while (n < 16)
     {
-        data[n] = receive();
+        receive(&data[n]);
         n++;
     }
     data[n] = 0;
@@ -2190,7 +2193,7 @@ unsigned short int moglk::getFreeSpace(void)
     unsigned int n = 0;
     while (n < 4)
     {
-        size[n] = receive();
+        receive(&size[n]);
         n++;
     }
 
@@ -2261,7 +2264,7 @@ void moglk::getDirectory(void)
 
     unsigned char entriesCount;
 
-    entriesCount = receive();
+    receive(&entriesCount);
 
 #ifndef NDEBUG
     cout << "DEBUG getDirectory(): " << dec << (int)entriesCount << " files" << endl;
@@ -2275,10 +2278,12 @@ void moglk::getDirectory(void)
         unsigned char size_msb;
 
         // Get data
-        flag = receive();
-        id = receive();
-        size_lsb = receive();
-        size_msb = receive();
+        receive(&flag);
+        unsigned char * byte_ptr;
+        receive(byte_ptr);
+        id = *byte_ptr;
+        receive(&size_lsb);
+        receive(&size_msb);
 
         // Extract type from id (first bit)
         bool type = id[7];
@@ -2567,7 +2572,7 @@ unsigned char moglk::pollKey(void)
     while (more[7])
     {
         send(&message[0]);
-        key[n] = receive();
+        receive(&key[n]);
         //Get more_key_presses_availables flag
         more = key[n];
         // Reset more_key_presses_availables flag to have a pure key descriptor
@@ -2771,7 +2776,9 @@ int * moglk::dumpFw(int * file_ptr)
 #ifndef NDEBUG
         cout << "DEBUG receiveFile(): byte #" << dec << i << " : ";
 #endif /* #ifndef NDEBUG */
-        file[i] = receive();
+        unsigned char * byte_ptr;
+        receive(byte_ptr);
+        file[i] = *byte_ptr;
         i++;
     }
     file[i] = EOF;
