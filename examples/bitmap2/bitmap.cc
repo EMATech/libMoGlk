@@ -26,7 +26,7 @@
 int main(void)
 {
 	char port[] = "/dev/ttyUSB0";
-	unsigned long int speed = 115200;
+	unsigned long int speed = 19200;
 
 	moglk lcd;
 	int check = lcd.init(port,speed);
@@ -57,7 +57,7 @@ while (j < 1000)
 		i = i + 8;
 	}
 	data[i / 8] = EOF;
-	lcd.drawBmp(x,y,image_width,image_height,data);
+	lcd.drawBmp(x,y,image_width,image_height,&data[0]);
 
 	x = 0;
 	y = 0;
@@ -76,7 +76,7 @@ while (j < 1000)
 		i = i + 8;
 	}
 	data[i / 8] = EOF;
-	lcd.drawBmp(x,y,image_width,image_height,data);
+	lcd.drawBmp(x,y,image_width,image_height,&data[0]);
 
 	j++;
 }

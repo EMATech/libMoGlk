@@ -572,7 +572,7 @@ class moglk
         void setPortBaudRate(unsigned long int baudrate);
         void setPortFlowControl(bool state);
 
-        void transmit(unsigned char * data_ptr);
+        void transmit(int * data_ptr);
         int receive(void);
         int * receiveFile(int * file_ptr);
 
@@ -590,7 +590,6 @@ class moglk
 
         //int autodetectPort(void);
 
-        //FIXME: don't use hardcoded device path
         unsigned long int autodetectBaudRate(char * device_ptr = "/dev/ttyS0");
 
         bool setBaudRate(unsigned long int baudrate = 19200);
