@@ -48,16 +48,16 @@ moglk::~moglk(void)
 
 //TODO: Autodetect device
 //FIXME: Use a portable serial I/O library
-bool moglk::init(char* device,
+bool moglk::init(char * device_ptr,
                  unsigned long int baudrate)
 {
 
     if (!baudrate)
     {
-        baudrate = autodetectBaudRate(device);
+        baudrate = autodetectBaudRate(device_ptr);
     }
 
-    if(openPort(device))
+    if(openPort(device_ptr))
     {
         configurePort();
         setPortBaudRate(baudrate);
@@ -76,7 +76,7 @@ bool moglk::init(char* device,
 
 } /* init() */
 
-unsigned long int moglk::autodetectBaudRate(char* device)
+unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 {
 
         unsigned long int detectedBaudrate = 0;
@@ -85,7 +85,7 @@ unsigned long int moglk::autodetectBaudRate(char* device)
 
         for (unsigned char n = 0;baudrate[n] != EOF;n++)
         {
-                init(device, baudrate[n]);
+                init(device_ptr, baudrate[n]);
                 moduleType = getModuleType();
                 if (moduleType)
                 {
@@ -102,22 +102,22 @@ unsigned long int moglk::autodetectBaudRate(char* device)
 } /* autodetectBaudRate */
 
 
-bool moglk::openPort(char* device)
+bool moglk::openPort(char * device_ptr)
 {
         // Open serial port:
 	// read/write, no control terminal
-	serial_port = open(device, O_RDWR | O_NOCTTY);
+	serial_port = open(device_ptr, O_RDWR | O_NOCTTY);
 
         // Handle errors
 	if (serial_port < 0)
 	{
-		cerr << "ERROR openPort(): can't open serial port on " << device << endl;
+		cerr << "ERROR openPort(): can't open serial port on " << device_ptr << endl;
 		return false;
 	}
         else
         {
 #ifndef NDEBUG
-        cout << "DEBUG openPort(): sucessfully opened serial port on " << device << endl;
+        cout << "DEBUG openPort(): sucessfully opened serial port on " << device_ptr << endl;
 #endif /* #ifndef NDEBUG */
         }
 
@@ -336,8 +336,7 @@ void moglk::send(int message[])
 
 } /* send() */
 
-//FIXME: properly return file
-void moglk::receiveFile(void)
+int * moglk::receiveFile(int * file_ptr)
 {
     unsigned char size[3];
 
@@ -357,6 +356,7 @@ void moglk::receiveFile(void)
 if (file_size)
 {
     int file[file_size + 1];
+    file_ptr = &file[0];
 
     unsigned long int i = 0;
     while (i < (file_size + 1))
@@ -386,6 +386,9 @@ else
 {
         cerr << "ERROR receiveFile(): file doesn't exist" << endl;
 }
+
+        return file_ptr;
+
 } /* receiveFile() */
 
 bool moglk::setBaudRate(unsigned long int baudrate)
@@ -2124,9 +2127,9 @@ void moglk::deleteFile(bool type,
 
 } /* deleteFile() */
 
-//FIXME: properly return file
-void moglk::downloadFile(bool type,
-                         unsigned char id)
+int * moglk::downloadFile(bool type,
+                         unsigned char id,
+                         int * file_ptr)
 {
 if (id)
 {
@@ -2146,12 +2149,15 @@ if (id)
     int message[] = {CMD_INIT,CMD_DOWNLOAD_FILE,type,id,EOF};
     send(message);
 
-    receiveFile();
+    receiveFile(file_ptr);
 }
 else
 {
     cerr << "ERROR downloadFile(): ID should not be null";
 }
+
+        return(file_ptr);
+
 } /* downloadFile() */
 
 void moglk::moveFile(bool old_type,
@@ -2478,17 +2484,18 @@ void moglk::setCustomKeyCodes(unsigned char kup_top,
 
 } /* setCustomKeyCodes() */
 
-//FIXME: properly return filesystem
-void moglk::dumpFs(void)
+int * moglk::dumpFs(int * file_ptr)
 {
     int message[] = {CMD_INIT,CMD_DUMP_FS,EOF};
     send(message);
 
-    receiveFile();
+    receiveFile(file_ptr);
+
+    return file_ptr;
 
 } /* dumpFs() */
 
-void moglk::dumpFw(void)
+int * moglk::dumpFw(int * file_ptr)
 {
     int message[] = {CMD_INIT,CMD_DUMP_FW,EOF};
     send(message);
@@ -2496,6 +2503,7 @@ void moglk::dumpFw(void)
     unsigned int file_size = 466;
 
     int file[file_size + 1];
+    file_ptr = &file[0];
 
     unsigned long int i = 0;
     while (i < (file_size + 1))
@@ -2519,6 +2527,8 @@ void moglk::dumpFw(void)
     cout << endl;
     cout << "DEBUG receiveFile(): " << dec << j - 1 << "B" << endl;
 #endif /* #ifndef NDEBUG */
+
+    return file_ptr;
 
 } /* dumpFW() */
 
@@ -2545,7 +2555,7 @@ void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsig
 } /* drawBmp() */
 
 //FIXME: WIP
-bool moglk::upload(void)
+bool moglk::upload(char * data_ptr)
 {
 #ifndef NDEBUG
     cout << "DEBUG upload()"<< endl;
@@ -2554,76 +2564,41 @@ bool moglk::upload(void)
   unsigned char reply;
   int c_message[] = {CMD_CONFIRM,EOF};
   int d_message[] = {CMD_DECLINE,EOF};
-/*
-    reply = receive();
-    if (reply != RET_CONFIRM)
-    {
-        send(d_message);
-        return false;
-    }
-    else
-    {
-        send(c_message);
-    }
 
 
-    int w_message[] = {image_width,EOF};
-    send(w_message);
 
-    reply = receive();
-    if (reply != image_width)
-    {
-        send(d_message);
-        return false;
-    }
-    else
-    {
-        send(c_message);
-    }
-
-    int h_message[] = {image_height,EOF};
-    send(h_message);
-
-    reply = receive();
-    if (reply != image_height)
-    {
-        send(d_message);
-        return false;
-    }
-    else
-    {
-        send(c_message);
-    }
-
-
-    unsigned int i = 0;
-    while(i < image_width * image_height)
-    {
-        bitset<8> data;
-
-        for (unsigned int n = 0;n < 8;n++)
-        {
-            data[n] = image_data[i + 7 - n];
-        }
-
-        int message[] = {data.to_ulong(),EOF};
-        send(message);
-        //send(c_message);
-
-        reply = receive();
-        if (reply != image_data[i])
-        {
-            send(d_message);
-            return false;
-        }
-        else
-        {
-            send(c_message);
-        }
-
-        i = i + 8;
-    }
-*/
-    return true;
+  return true;
 
 } /* upload() */
+
+//TODO: WIP
+void moglk::uploadFont(unsigned char id, unsigned int size, char * data_ptr)
+{
+    int message[] = {CMD_INIT,CMD_UPLOAD_FONT,id,EOF};
+    send(message);
+
+    upload(data_ptr);
+
+} /* uploadFont */
+
+//TODO: WIP
+void moglk::uploadBmp(unsigned char id, unsigned int size, char * data_ptr)
+{
+
+    int message[] = {CMD_INIT,CMD_UPLOAD_BMP,id,EOF};
+    send(message);
+
+    upload(data_ptr);
+
+} /* uploadBmp */
+
+//TODO: WIP
+void moglk::uploadFs(unsigned int size, char * data_ptr)
+{
+
+    int message[] = {CMD_INIT,CMD_UPLOAD_FS,EOF};
+    send(message);
+
+    upload(data_ptr);
+
+} /* uploadFs */

@@ -420,15 +420,15 @@ Each character is encoded horizontally then padded to form a full last byte
 //										newid
 #define CMD_DUMP_FS					0x30 //WIP
 
-// Undocumented command!
-#define CMD_DUMP_FW                                     0xD0 //WIP
-
 /*
   DOWNLOAD_FILE AND DUMP_FS RETURN FORMAT
 	File size (4 bytes)
 	(LSB to MSB)
 	File Data
 */
+
+// Undocumented command! Seems to dump the Firmware.
+#define CMD_DUMP_FW                                     0xD0 //WIP
 
 // SECURITY
 #define CMD_REMEMBER					0x93 //Done
@@ -567,14 +567,16 @@ using namespace ost;
 class moglk
 {
 	private:
-        bool openPort(char* device = "/dev/ttyS0");
+        bool openPort(char * device_ptr = "/dev/ttyS0");
         void configurePort(void);
         void setPortBaudRate(unsigned long int baudrate);
         void setPortFlowControl(bool state);
 
         void transmit(unsigned char data);
         int receive(void);
-        void receiveFile(void);
+        int * receiveFile(int * file_ptr);
+
+        bool upload(char * data_ptr);
 
 	void send(int message[]);
 
@@ -582,13 +584,14 @@ class moglk
         moglk(void);
         ~moglk(void);
 
-        bool init(char* device = "/dev/ttyS0", unsigned long int baudrate = 0);
+        bool init(char * device_ptr = "/dev/ttyS0", unsigned long int baudrate = 0);
 
         //int autodetect(void);
 
         //int autodetectPort(void);
 
-        unsigned long int autodetectBaudRate(char* device = "/dev/ttyS0");
+        //FIXME: don't use hardcoded device path
+        unsigned long int autodetectBaudRate(char * device_ptr = "/dev/ttyS0");
 
         bool setBaudRate(unsigned long int baudrate = 19200);
 
@@ -680,11 +683,11 @@ class moglk
 
         void deleteFile(bool type, unsigned char id);
 
-        void downloadFile(bool type, unsigned char id);
+        int * downloadFile(bool type, unsigned char id, int * file_ptr);
 
-        void dumpFs(void);
+        int * dumpFs(int * file_ptr);
 
-        void dumpFw(void);
+        int * dumpFw(int * file_ptr);
 
         void moveFile(bool old_type, unsigned char old_id, bool new_type, unsigned char new_id);
 
@@ -698,7 +701,11 @@ class moglk
 
         void drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int data[]);
 
-        bool upload(void);
+        void uploadFont(unsigned char id, unsigned int size, char * data_ptr);
+
+        void uploadBmp(unsigned char id, unsigned int size, char * data_ptr);
+
+        void uploadFs(unsigned int size, char * data_ptr);
 
 }; /* moglk */
 
