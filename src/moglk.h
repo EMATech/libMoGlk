@@ -564,7 +564,7 @@ using namespace ost;
 #endif
 
 // Class definition
-class moglk
+class Moglk
 {
 	private:
         bool openPort(char * device_ptr = "/dev/ttyS0");
@@ -581,8 +581,8 @@ class moglk
 	void send(int * message_ptr);
 
 	public:
-        moglk(void);
-        ~moglk(void);
+        Moglk();
+        ~Moglk();
 
         bool init(char * device_ptr = "/dev/ttyS0",
                   unsigned long int baud_rate = 0);
@@ -717,7 +717,7 @@ class moglk
 
         void setCustomerData(const char data[15]);
 
-        void getCustomerData(unsigned char data[16]);
+        void getCustomerData(unsigned char * data);
 
         unsigned char getVersion(void);
 
@@ -779,6 +779,6 @@ class moglk
         void uploadFs(unsigned int size,
                       char * data_ptr);
 
-}; /* moglk */
+}; /* Moglk */
 
 #endif /* #ifndef _MOGLK_H */

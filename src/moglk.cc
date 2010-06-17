@@ -38,18 +38,18 @@ using namespace std;
 
 int serial_port;
 
-moglk::moglk(void)
+Moglk::Moglk()
 {
 }
 
-moglk::~moglk(void)
+Moglk::~Moglk()
 {
         close(serial_port);
 }
 
 //TODO: Autodetect device
 //FIXME: Use a portable serial I/O library
-bool moglk::init(char * device_ptr,
+bool Moglk::init(char * device_ptr,
                  unsigned long int baud_rate)
 {
 
@@ -79,7 +79,7 @@ bool moglk::init(char * device_ptr,
 
 } /* init() */
 
-unsigned long int moglk::autodetectBaudRate(char * device_ptr)
+unsigned long int Moglk::autodetectBaudRate(char * device_ptr)
 {
 
         unsigned long int detected_baud_rate = 0;
@@ -109,7 +109,7 @@ unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 
 } /* autodetectBaudRate */
 
-bool moglk::openPort(char * device_ptr)
+bool Moglk::openPort(char * device_ptr)
 {
         // Open serial port:
 	// read/write, no control terminal
@@ -134,7 +134,7 @@ bool moglk::openPort(char * device_ptr)
 
 } /* openPort() */
 
-void moglk::configurePort(void)
+void Moglk::configurePort(void)
 {
         // Port options
 	struct termios options;
@@ -176,7 +176,7 @@ void moglk::configurePort(void)
 
 } /* configurePort() */
 
-void moglk::setPortBaudRate(unsigned long int baud_rate)
+void Moglk::setPortBaudRate(unsigned long int baud_rate)
 {
         // Port rate flag
 	tcflag_t port_rate;
@@ -249,7 +249,7 @@ void moglk::setPortBaudRate(unsigned long int baud_rate)
 
 } /* setPortBaudRate() */
 
-void moglk::setPortFlowControl(bool state)
+void Moglk::setPortFlowControl(bool state)
 {
         // Port options
 	struct termios options;
@@ -296,7 +296,7 @@ void moglk::setPortFlowControl(bool state)
 
 } /* setPortFlowControl() */
 
-void moglk::transmit(int * data_ptr)
+void Moglk::transmit(int * data_ptr)
 {
         ssize_t retval = 0;
 
@@ -314,7 +314,7 @@ void moglk::transmit(int * data_ptr)
 
 } /* transmit() */
 
-bool moglk::receive(unsigned char * data_ptr)
+bool Moglk::receive(unsigned char * data_ptr)
 {
         unsigned char byte;
 
@@ -343,7 +343,7 @@ return true;
 
 } /* receive() */
 
-void moglk::send(int * message_ptr)
+void Moglk::send(int * message_ptr)
 {
         unsigned int n = 0;
 	int value = *(message_ptr + n);
@@ -363,7 +363,7 @@ void moglk::send(int * message_ptr)
 
 } /* send() */
 
-bool moglk::receiveFile(int * file_ptr)
+bool Moglk::receiveFile(int * file_ptr)
 {
     unsigned char size[3];
 
@@ -423,7 +423,7 @@ bool moglk::receiveFile(int * file_ptr)
 
 } /* receiveFile() */
 
-bool moglk::setBaudRate(unsigned long int baud_rate)
+bool Moglk::setBaudRate(unsigned long int baud_rate)
 {
 
 	unsigned char device_rate;
@@ -547,7 +547,7 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
 
 } /* setBaudRate */
 
-void moglk::setFlowControl(bool state,
+void Moglk::setFlowControl(bool state,
                            unsigned char full,
                            unsigned char empty)
 {
@@ -581,7 +581,7 @@ void moglk::setFlowControl(bool state,
 
 } /* setFlowControl */
 
-void moglk::display(const char text[],
+void Moglk::display(const char text[],
                     unsigned char font,
                     unsigned char x,
                     unsigned char y)
@@ -617,7 +617,7 @@ void moglk::display(const char text[],
 
 } /* display() */
 
-void moglk::clearScreen(void)
+void Moglk::clearScreen(void)
 {
 
 #ifndef NDEBUG
@@ -631,7 +631,7 @@ void moglk::clearScreen(void)
 
 } /* clearScreen() */
 
-void moglk::goHome(void)
+void Moglk::goHome(void)
 {
 
 #ifndef NDEBUG
@@ -645,7 +645,7 @@ void moglk::goHome(void)
 
 } /* goHome() */
 
-void moglk::setFont(unsigned char id,
+void Moglk::setFont(unsigned char id,
                     unsigned char lm,
                     unsigned char tm,
                     unsigned char csp,
@@ -672,7 +672,7 @@ void moglk::setFont(unsigned char id,
 
 } /* setFont() */
 
-void moglk::setFontMetrics(unsigned char lm,
+void Moglk::setFontMetrics(unsigned char lm,
                            unsigned char tm,
                            unsigned char csp,
                            unsigned char lsp,
@@ -699,7 +699,7 @@ void moglk::setFontMetrics(unsigned char lm,
 
 } /* setFontMetrics() */
 
-void moglk::setBoxSpace(bool mode)
+void Moglk::setBoxSpace(bool mode)
 {
 
 #ifndef NDEBUG
@@ -723,7 +723,7 @@ void moglk::setBoxSpace(bool mode)
 
 } /* setBoxSpace() */
 
-void moglk::setAutoScroll(bool mode)
+void Moglk::setAutoScroll(bool mode)
 {
 
 	if (!mode)
@@ -751,7 +751,7 @@ void moglk::setAutoScroll(bool mode)
 
 } /* setAutoScroll() */
 
-void moglk::setCursor(unsigned char x,
+void Moglk::setCursor(unsigned char x,
                       unsigned char y,
 		      bool mode)
 {
@@ -790,7 +790,7 @@ void moglk::setCursor(unsigned char x,
 
 } /* setCursor() */
 
-unsigned char moglk::getVersion(void)
+unsigned char Moglk::getVersion(void)
 {
 #ifndef NDEBUG
 	cout << "DEBUG getVersion()" << endl;
@@ -819,7 +819,7 @@ unsigned char moglk::getVersion(void)
 
 } /* getVersion() */
 
-unsigned char moglk::getModuleType(void)
+unsigned char Moglk::getModuleType(void)
 {
 
 #ifndef NDEBUG
@@ -1267,8 +1267,7 @@ unsigned char moglk::getModuleType(void)
 
 } /* getModuleType() */
 
-//FIXME: Use pointers
-void moglk::getCustomerData(unsigned char data[16])
+void Moglk::getCustomerData(unsigned char * data)
 {
 #ifndef NDEBUG
 	cout << "DEBUG getCustomerData()" << endl;
@@ -1282,17 +1281,17 @@ void moglk::getCustomerData(unsigned char data[16])
     unsigned int n = 0;
     while (n < 16)
     {
-        receive(&data[n]);
+        receive((data + n));
         n++;
     }
-    data[n] = 0;
+    *(data + n) = EOF;
 
 #ifndef NDEBUG
 	cout << "DEBUG getCustomerData(): " << data << endl;
 #endif /* #ifndef NDEBUG */
 } /* getConsumerData() */
 
-void moglk::drawMemBmp(unsigned char id,
+void Moglk::drawMemBmp(unsigned char id,
                        unsigned char x,
                        unsigned char y)
 {
@@ -1311,7 +1310,7 @@ void moglk::drawMemBmp(unsigned char id,
 
 } /* drawMemBmp() */
 
-void moglk::setDrawingColor(bool color)
+void Moglk::setDrawingColor(bool color)
 {
 
 #ifndef NDEBUG
@@ -1336,7 +1335,7 @@ void moglk::setDrawingColor(bool color)
 
 } /* setDrawingColor() */
 
-void moglk::drawPixel(unsigned char x,
+void Moglk::drawPixel(unsigned char x,
                       unsigned char y,
                       bool color)
 {
@@ -1356,7 +1355,7 @@ void moglk::drawPixel(unsigned char x,
 
 } /* drawPixel() */
 
-bool moglk::drawLine(unsigned char x1,
+bool Moglk::drawLine(unsigned char x1,
                      unsigned char y1,
                      unsigned char x2,
                      unsigned char y2,
@@ -1405,7 +1404,7 @@ bool moglk::drawLine(unsigned char x1,
 
 } /* drawLine() */
 
-void moglk::drawRectangle(unsigned char x1,
+void Moglk::drawRectangle(unsigned char x1,
                           unsigned char y1,
                           unsigned char x2,
                           unsigned char y2,
@@ -1454,7 +1453,7 @@ void moglk::drawRectangle(unsigned char x1,
 
 } /* drawRectangle() */
 
-bool moglk::initBarGraph(unsigned char x1,
+bool Moglk::initBarGraph(unsigned char x1,
                          unsigned char y1,
                          unsigned char x2,
                          unsigned char y2,
@@ -1532,7 +1531,7 @@ bool moglk::initBarGraph(unsigned char x1,
 
 } /* initBarGraph() */
 
-bool moglk::drawBarGraph(unsigned char value,
+bool Moglk::drawBarGraph(unsigned char value,
                          unsigned char id)
 {
     if (id > 15)
@@ -1556,7 +1555,7 @@ bool moglk::drawBarGraph(unsigned char value,
 
 } /* drawBarGraph() */
 
-bool moglk::initStripChart(unsigned char x1,
+bool Moglk::initStripChart(unsigned char x1,
                            unsigned char y1,
                            unsigned char x2,
                            unsigned char y2,
@@ -1599,7 +1598,7 @@ bool moglk::initStripChart(unsigned char x1,
 
 } /* initStripChart() */
 
-bool moglk::shiftStripChart(bool direction,
+bool Moglk::shiftStripChart(bool direction,
                             unsigned char id)
 {
 
@@ -1635,7 +1634,7 @@ bool moglk::shiftStripChart(bool direction,
 
 } /* shiftStripChart() */
 
-bool moglk::setGpo(unsigned char id,
+bool Moglk::setGpo(unsigned char id,
                    bool state)
 {
 
@@ -1674,7 +1673,7 @@ bool moglk::setGpo(unsigned char id,
 
 } /* setGpo() */
 
-bool moglk::setLed(unsigned char id,
+bool Moglk::setLed(unsigned char id,
                    unsigned char state)
 {
 
@@ -1774,7 +1773,7 @@ bool moglk::setLed(unsigned char id,
 
 } /* setLed() */
 
-bool moglk::ledYellow(unsigned char id)
+bool Moglk::ledYellow(unsigned char id)
 {
     if (id == 0 || id > 3)
     {
@@ -1814,7 +1813,7 @@ bool moglk::ledYellow(unsigned char id)
 
 } /* ledYellow */
 
-bool moglk::ledGreen(unsigned char id)
+bool Moglk::ledGreen(unsigned char id)
 {
     if (id == 0 || id > 3)
     {
@@ -1854,7 +1853,7 @@ bool moglk::ledGreen(unsigned char id)
 
 } /* ledGreen*/
 
-bool moglk::ledRed(unsigned char id)
+bool Moglk::ledRed(unsigned char id)
 {
     if (id == 0 || id > 3)
     {
@@ -1894,7 +1893,7 @@ bool moglk::ledRed(unsigned char id)
 
 } /* ledRed */
 
-bool moglk::ledOff(unsigned char id)
+bool Moglk::ledOff(unsigned char id)
 {
     if (id == 0 || id > 3)
     {
@@ -1934,7 +1933,7 @@ bool moglk::ledOff(unsigned char id)
 
 } /* ledOff */
 
-bool moglk::startupGpo(unsigned char id,
+bool Moglk::startupGpo(unsigned char id,
                        bool state)
 {
 
@@ -1968,7 +1967,7 @@ bool moglk::startupGpo(unsigned char id,
 
 } /* startupGpo() */
 
-void moglk::setAutoTxKey(bool state)
+void Moglk::setAutoTxKey(bool state)
 {
 
 #ifndef NDEBUG
@@ -2000,7 +1999,7 @@ void moglk::setAutoTxKey(bool state)
 
 } /* setAutotxKey() */
 
-bool moglk::setBacklight(bool state,
+bool Moglk::setBacklight(bool state,
                          unsigned char time)
 {
     if (time > 90)
@@ -2045,7 +2044,7 @@ bool moglk::setBacklight(bool state,
 
 } /* setBacklight() */
 
-void moglk::clearKeyBuffer(void)
+void Moglk::clearKeyBuffer(void)
 {
 
 #ifndef NDEBUG
@@ -2059,7 +2058,7 @@ void moglk::clearKeyBuffer(void)
 
 } /* clearKeyBuffer() */
 
-void moglk::setDebounce(unsigned char time)
+void Moglk::setDebounce(unsigned char time)
 {
 #ifndef NDEBUG
     cout << "DEBUG setDebounce(): " << dec << (int)time * 8 << "ms" << endl;
@@ -2074,7 +2073,7 @@ void moglk::setDebounce(unsigned char time)
 
 } /* setDebounce() */
 
-void moglk::setAutoRepeat(bool mode)
+void Moglk::setAutoRepeat(bool mode)
 {
 #ifndef NDEBUG
     cout << "DEBUG setAutoRepeat(): ";
@@ -2097,7 +2096,7 @@ void moglk::setAutoRepeat(bool mode)
 
 } /* setAutoRepeat() */
 
-void moglk::autoRepeatOff(void)
+void Moglk::autoRepeatOff(void)
 {
 #ifndef NDEBUG
     cout << "DEBUG autoRepeatOff()" << endl;
@@ -2110,7 +2109,7 @@ void moglk::autoRepeatOff(void)
 
 } /* autoRepeatOff() */
 
-void moglk::setBrightness(unsigned char value)
+void Moglk::setBrightness(unsigned char value)
 {
 #ifndef NDEBUG
     cout << "DEBUG setBrightness(): " << dec << (int)value << endl;
@@ -2124,7 +2123,7 @@ void moglk::setBrightness(unsigned char value)
 
 } /* setBrightness() */
 
-void moglk::setDefaultBrightness(unsigned char value)
+void Moglk::setDefaultBrightness(unsigned char value)
 {
 #ifndef NDEBUG
     cout << "DEBUG setDefaultBrightness(): " << dec << (int)value << endl;
@@ -2138,7 +2137,7 @@ void moglk::setDefaultBrightness(unsigned char value)
 
 } /* setDefaultBrightness() */
 
-void moglk::setContrast(unsigned char value)
+void Moglk::setContrast(unsigned char value)
 {
 #ifndef NDEBUG
     cout << "DEBUG setContrast(): " << dec << (int)value << endl;
@@ -2152,7 +2151,7 @@ void moglk::setContrast(unsigned char value)
 
 } /* setContrast() */
 
-void moglk::setDefaultContrast(unsigned char value)
+void Moglk::setDefaultContrast(unsigned char value)
 {
 #ifndef NDEBUG
     cout << "DEBUG setDefaultContrast(): " << dec << (int)value << endl;
@@ -2166,7 +2165,7 @@ void moglk::setDefaultContrast(unsigned char value)
 
 } /* setDefaultContrast() */
 
-void moglk::wipeFs(void)
+void Moglk::wipeFs(void)
 {
 #ifndef NDEBUG
     cout << "DEBUG wipeFs()" << endl;
@@ -2179,7 +2178,7 @@ void moglk::wipeFs(void)
 
 } /* wipeFs() */
 
-unsigned short int moglk::getFreeSpace(void)
+unsigned short int Moglk::getFreeSpace(void)
 {
 #ifndef NDEBUG
     cout << "DEBUG getFreeSpace()" << endl;
@@ -2209,7 +2208,7 @@ unsigned short int moglk::getFreeSpace(void)
 
 } /* getFreeSpace() */
 
-void moglk::setRemember(bool mode)
+void Moglk::setRemember(bool mode)
 {
 #ifndef NDEBUG
     cout << "DEBUG setRemember(): ";
@@ -2233,7 +2232,7 @@ void moglk::setRemember(bool mode)
 } /* setRemember() */
 
 //FIXME: use pointers
-void moglk::setCustomerData(const char data[15])
+void Moglk::setCustomerData(const char data[15])
 {
 #ifndef NDEBUG
     cout << "DEBUG setCustomerData(): " << data << endl;
@@ -2253,7 +2252,7 @@ void moglk::setCustomerData(const char data[15])
 } /* setCustomerData() */
 
 //FIXME: return a structure with directory informations
-void moglk::getDirectory(void)
+void Moglk::getDirectory(void)
 {
 #ifndef NDEBUG
     cout << "DEBUG getDirectory()" << endl;
@@ -2318,7 +2317,7 @@ void moglk::getDirectory(void)
 
 } /* getDirectory() */
 
-void moglk::deleteFile(bool type,
+void Moglk::deleteFile(bool type,
                        unsigned char id)
 {
 #ifndef NDEBUG
@@ -2343,7 +2342,7 @@ void moglk::deleteFile(bool type,
 
 } /* deleteFile() */
 
-int * moglk::downloadFile(bool type,
+int * Moglk::downloadFile(bool type,
                           unsigned char id,
                           int * file_ptr)
 {
@@ -2380,7 +2379,7 @@ else
 
 } /* downloadFile() */
 
-void moglk::moveFile(bool old_type,
+void Moglk::moveFile(bool old_type,
                      unsigned char old_id,
                      bool new_type,
                      unsigned char new_id)
@@ -2419,7 +2418,7 @@ void moglk::moveFile(bool old_type,
 } /* moveFile() */
 
 //TODO: test!
-void moglk::setLock(bitset<8> level)
+void Moglk::setLock(bitset<8> level)
 {
     // Bits reserved
     level[7] = 0;
@@ -2484,7 +2483,7 @@ void moglk::setLock(bitset<8> level)
 } /* setLock() */
 
 //TODO: test!
-void moglk::setDefaultLock(bitset<8> level)
+void Moglk::setDefaultLock(bitset<8> level)
 {
     // Bits reserved
     level[7] = 0;
@@ -2549,7 +2548,7 @@ void moglk::setDefaultLock(bitset<8> level)
 } /* setDefaultLock() */
 
 //FIXME: return an array with all keys
-unsigned char moglk::pollKey(void)
+unsigned char Moglk::pollKey(void)
 {
 #ifndef NDEBUG
     cout << "DEBUG pollKey()" << endl;
@@ -2690,7 +2689,7 @@ unsigned char moglk::pollKey(void)
 
 } /* pollKey() */
 
-void moglk::setCustomKeyCodes(unsigned char kup_top,
+void Moglk::setCustomKeyCodes(unsigned char kup_top,
                               unsigned char kup_up,
                               unsigned char kup_right,
                               unsigned char kup_left,
@@ -2747,7 +2746,7 @@ void moglk::setCustomKeyCodes(unsigned char kup_top,
 
 } /* setCustomKeyCodes() */
 
-int * moglk::dumpFs(int * file_ptr)
+int * Moglk::dumpFs(int * file_ptr)
 {
     int message[] = {CMD_INIT,
                      CMD_DUMP_FS,
@@ -2760,7 +2759,7 @@ int * moglk::dumpFs(int * file_ptr)
 
 } /* dumpFs() */
 
-int * moglk::dumpFw(int * file_ptr)
+int * Moglk::dumpFw(int * file_ptr)
 {
     int message[] = {CMD_INIT,
                      CMD_DUMP_FW,
@@ -2801,7 +2800,7 @@ int * moglk::dumpFw(int * file_ptr)
 
 } /* dumpFW() */
 
-void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data_ptr)
+void Moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data_ptr)
 {
 #ifndef NDEBUG
     cout << "DEBUG drawBmp(): " << "X=" << dec << (int)x << "px, Y=" << (int)y << "px, " << (int)width << "x" << (int)height << "px" << endl;
@@ -2829,7 +2828,7 @@ void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsig
 } /* drawBmp() */
 
 //FIXME: WIP
-bool moglk::upload(char * data_ptr)
+bool Moglk::upload(char * data_ptr)
 {
 #ifndef NDEBUG
     cout << "DEBUG upload()"<< endl;
@@ -2848,7 +2847,7 @@ bool moglk::upload(char * data_ptr)
 } /* upload() */
 
 //TODO: WIP
-void moglk::uploadFont(unsigned char id,
+void Moglk::uploadFont(unsigned char id,
                        unsigned int size,
                        char * data_ptr)
 {
@@ -2863,7 +2862,7 @@ void moglk::uploadFont(unsigned char id,
 } /* uploadFont */
 
 //TODO: WIP
-void moglk::uploadBmp(unsigned char id,
+void Moglk::uploadBmp(unsigned char id,
                       unsigned int size,
                       char * data_ptr)
 {
@@ -2879,7 +2878,7 @@ void moglk::uploadBmp(unsigned char id,
 } /* uploadBmp */
 
 //TODO: WIP
-void moglk::uploadFs(unsigned int size,
+void Moglk::uploadFs(unsigned int size,
                      char * data_ptr)
 {
 
