@@ -24,6 +24,7 @@
 
 // C++ headers
 #include <cstring>      // ISO C99 String handling
+#include <cstdio>	// C++ standard IO
 #include <iostream>     // C++ input output stream
 #include <sstream>      // C++ string stream
 
