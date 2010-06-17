@@ -23,12 +23,17 @@
 
 int main(int argc, char *argv[])
 {
+	if (argc == 1)
+	{
+		std::cerr << "Please input a text" << std::endl;
+		return -1;
+	}
 	char port[] = "/dev/ttyUSB0";
 	unsigned long int speed = 19200;
 
 	moglk lcd;
 	int check = lcd.init(port,speed);
-	if (check > 0)
+	if (!check)
 	{
 		lcd.display(argv[1],1,0,0);
 		//lcd.display("\n",1);

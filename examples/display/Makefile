@@ -27,5 +27,4 @@ display: display.cc
 	$(CC) $(CFLAGS) -I../../src -L../../src display.cc -lmoglk -o display
 
 clean:
-	rm display.o
 	rm display
