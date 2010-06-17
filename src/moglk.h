@@ -574,7 +574,7 @@ class moglk
 
         void transmit(int * data_ptr);
         bool receive(unsigned char * data_ptr);
-        int * receiveFile(int * file_ptr);
+        bool receiveFile(int * file_ptr);
 
         bool upload(char * data_ptr);
 

@@ -363,7 +363,7 @@ void moglk::send(int * message_ptr)
 
 } /* send() */
 
-int * moglk::receiveFile(int * file_ptr)
+bool moglk::receiveFile(int * file_ptr)
 {
     unsigned char size[3];
 
@@ -411,13 +411,15 @@ file[i] = EOF;
     cout << endl;
     cout << "DEBUG receiveFile(): received " << dec << k - 1 << "B" << endl;
 #endif /* #ifndef NDEBUG */
+        return 1;
 }
 else
 {
         cerr << "ERROR receiveFile(): file doesn't exist" << endl;
+        return -1;
 }
 
-        return file_ptr;
+        return 0;
 
 } /* receiveFile() */
 
