@@ -584,7 +584,8 @@ class moglk
         moglk(void);
         ~moglk(void);
 
-        bool init(char * device_ptr = "/dev/ttyS0", unsigned long int baud_rate = 0);
+        bool init(char * device_ptr = "/dev/ttyS0",
+                  unsigned long int baud_rate = 0);
 
         //int autodetect(void);
 
@@ -594,43 +595,85 @@ class moglk
 
         bool setBaudRate(unsigned long int baud_rate = 19200);
 
-        void setFlowControl(bool state = 0, unsigned char full = 0, unsigned char empty = 0);
+        void setFlowControl(bool state = 0,
+                            unsigned char full = 0,
+                            unsigned char empty = 0);
 
-        void display(const char text[], unsigned char font = 0, unsigned char x = 255, unsigned char y = 255);
+        void display(const char text[],
+                     unsigned char font = 0,
+                     unsigned char x = 255,
+                     unsigned char y = 255);
 
         void goHome(void);
 
-        void setFont(unsigned char id = 1, unsigned char lm = 0, unsigned char tm = 0, unsigned char csp = 0, unsigned char lsp = 1, unsigned char srow = 64);
+        void setFont(unsigned char id = 1,
+                     unsigned char lm = 0,
+                     unsigned char tm = 0,
+                     unsigned char csp = 0,
+                     unsigned char lsp = 1,
+                     unsigned char srow = 64);
 
-        void setFontMetrics(unsigned char lm = 0, unsigned char tm = 0, unsigned char csp = 0, unsigned char lsp = 1, unsigned char srow = 64);
+        void setFontMetrics(unsigned char lm = 0,
+                            unsigned char tm = 0,
+                            unsigned char csp = 0,
+                            unsigned char lsp = 1,
+                            unsigned char srow = 64);
 
         void setBoxSpace(bool mode = 1);
 
         void setAutoScroll(bool mode = 1);
 
-        void setCursor(unsigned char x, unsigned char y, bool mode = 0);
+        void setCursor(unsigned char x,
+                       unsigned char y,
+                       bool mode = 0);
 
-        void drawMemBmp(unsigned char id = 1, unsigned char x = 0, unsigned char y = 0);
+        void drawMemBmp(unsigned char id = 1,
+                        unsigned char x = 0,
+                        unsigned char y = 0);
 
         void setDrawingColor(bool color = 1);
 
-        void drawPixel(unsigned char x, unsigned char y, bool color = 1);
+        void drawPixel(unsigned char x,
+                       unsigned char y,
+                       bool color = 1);
 
-        bool drawLine(unsigned char x1, unsigned char y1, unsigned char x2 = 255, unsigned char y2 = 255, bool color = 1);
+        bool drawLine(unsigned char x1,
+                      unsigned char y1,
+                      unsigned char x2 = 255,
+                      unsigned char y2 = 255,
+                      bool color = 1);
 
-        void drawRectangle(unsigned char x1, unsigned char y1, unsigned char x2, unsigned char y2, bool mode = 0, bool color = 1);
+        void drawRectangle(unsigned char x1,
+                           unsigned char y1,
+                           unsigned char x2,
+                           unsigned char y2,
+                           bool mode = 0,
+                           bool color = 1);
 
-        bool initBarGraph(unsigned char x1, unsigned char y1, unsigned char x2, unsigned char y2, unsigned char type = 0, unsigned char id = 0);
+        bool initBarGraph(unsigned char x1,
+                          unsigned char y1,
+                          unsigned char x2,
+                          unsigned char y2,
+                          unsigned char type = 0,
+                          unsigned char id = 0);
 
-        bool drawBarGraph(unsigned char value, unsigned char id = 0);
+        bool drawBarGraph(unsigned char value,
+                          unsigned char id = 0);
 
-        bool initStripChart(unsigned char x1, unsigned char y1, unsigned char x2, unsigned char y2, unsigned char id = 0);
+        bool initStripChart(unsigned char x1,
+                            unsigned char y1,
+                            unsigned char x2,
+                            unsigned char y2,
+                            unsigned char id = 0);
 
-        bool shiftStripChart(bool direction = 0, unsigned char id =0);
+        bool shiftStripChart(bool direction = 0,
+                             unsigned char id =0);
 
-        bool setGpo(unsigned char id, bool state);
+        bool setGpo(unsigned char id,
+                    bool state);
 
-        bool setLed(unsigned char id, unsigned char state);
+        bool setLed(unsigned char id,
+                    unsigned char state);
 
         bool ledYellow(unsigned char id);
 
@@ -640,7 +683,8 @@ class moglk
 
         bool ledOff(unsigned char id);
 
-        bool startupGpo(unsigned char id, bool state);
+        bool startupGpo(unsigned char id,
+                        bool state);
 
         void setAutoTxKey(bool state);
 
@@ -654,7 +698,8 @@ class moglk
 
         void clearScreen(void);
 
-        bool setBacklight(bool state = 1, unsigned char time = 0);
+        bool setBacklight(bool state = 1,
+                          unsigned char time = 0);
 
         void setBrightness(unsigned char value = 255);
 
@@ -680,15 +725,21 @@ class moglk
 
         void getDirectory(void);
 
-        void deleteFile(bool type, unsigned char id);
+        void deleteFile(bool type,
+                        unsigned char id);
 
-        int * downloadFile(bool type, unsigned char id, int * file_ptr);
+        int * downloadFile(bool type,
+                           unsigned char id,
+                           int * file_ptr);
 
         int * dumpFs(int * file_ptr);
 
         int * dumpFw(int * file_ptr);
 
-        void moveFile(bool old_type, unsigned char old_id, bool new_type, unsigned char new_id);
+        void moveFile(bool old_type,
+                      unsigned char old_id,
+                      bool new_type,
+                      unsigned char new_id);
 
         void setLock(std::bitset<8> level);
 
@@ -696,15 +747,37 @@ class moglk
 
         unsigned char pollKey(void);
 
-        void setCustomKeyCodes(unsigned char kup_top, unsigned char kup_up, unsigned char kup_right, unsigned char kup_left, unsigned char kup_center, unsigned char kup_bottom, unsigned char kup_down, unsigned char kdown_top, unsigned char kdown_up, unsigned char kdown_right, unsigned char kdown_left, unsigned char kdown_center, unsigned char kdown_bottom, unsigned char kdown_down);
+        void setCustomKeyCodes(unsigned char kup_top,
+                               unsigned char kup_up,
+                               unsigned char kup_right,
+                               unsigned char kup_left,
+                               unsigned char kup_center,
+                               unsigned char kup_bottom,
+                               unsigned char kup_down,
+                               unsigned char kdown_top,
+                               unsigned char kdown_up,
+                               unsigned char kdown_right,
+                               unsigned char kdown_left,
+                               unsigned char kdown_center,
+                               unsigned char kdown_bottom,
+                               unsigned char kdown_down);
 
-        void drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data);
+        void drawBmp(unsigned char x,
+                     unsigned char y,
+                     unsigned char width,
+                     unsigned char height,
+                     int * data);
 
-        void uploadFont(unsigned char id, unsigned int size, char * data_ptr);
+        void uploadFont(unsigned char id,
+                        unsigned int size,
+                        char * data_ptr);
 
-        void uploadBmp(unsigned char id, unsigned int size, char * data_ptr);
+        void uploadBmp(unsigned char id,
+                       unsigned int size,
+                       char * data_ptr);
 
-        void uploadFs(unsigned int size, char * data_ptr);
+        void uploadFs(unsigned int size,
+                      char * data_ptr);
 
 }; /* moglk */
 

@@ -61,7 +61,11 @@ bool moglk::init(char * device_ptr,
     {
         configurePort();
         setPortBaudRate(baud_rate);
-        //setFlowControl(1,8,119);
+/*
+        setFlowControl(1,
+                       8,
+                       119);
+*/
 
 #ifndef NDEBUG
         cout << "DEBUG init(): libmoglk initialized!" << endl;
@@ -81,20 +85,25 @@ unsigned long int moglk::autodetectBaudRate(char * device_ptr)
 
         unsigned long int detected_baud_rate = 0;
         unsigned char module_type;
-        long int baud_rate[] = {9600, 19200, 38400, 115200, EOF};
+        long int baud_rate[] = {9600,
+                                19200,
+                                38400,
+                                115200,
+                                EOF};
 
         for (unsigned char n = 0;baud_rate[n] != EOF;n++)
         {
-                init(device_ptr, baud_rate[n]);
+                init(device_ptr,
+                     baud_rate[n]);
                 module_type = getModuleType();
                 if (module_type)
                 {
-                        detectedBaudrate = baud_rate[n];
+                        detected_baud_rate = baud_rate[n];
                 }
         }
 
 #ifndef NDEBUG
-	cout << "DEBUG autodetectBaudRate() : detectedBaudrate = " << dec << detectedBaudrate << endl;
+	cout << "DEBUG autodetectBaudRate() : detectedBaudrate = " << dec << detected_baud_rate << endl;
 #endif /* #ifndef NDEBUG */
 
         return detected_baud_rate;
@@ -106,7 +115,8 @@ bool moglk::openPort(char * device_ptr)
 {
         // Open serial port:
 	// read/write, no control terminal
-	serial_port = open(device_ptr, O_RDWR | O_NOCTTY);
+	serial_port = open(device_ptr,
+                           O_RDWR | O_NOCTTY);
 
         // Handle errors
 	if (serial_port < 0)
@@ -131,7 +141,8 @@ void moglk::configurePort(void)
 	struct termios options;
 
 	// Get current port options
-	tcgetattr(serial_port, &options);
+	tcgetattr(serial_port,
+                  &options);
 
 	// Control options:
 	// 8 data bits, no parity, 1 stopbit, local line, enable receiver
@@ -152,10 +163,13 @@ void moglk::configurePort(void)
         options.c_cc[VMIN] = 0;
 
 	// Flush line
-	tcflush(serial_port, TCIFLUSH);
+	tcflush(serial_port,
+                TCIFLUSH);
 
 	// Set port options
-	tcsetattr(serial_port,TCSANOW,&options);
+	tcsetattr(serial_port,
+                  TCSANOW,
+                  &options);
 
 #ifndef NDEBUG
         cout << "DEBUG configurePort()" << endl;
@@ -206,23 +220,29 @@ void moglk::setPortBaudRate(unsigned long int baud_rate)
 	struct termios options;
 
 	// Get current port options
-	tcgetattr(serial_port, &options);
+	tcgetattr(serial_port,
+                  &options);
 
 	// Control options:
 	// global baud rate
 	options.c_cflag |= (port_rate);
 
         // Set input baud rate
-	cfsetispeed(&options, port_rate);
+	cfsetispeed(&options,
+                    port_rate);
 
 	// Set output baud rate
-	cfsetospeed(&options, port_rate);
+	cfsetospeed(&options,
+                    port_rate);
 
 	// Flush line
-	tcflush(serial_port, TCIFLUSH);
+	tcflush(serial_port,
+                TCIFLUSH);
 
 	// Set port options
-	tcsetattr(serial_port,TCSANOW,&options);
+	tcsetattr(serial_port,
+                  TCSANOW,
+                  &options);
 
 #ifndef NDEBUG
         cout << "DEBUG setPortBaudRate(): " << dec << baud_rate << " bauds" << endl;
@@ -236,7 +256,8 @@ void moglk::setPortFlowControl(bool state)
 	struct termios options;
 
 	// Get current port options
-	tcgetattr(serial_port, &options);
+	tcgetattr(serial_port,
+                  &options);
 
 	if (state)
 	{
@@ -266,10 +287,13 @@ void moglk::setPortFlowControl(bool state)
 	}
 
         // Flush line
-	tcflush(serial_port, TCIFLUSH);
+	tcflush(serial_port,
+                TCIFLUSH);
 
 	// Set port options
-	tcsetattr(serial_port,TCSANOW,&options);
+	tcsetattr(serial_port,
+                  TCSANOW,
+                  &options);
 
 } /* setPortFlowControl() */
 
@@ -281,8 +305,8 @@ void moglk::transmit(int * data_ptr)
 	while (retval <= 0)
 	{
 	    retval = write(serial_port,
-                       data_ptr,
-                       1);
+                           data_ptr,
+                           1);
 	}
 
 #ifndef NDEBUG
@@ -486,7 +510,11 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
 #endif /* #ifndef NDEBUG */
                 if ((non_standard_rate_lsb < 12 && non_standard_rate_msb == 0) || (non_standard_rate_lsb == 0xFF && non_standard_rate_msb > 0x07))
                 {
-                        int message[] = {CMD_INIT,CMD_NON_STANDARD_BAUD_RATE,non_standard_rate_lsb,non_standard_rate_msb,EOF};
+                        int message[] = {CMD_INIT,
+                                         CMD_NON_STANDARD_BAUD_RATE,
+                                         non_standard_rate_lsb,
+                                         non_standard_rate_msb,
+                                         EOF};
                         send(&message[0]);
                 }
                 else
@@ -501,7 +529,10 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
                 cout << "DEBUG setBaudRate(): " << dec << baud_rate << " (0x" << hex << (int)device_rate << ")" << endl;
 #endif /* #ifndef NDEBUG */
 
-                int message[] = {CMD_INIT,CMD_BAUD_RATE,device_rate,EOF};
+                int message[] = {CMD_INIT,
+                                 CMD_BAUD_RATE,
+                                 device_rate,
+                                 EOF};
                 send(&message[0]);
         }
 
@@ -512,8 +543,8 @@ bool moglk::setBaudRate(unsigned long int baud_rate)
 } /* setBaudRate */
 
 void moglk::setFlowControl(bool state,
-						   unsigned char full,
-						   unsigned char empty)
+                           unsigned char full,
+                           unsigned char empty)
 {
 
 	if (state)
@@ -522,7 +553,11 @@ void moglk::setFlowControl(bool state,
 		cout << "DEBUG setFlowControl(): on, full at "<< dec << (int)full << " byte(s), empty at " << (int)empty << " bytes(s)" << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_FLOW_CONTROL_ON,full,empty,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_FLOW_CONTROL_ON,
+                                 full,
+                                 empty,
+                                 EOF};
 		send(&message[0]);
 	}
     else
@@ -531,7 +566,9 @@ void moglk::setFlowControl(bool state,
 		cout << "DEBUG setFlowControl(): off" << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_FLOW_CONTROL_OFF,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_FLOW_CONTROL_OFF,
+                                 EOF};
 		send(&message[0]);
 	}
 
@@ -553,7 +590,8 @@ void moglk::display(const char text[],
 
     if (x != 255 && y != 255)
     {
-        setCursor(x,y);
+        setCursor(x,
+                  y);
     }
 
     unsigned int n = 0;
@@ -581,7 +619,9 @@ void moglk::clearScreen(void)
 	cout << "DEBUG clearScreen()" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_CLEAR_SCREEN,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_CLEAR_SCREEN,
+                         EOF};
 	send(&message[0]);
 
 } /* clearScreen() */
@@ -593,23 +633,37 @@ void moglk::goHome(void)
 	cout << "DEBUG goHome()" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_HOME,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_HOME,
+                         EOF};
 	send(&message[0]);
 
 } /* goHome() */
 
-void moglk::setFont(unsigned char id, unsigned char lm, unsigned char tm, unsigned char csp, unsigned char lsp, unsigned char srow)
+void moglk::setFont(unsigned char id,
+                    unsigned char lm,
+                    unsigned char tm,
+                    unsigned char csp,
+                    unsigned char lsp,
+                    unsigned char srow)
 {
 
 #ifndef NDEBUG
 	cout << "DEBUG setFont(): font #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_USE_FONT,id,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_USE_FONT,
+                         id,
+                         EOF};
 	send(&message[0]);
 
 	//Don't forget to set the font metrics
-	setFontMetrics(lm,tm,csp,lsp,srow);
+	setFontMetrics(lm,
+                       tm,
+                       csp,
+                       lsp,
+                       srow);
 
 } /* setFont() */
 
@@ -628,7 +682,14 @@ void moglk::setFontMetrics(unsigned char lm,
 		 << " scroll row " << (int)srow << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_FONT_METRICS,lm,tm,csp,lsp,srow,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_FONT_METRICS,
+                         lm,
+                         tm,
+                         csp,
+                         lsp,
+                         srow,
+                         EOF};
 	send(&message[0]);
 
 } /* setFontMetrics() */
@@ -649,7 +710,10 @@ void moglk::setBoxSpace(bool mode)
 	cout << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_BOX_SPACE_MODE,mode,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_BOX_SPACE_MODE,
+                         mode,
+                         EOF};
 	send(&message[0]);
 
 } /* setBoxSpace() */
@@ -663,7 +727,9 @@ void moglk::setAutoScroll(bool mode)
 		cout << "DEBUG setAutoScroll(): off" << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_AUTO_SCROLL_OFF,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_AUTO_SCROLL_OFF,
+                                 EOF};
 		send(&message[0]);
     }
     else
@@ -672,7 +738,9 @@ void moglk::setAutoScroll(bool mode)
 		cout << "DEBUG setAutoScroll(): on" << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_AUTO_SCROLL_ON,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_AUTO_SCROLL_ON,
+                                 EOF};
 		send(&message[0]);
 	}
 
@@ -694,7 +762,11 @@ void moglk::setCursor(unsigned char x,
 		cout << "DEBUG setCursor(): absolute pixel mode, X=" << dec << (int)x << "px, Y=" << (int)y << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_CURSOR_COORDINATE,x,y,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_CURSOR_COORDINATE,
+                                 x,
+                                 y,
+                                 EOF};
 		send(&message[0]);
     }
     else
@@ -703,7 +775,11 @@ void moglk::setCursor(unsigned char x,
 			cout << "DEBUG setCursor(): absolute character size relative mode, X=" << dec << (int)x << ", Y=" << (int)y << endl;
 #endif /* #ifndef NDEBUG */
 
-		int message[] = {CMD_INIT,CMD_CURSOR_POSITION,x,y,EOF};
+		int message[] = {CMD_INIT,
+                                 CMD_CURSOR_POSITION,
+                                 x,
+                                 y,
+                                 EOF};
 		send(&message[0]);
 	}
 
@@ -715,7 +791,9 @@ unsigned char moglk::getVersion(void)
 	cout << "DEBUG getVersion()" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_VERSION_NUMBER,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_VERSION_NUMBER,
+                         EOF};
 	send(&message[0]);
 
         unsigned char version;
@@ -743,7 +821,9 @@ unsigned char moglk::getModuleType(void)
     cout << "DEBUG getModuleType()" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_MODULE_TYPE,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_MODULE_TYPE,
+                         EOF};
 	send(&message[0]);
 
         unsigned char type;
@@ -1189,7 +1269,9 @@ void moglk::getCustomerData(unsigned char data[16])
 	cout << "DEBUG getCustomerData()" << endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_READ_CUSTOMER_DATA,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_READ_CUSTOMER_DATA,
+                         EOF};
 	send(&message[0]);
 
     unsigned int n = 0;
@@ -1214,7 +1296,12 @@ void moglk::drawMemBmp(unsigned char id,
 	cout << "DEBUG drawMemBmp(): bitmap #" << dec << (int)id << ", X=" << (int)x << "px ,Y=" << (int)y << "px"<< endl;
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_DRAW_MEMORY_BMP,id,x,y,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_DRAW_MEMORY_BMP,
+                         id,
+                         x,
+                         y,
+                         EOF};
 	send(&message[0]);
 
 } /* drawMemBmp() */
@@ -1236,7 +1323,10 @@ void moglk::setDrawingColor(bool color)
 
 #endif /* #ifndef NDEBUG */
 
-	int message[] = {CMD_INIT,CMD_DRAWING_COLOR,color,EOF};
+	int message[] = {CMD_INIT,
+                         CMD_DRAWING_COLOR,
+                         color,
+                         EOF};
 	send(&message[0]);
 
 } /* setDrawingColor() */
@@ -1252,7 +1342,11 @@ void moglk::drawPixel(unsigned char x,
 	cout << "DEBUG drawPixel(): X=" << dec << (int)x << "px, Y=" << (int)y << "px"<< endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DRAW_PIXEL,x,y,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DRAW_PIXEL,
+                     x,
+                     y,
+                     EOF};
     send(&message[0]);
 
 } /* drawPixel() */
@@ -1273,7 +1367,13 @@ bool moglk::drawLine(unsigned char x1,
         cout << "DEBUG drawLine(): X1=" << dec << (int)x1 << "px, Y1=" << (int)y1 << "px, X2=" << (int)x2 << "px, Y2=" << (int)y2 << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_DRAW_LINE,x1,y1,x2,y2,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_DRAW_LINE,
+                         x1,
+                         y1,
+                         x2,
+                         y2,
+                         EOF};
         send(&message[0]);
     }
     if (x2 == 255 || y2 == 255)
@@ -1288,7 +1388,11 @@ bool moglk::drawLine(unsigned char x1,
         cout << "DEBUG drawLine(): continue previous line to X=" << dec << (int)x1 << "px, Y=" << (int)y1 << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_CONTINUE_LINE,x1,y1,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_CONTINUE_LINE,
+                         x1,
+                         y1,
+                         EOF};
         send(&message[0]);
     }
 
@@ -1313,7 +1417,14 @@ void moglk::drawRectangle(unsigned char x1,
         cout << ", X1=" << dec << (int)x1 << "px, Y1=" << (int)y1 << "px, X2=" << (int)x2 << "px, Y2=" << (int)y2 << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_DRAW_RECTANGLE,color,x1,y1,x2,y2,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_DRAW_RECTANGLE,
+                         color,
+                         x1,
+                         y1,
+                         x2,
+                         y2,
+                         EOF};
         send(&message[0]);
     }
     else
@@ -1325,18 +1436,25 @@ void moglk::drawRectangle(unsigned char x1,
         cout << ", X1=" << dec << (int)x1 << "px, Y1=" << (int)y1 << "px, X2=" << (int)x2 << "px, Y2=" << (int)y2 << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_DRAW_SOLID_RECTANGLE,color,x1,y1,x2,y2,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_DRAW_SOLID_RECTANGLE,
+                         color,
+                         x1,
+                         y1,
+                         x2,
+                         y2,
+                         EOF};
         send(&message[0]);
     }
 
 } /* drawRectangle() */
 
 bool moglk::initBarGraph(unsigned char x1,
-                        unsigned char y1,
-                        unsigned char x2,
-                        unsigned char y2,
-                        unsigned char type,
-                        unsigned char id)
+                         unsigned char y1,
+                         unsigned char x2,
+                         unsigned char y2,
+                         unsigned char type,
+                         unsigned char id)
 {
 
     if (id > 15)
@@ -1394,7 +1512,15 @@ bool moglk::initBarGraph(unsigned char x1,
     cout << ", X1=" << dec << (int)x1 << "px, Y1=" << (int)y1 << "px, X2=" << (int)x2 << "px, Y2=" << (int)y2 << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_INITIALIZE_BAR_GRAPH,id,type,x1,y1,x2,y2,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_INITIALIZE_BAR_GRAPH,
+                     id,
+                     type,
+                     x1,
+                     y1,
+                     x2,
+                     y2,
+                     EOF};
     send(&message[0]);
 
     return true;
@@ -1402,7 +1528,7 @@ bool moglk::initBarGraph(unsigned char x1,
 } /* initBarGraph() */
 
 bool moglk::drawBarGraph(unsigned char value,
-                        unsigned char id)
+                         unsigned char id)
 {
     if (id > 15)
     {
@@ -1414,7 +1540,11 @@ bool moglk::drawBarGraph(unsigned char value,
     cout << "DEBUG drawBarGraph(): bar graph #" << dec << (int)id << " to " << (int)value << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DRAW_BAR_GRAPH,id,value,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DRAW_BAR_GRAPH,
+                     id,
+                     value,
+                     EOF};
     send(&message[0]);
 
     return true;
@@ -1422,10 +1552,10 @@ bool moglk::drawBarGraph(unsigned char value,
 } /* drawBarGraph() */
 
 bool moglk::initStripChart(unsigned char x1,
-                          unsigned char y1,
-                          unsigned char x2,
-                          unsigned char y2,
-                          unsigned char id)
+                           unsigned char y1,
+                           unsigned char x2,
+                           unsigned char y2,
+                           unsigned char id)
 {
 
     if (id > 6)
@@ -1450,7 +1580,14 @@ bool moglk::initStripChart(unsigned char x1,
     cout << "DEBUG initStripChart(): strip chart #" << dec << (int)id << ", X1=" << (int)x1 << ", Y1=" << (int)y1 << ", X2=" << (int)x2 << ", Y2=" << (int)y2 << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_INITIALIZE_STRIP_CHART,id,x1,y1,x2,y2,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_INITIALIZE_STRIP_CHART,
+                     id,
+                     x1,
+                     y1,
+                     x2,
+                     y2,
+                     EOF};
     send(&message[0]);
 
     return true;
@@ -1458,7 +1595,7 @@ bool moglk::initStripChart(unsigned char x1,
 } /* initStripChart() */
 
 bool moglk::shiftStripChart(bool direction,
-                           unsigned char id)
+                            unsigned char id)
 {
 
     if (id > 6)
@@ -1483,7 +1620,10 @@ bool moglk::shiftStripChart(bool direction,
 
     unsigned char ref = id + direction * 128;
 
-    int message[] = {CMD_INIT,CMD_SHIFT_STRIP_CHART,ref,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_SHIFT_STRIP_CHART,
+                     ref,
+                     EOF};
     send(&message[0]);
 
     return true;
@@ -1491,7 +1631,7 @@ bool moglk::shiftStripChart(bool direction,
 } /* shiftStripChart() */
 
 bool moglk::setGpo(unsigned char id,
-                  bool state)
+                   bool state)
 {
 
     if (id == 0 || id > 6)
@@ -1506,7 +1646,10 @@ bool moglk::setGpo(unsigned char id,
         cout << "DEBUG setGpo(): GPO #" << dec << (int)id << ", off" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_GPO_OFF,id,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_GPO_OFF,
+                         id,
+                         EOF};
         send(&message[0]);
     }
     else
@@ -1515,7 +1658,10 @@ bool moglk::setGpo(unsigned char id,
         cout << "DEBUG setGpo(): GPO #" << dec << (int)id << ", on" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_GPO_ON,id,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_GPO_ON,
+                         id,
+                         EOF};
         send(&message[0]);
     }
 
@@ -1524,7 +1670,7 @@ bool moglk::setGpo(unsigned char id,
 } /* setGpo() */
 
 bool moglk::setLed(unsigned char id,
-                  unsigned char state)
+                   unsigned char state)
 {
 
     if (id == 0 || id > 3)
@@ -1572,8 +1718,10 @@ bool moglk::setLed(unsigned char id,
             cout << "yellow" << endl;
 #endif /* #ifndef NDEBUG */
 
-            setGpo(id * 2 - 1,0);
-            setGpo(id * 2,0);
+            setGpo(id * 2 - 1,
+                   0);
+            setGpo(id * 2,
+                   0);
             break;
         }
 
@@ -1583,8 +1731,10 @@ bool moglk::setLed(unsigned char id,
             cout << "green" << endl;
 #endif /* #ifndef NDEBUG */
 
-            setGpo(id * 2 - 1,1);
-            setGpo(id * 2,0);
+            setGpo(id * 2 - 1,
+                   1);
+            setGpo(id * 2,
+                   0);
             break;
         }
 
@@ -1594,8 +1744,10 @@ bool moglk::setLed(unsigned char id,
             cout << "red" << endl;
 #endif /* #ifndef NDEBUG */
 
-            setGpo(id * 2 - 1,0);
-            setGpo(id * 2,1);
+            setGpo(id * 2 - 1,
+                   0);
+            setGpo(id * 2,
+                   1);
             break;
         }
 
@@ -1605,8 +1757,10 @@ bool moglk::setLed(unsigned char id,
             cout << "off" << endl;
 #endif /* #ifndef NDEBUG */
 
-            setGpo(id * 2 - 1,1);
-            setGpo(id * 2,1);
+            setGpo(id * 2 - 1,
+                   1);
+            setGpo(id * 2,
+                   1);
             break;
         }
     } /* switch (state)*/
@@ -1648,7 +1802,8 @@ bool moglk::ledYellow(unsigned char id)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    setLed(id,0);
+    setLed(id,
+           0);
 
     return true;
 
@@ -1687,7 +1842,8 @@ bool moglk::ledGreen(unsigned char id)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    setLed(id,1);
+    setLed(id,
+           1);
 
     return true;
 
@@ -1726,7 +1882,8 @@ bool moglk::ledRed(unsigned char id)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    setLed(id,2);
+    setLed(id,
+           2);
 
     return true;
 
@@ -1765,14 +1922,15 @@ bool moglk::ledOff(unsigned char id)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    setLed(id,3);
+    setLed(id,
+           3);
 
     return true;
 
 } /* ledOff */
 
 bool moglk::startupGpo(unsigned char id,
-                      bool state)
+                       bool state)
 {
 
     if (id == 0 || id > 6)
@@ -1794,7 +1952,11 @@ bool moglk::startupGpo(unsigned char id,
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_STARTUP_GPO_STATE,id,state,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_STARTUP_GPO_STATE,
+                     id,
+                     state,
+                     EOF};
     send(&message[0]);
 
     return true;
@@ -1814,7 +1976,9 @@ void moglk::setAutoTxKey(bool state)
         cout << "off" << endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_AUTO_TRANSMIT_KEY_OFF,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_AUTO_TRANSMIT_KEY_OFF,
+                         EOF};
         send(&message[0]);
     }
     else
@@ -1823,14 +1987,16 @@ void moglk::setAutoTxKey(bool state)
        cout << "on" << endl;
 #endif /* #ifndef NDEBUG */
 
-       int message[] = {CMD_INIT,CMD_AUTO_TRANSMIT_KEY_ON,EOF};
+       int message[] = {CMD_INIT,
+                        CMD_AUTO_TRANSMIT_KEY_ON,
+                        EOF};
        send(&message[0]);
     }
 
 } /* setAutotxKey() */
 
 bool moglk::setBacklight(bool state,
-                        unsigned char time)
+                         unsigned char time)
 {
     if (time > 90)
     {
@@ -1852,7 +2018,9 @@ bool moglk::setBacklight(bool state,
             clog << "WARNING setBacklight(): unused time value only available for set backlight on" << endl;
         };
 
-        int message[] = {CMD_INIT,CMD_DISPLAY_OFF,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_DISPLAY_OFF,
+                         EOF};
         send(&message[0]);
     }
     else
@@ -1861,7 +2029,10 @@ bool moglk::setBacklight(bool state,
         cout << "on in " << dec << (int)time << " minute(s)"<< endl;
 #endif /* #ifndef NDEBUG */
 
-        int message[] = {CMD_INIT,CMD_DISPLAY_ON,time,EOF};
+        int message[] = {CMD_INIT,
+                         CMD_DISPLAY_ON,
+                         time,
+                         EOF};
         send(&message[0]);
     }
 
@@ -1876,7 +2047,9 @@ void moglk::clearKeyBuffer(void)
     cout << "DEBUG clearKeyBuffer()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_CLEAR_KEY_BUFFER,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_CLEAR_KEY_BUFFER,
+                     EOF};
     send(&message[0]);
 
 } /* clearKeyBuffer() */
@@ -1887,7 +2060,10 @@ void moglk::setDebounce(unsigned char time)
     cout << "DEBUG setDebounce(): " << dec << (int)time * 8 << "ms" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DEBOUNCE_TIME,time,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DEBOUNCE_TIME,
+                     time,
+                     EOF};
     send(&message[0]);
 
 
@@ -1908,7 +2084,10 @@ void moglk::setAutoRepeat(bool mode)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_AUTO_REPEAT_MODE,mode,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_AUTO_REPEAT_MODE,
+                     mode,
+                     EOF};
     send(&message[0]);
 
 } /* setAutoRepeat() */
@@ -1919,7 +2098,9 @@ void moglk::autoRepeatOff(void)
     cout << "DEBUG autoRepeatOff()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_AUTO_REPEAT_OFF,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_AUTO_REPEAT_OFF,
+                     EOF};
     send(&message[0]);
 
 } /* autoRepeatOff() */
@@ -1930,7 +2111,10 @@ void moglk::setBrightness(unsigned char value)
     cout << "DEBUG setBrightness(): " << dec << (int)value << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_BRIGHTNESS,value,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_BRIGHTNESS,
+                     value,
+                     EOF};
     send(&message[0]);
 
 } /* setBrightness() */
@@ -1941,7 +2125,10 @@ void moglk::setDefaultBrightness(unsigned char value)
     cout << "DEBUG setDefaultBrightness(): " << dec << (int)value << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DEFAULT_BRIGHTNESS,value,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DEFAULT_BRIGHTNESS,
+                     value,
+                     EOF};
     send(&message[0]);
 
 } /* setDefaultBrightness() */
@@ -1952,7 +2139,10 @@ void moglk::setContrast(unsigned char value)
     cout << "DEBUG setContrast(): " << dec << (int)value << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_CONTRAST,value,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_CONTRAST,
+                     value,
+                     EOF};
     send(&message[0]);
 
 } /* setContrast() */
@@ -1963,7 +2153,10 @@ void moglk::setDefaultContrast(unsigned char value)
     cout << "DEBUG setDefaultContrast(): " << dec << (int)value << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DEFAULT_CONTRAST,value,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DEFAULT_CONTRAST,
+                     value,
+                     EOF};
     send(&message[0]);
 
 } /* setDefaultContrast() */
@@ -1974,7 +2167,9 @@ void moglk::wipeFs(void)
     cout << "DEBUG wipeFs()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_WIPE_FILESYSTEM,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_WIPE_FILESYSTEM,
+                     EOF};
     send(&message[0]);
 
 } /* wipeFs() */
@@ -1985,7 +2180,9 @@ unsigned short int moglk::getFreeSpace(void)
     cout << "DEBUG getFreeSpace()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_FREE_SPACE,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_FREE_SPACE,
+                     EOF};
     send(&message[0]);
 
     unsigned char size[3];
@@ -2022,7 +2219,10 @@ void moglk::setRemember(bool mode)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_REMEMBER,mode,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_REMEMBER,
+                     mode,
+                     EOF};
     send(&message[0]);
 
 } /* setRemember() */
@@ -2054,7 +2254,9 @@ void moglk::getDirectory(void)
     cout << "DEBUG getDirectory()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DIRECTORY,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DIRECTORY,
+                     EOF};
     send(&message[0]);
 
     unsigned char entriesCount;
@@ -2125,14 +2327,18 @@ void moglk::deleteFile(bool type,
     cout << " #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DELETE_FILE,type,id,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DELETE_FILE,
+                     type,
+                     id,
+                     EOF};
     send(&message[0]);
 
 } /* deleteFile() */
 
 int * moglk::downloadFile(bool type,
-                         unsigned char id,
-                         int * file_ptr)
+                          unsigned char id,
+                          int * file_ptr)
 {
 if (id)
 {
@@ -2149,7 +2355,11 @@ if (id)
     cout << " #" << dec << (int)id << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DOWNLOAD_FILE,type,id,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DOWNLOAD_FILE,
+                     type,
+                     id,
+                     EOF};
     send(&message[0]);
 
     receiveFile(file_ptr);
@@ -2190,7 +2400,13 @@ void moglk::moveFile(bool old_type,
     cout << " #" << dec << (int)new_id << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_MOVE_FILE,old_type,old_id,new_type,new_id,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_MOVE_FILE,
+                     old_type,
+                     old_id,
+                     new_type,
+                     new_id,
+                     EOF};
     send(&message[0]);
 
 } /* moveFile() */
@@ -2252,7 +2468,10 @@ void moglk::setLock(bitset<8> level)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_LOCK_LEVEL,level.to_ulong(),EOF};
+    int message[] = {CMD_INIT,
+                     CMD_LOCK_LEVEL,
+                     level.to_ulong(),
+                     EOF};
     send(&message[0]);
 
 } /* setLock() */
@@ -2314,7 +2533,10 @@ void moglk::setDefaultLock(bitset<8> level)
     cout << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DEFAULT_LOCK_LEVEL,level.to_ulong(),EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DEFAULT_LOCK_LEVEL,
+                     level.to_ulong(),
+                     EOF};
     send(&message[0]);
 
 } /* setDefaultLock() */
@@ -2326,8 +2548,19 @@ unsigned char moglk::pollKey(void)
     cout << "DEBUG pollKey()" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_POLL_KEY,EOF};
-    unsigned char key[10] = {0,0,0,0,0,0,0,0,0,0};
+    int message[] = {CMD_INIT,
+                     CMD_POLL_KEY,
+                     EOF};
+    unsigned char key[10] = {0,
+                             0,
+                             0,
+                             0,
+                             0,
+                             0,
+                             0,
+                             0,
+                             0,
+                             0};
 
     bitset<8> more = 0x80;
     unsigned int n = 0;
@@ -2482,14 +2715,36 @@ void moglk::setCustomKeyCodes(unsigned char kup_top,
     cout << "DEBUG setCustomKeyCodes(): button down key down message " << hex << (int)kdown_down << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_CUSTOM_KEYPAD_CODES,kup_top,kup_up,kup_right,kup_left,kup_center,0,kup_bottom,kup_down,0,kdown_top,kdown_up,kdown_right,kdown_left,kdown_center,0,kdown_bottom,kdown_down,0,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_CUSTOM_KEYPAD_CODES,
+                     kup_top,
+                     kup_up,
+                     kup_right,
+                     kup_left,
+                     kup_center,
+                     0,
+                     kup_bottom,
+                     kup_down,
+                     0,
+                     kdown_top,
+                     kdown_up,
+                     kdown_right,
+                     kdown_left,
+                     kdown_center,
+                     0,
+                     kdown_bottom,
+                     kdown_down,
+                     0,
+                     EOF};
     send(&message[0]);
 
 } /* setCustomKeyCodes() */
 
 int * moglk::dumpFs(int * file_ptr)
 {
-    int message[] = {CMD_INIT,CMD_DUMP_FS,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DUMP_FS,
+                     EOF};
     send(&message[0]);
 
     receiveFile(file_ptr);
@@ -2500,7 +2755,9 @@ int * moglk::dumpFs(int * file_ptr)
 
 int * moglk::dumpFw(int * file_ptr)
 {
-    int message[] = {CMD_INIT,CMD_DUMP_FW,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DUMP_FW,
+                     EOF};
     send(&message[0]);
 
     unsigned int file_size = 466;
@@ -2541,13 +2798,20 @@ void moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsig
     cout << "DEBUG drawBmp(): " << "X=" << dec << (int)x << "px, Y=" << (int)y << "px, " << (int)width << "x" << (int)height << "px" << endl;
 #endif /* #ifndef NDEBUG */
 
-    int message[] = {CMD_INIT,CMD_DRAW_BMP,x,y,width,height,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_DRAW_BMP,
+                     x,
+                     y,
+                     width,
+                     height,
+                     EOF};
     send(&message[0]);
     unsigned int n = 0;
     int value = *(data_ptr + n);
     while (value != EOF)
     {
-	int data_message[] = {value,EOF};
+	int data_message[] = {value,
+                              EOF};
         send(data_message);
         n++;
         value = *(data_ptr + n);
@@ -2563,8 +2827,10 @@ bool moglk::upload(char * data_ptr)
 #endif /* #ifndef NDEBUG */
 
   unsigned char reply;
-  int c_message[] = {CMD_CONFIRM,EOF};
-  int d_message[] = {CMD_DECLINE,EOF};
+  int c_message[] = {CMD_CONFIRM,
+                     EOF};
+  int d_message[] = {CMD_DECLINE,
+                     EOF};
 
 
 
@@ -2573,9 +2839,14 @@ bool moglk::upload(char * data_ptr)
 } /* upload() */
 
 //TODO: WIP
-void moglk::uploadFont(unsigned char id, unsigned int size, char * data_ptr)
+void moglk::uploadFont(unsigned char id,
+                       unsigned int size,
+                       char * data_ptr)
 {
-    int message[] = {CMD_INIT,CMD_UPLOAD_FONT,id,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_UPLOAD_FONT,
+                     id,
+                     EOF};
     send(&message[0]);
 
     upload(data_ptr);
@@ -2583,10 +2854,15 @@ void moglk::uploadFont(unsigned char id, unsigned int size, char * data_ptr)
 } /* uploadFont */
 
 //TODO: WIP
-void moglk::uploadBmp(unsigned char id, unsigned int size, char * data_ptr)
+void moglk::uploadBmp(unsigned char id,
+                      unsigned int size,
+                      char * data_ptr)
 {
 
-    int message[] = {CMD_INIT,CMD_UPLOAD_BMP,id,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_UPLOAD_BMP,
+                     id,
+                     EOF};
     send(&message[0]);
 
     upload(data_ptr);
@@ -2594,10 +2870,13 @@ void moglk::uploadBmp(unsigned char id, unsigned int size, char * data_ptr)
 } /* uploadBmp */
 
 //TODO: WIP
-void moglk::uploadFs(unsigned int size, char * data_ptr)
+void moglk::uploadFs(unsigned int size,
+                     char * data_ptr)
 {
 
-    int message[] = {CMD_INIT,CMD_UPLOAD_FS,EOF};
+    int message[] = {CMD_INIT,
+                     CMD_UPLOAD_FS,
+                     EOF};
     send(&message[0]);
 
     upload(data_ptr);
