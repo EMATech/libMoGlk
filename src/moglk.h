@@ -427,8 +427,8 @@ Each character is encoded horizontally then padded to form a full last byte
 	File Data
 */
 
-// Undocumented command! Seems to dump the Firmware.
-#define CMD_DUMP_FW                                     0xD0 //WIP
+// Undocumented command! Seems to dump the settings.
+#define CMD_DUMP_SETTINGS                               0xD0 //WIP
 
 // SECURITY
 #define CMD_REMEMBER					0x93 //Done
@@ -734,7 +734,7 @@ class Moglk
 
         int * dumpFs(int * file_ptr);
 
-        int * dumpFw(int * file_ptr);
+        int * dumpSettings(int * file_ptr);
 
         void moveFile(bool old_type,
                       unsigned char old_id,

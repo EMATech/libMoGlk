@@ -1267,7 +1267,7 @@ unsigned char Moglk::getModuleType(void)
 
 } /* getModuleType() */
 
-void Moglk::getCustomerData(unsigned char * data)
+void Moglk::getCustomerData(unsigned char * data[16])
 {
 #ifndef NDEBUG
 	cout << "DEBUG getCustomerData()" << endl;
@@ -2232,7 +2232,7 @@ void Moglk::setRemember(bool mode)
 } /* setRemember() */
 
 //FIXME: use pointers
-void Moglk::setCustomerData(const char data[15])
+void Moglk::setCustomerData(unsigned char * data[15])
 {
 #ifndef NDEBUG
     cout << "DEBUG setCustomerData(): " << data << endl;
@@ -2243,7 +2243,7 @@ void Moglk::setCustomerData(const char data[15])
     int message[message_length+1];
     while (n < message_length+1)
     {
-        message[n] = data[n];
+        message[n] = *(data + n);
         n++;
     }
     message[n] = EOF;
@@ -2759,10 +2759,10 @@ int * Moglk::dumpFs(int * file_ptr)
 
 } /* dumpFs() */
 
-int * Moglk::dumpFw(int * file_ptr)
+int * Moglk::dumpSettings(int * file_ptr)
 {
     int message[] = {CMD_INIT,
-                     CMD_DUMP_FW,
+                     CMD_DUMP_SETTINGS,
                      EOF};
     send(&message[0]);
 
@@ -2798,7 +2798,7 @@ int * Moglk::dumpFw(int * file_ptr)
 
     return file_ptr;
 
-} /* dumpFW() */
+} /* dumpSettings() */
 
 void Moglk::drawBmp(unsigned char x, unsigned char y, unsigned char width, unsigned char height, int * data_ptr)
 {
