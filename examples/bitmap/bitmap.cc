@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -20,6 +20,7 @@
 
 #include "../../src/moglk.h"
 #include "ematech.h"
+#include <cstdio>
 #include <iostream>
 #include <bitset>       // C++ bit structure
 
@@ -28,9 +29,9 @@ int main(void)
 	char port[] = "/dev/ttyUSB0";
 //	unsigned long int speed = 19200;
 
-	moglk lcd;
-	int check = lcd.init(port);
-	if (check > 0)
+	Moglk lcd;
+	bool check = lcd.init(port);
+	if (check)
 	{
 	// Achtung!!! Marche pô clearScreen semble prendre trop de temps et avoir pour effet de faire ignorer quelques messages suivants soit => Bordel
         // lcd.clearScreen();

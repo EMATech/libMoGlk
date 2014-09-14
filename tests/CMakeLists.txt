@@ -1,0 +1,6 @@
+include_directories(${MyProject_SOURCE_DIR}/src)
+link_directories(${MyProject_SOURCE_DIR}/src)
+add_executable(Reset reset.cc)
+add_executable(Test test.cc)
+target_link_libraries(Reset Moglk)
+target_link_libraries(Test Moglk)

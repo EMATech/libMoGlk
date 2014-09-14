@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009-2010 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -21,6 +21,7 @@
 // C headers
 #include <termios.h>	// POSIX Terminal IOs
 #include <fcntl.h>		// POSIX File Control Operations
+#include <unistd.h>     // For open(), read(), write(), close()
 
 // C++ headers
 #include <cstring>		// ISO C99 String handling
@@ -44,12 +45,12 @@ Moglk::Moglk()
 
 Moglk::~Moglk()
 {
-	close(serial_port);
+    close(serial_port);
 }
 
 //TODO: Autodetect device
 //FIXME: Use a portable serial I/O library
-bool Moglk::init(char * device_ptr,
+bool Moglk::init(char const * device_ptr,
                  unsigned long int baud_rate)
 {
 
@@ -72,14 +73,14 @@ bool Moglk::init(char * device_ptr,
 	cout << "DEBUG init(): libmoglk initialized!" << endl;
 #endif /* #ifndef NDEBUG */
 
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 
 } /* init() */
 
-unsigned long int Moglk::autodetectBaudRate(char * device_ptr)
+unsigned long int Moglk::autodetectBaudRate(char const * device_ptr)
 {
 
 	unsigned long int detected_baud_rate = 0;
@@ -110,7 +111,7 @@ unsigned long int Moglk::autodetectBaudRate(char * device_ptr)
 
 } /* autodetectBaudRate */
 
-bool Moglk::openPort(char * device_ptr)
+bool Moglk::openPort(char const * device_ptr)
 {
 	// Open serial port:
 	// read/write, no control terminal

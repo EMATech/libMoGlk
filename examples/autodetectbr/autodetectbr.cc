@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2010 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2010-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	char port[] = "/dev/ttyUSB0";
 	unsigned long int baudrate;
 
-	moglk lcd;
+	Moglk lcd;
 	baudrate = lcd.autodetectBaudRate(port);
 
 	std::cout << "Detected Baud Rate : " << baudrate << std::endl;

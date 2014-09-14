@@ -1,0 +1,1 @@
+subdirs(autodetectbr bitmap bitmap2 directory display download dumpfs pixel)

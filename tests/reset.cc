@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -26,22 +26,22 @@ int main(void)
 	char port[] = "/dev/ttyUSB0";
 	int speed = 19200;
 
-	moglk lcd;
-	int check = lcd.init(port,speed);
-	if (check > 0)
+	Moglk lcd;
+	bool check = lcd.init(port,speed);
+	if (check)
 	{
-	lcd.setBaudRate(19200);
-	lcd.setFlowControl(0);
-	lcd.setLock(0);
-	lcd.setRemember(1);
-	lcd.setDefaultBrightness();
-	lcd.setDefaultContrast(50);
-	lcd.startupGpo(1, 1);
-	lcd.startupGpo(2, 1);
-	lcd.startupGpo(3, 1);
-	lcd.startupGpo(4, 1);
-	lcd.startupGpo(5, 1);
-	lcd.startupGpo(6, 1);
+        lcd.setBaudRate(19200);
+        lcd.setFlowControl(0);
+        lcd.setLock(0);
+        lcd.setRemember(1);
+        lcd.setDefaultBrightness();
+        lcd.setDefaultContrast(50);
+        lcd.startupGpo(1, 1);
+        lcd.startupGpo(2, 1);
+        lcd.startupGpo(3, 1);
+        lcd.startupGpo(4, 1);
+        lcd.startupGpo(5, 1);
+        lcd.startupGpo(6, 1);
         lcd.display("Reset?");
 	}
 	else

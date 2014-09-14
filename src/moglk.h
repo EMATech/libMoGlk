@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009-2010 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2009-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -567,7 +567,7 @@ using namespace ost;
 class Moglk
 {
 	private:
-		bool openPort(char * device_ptr = "/dev/ttyS0");
+		bool openPort(char const * device_ptr = "/dev/ttyS0");
 		void configurePort(void);
 		void setPortBaudRate(unsigned long int baud_rate);
 		void setPortFlowControl(bool state);
@@ -584,14 +584,14 @@ class Moglk
 		Moglk();
 		~Moglk();
 
-		bool init(char * device_ptr = "/dev/ttyS0",
+		bool init(char const * device_ptr = "/dev/ttyS0",
 		          unsigned long int baud_rate = 0);
 
 		//int autodetect(void);
 
 		//int autodetectPort(void);
 
-		unsigned long int autodetectBaudRate(char * device_ptr = "/dev/ttyS0");
+		unsigned long int autodetectBaudRate(char const * device_ptr = "/dev/ttyS0");
 
 		bool setBaudRate(unsigned long int baud_rate = 19200);
 
@@ -779,6 +779,6 @@ class Moglk
 		void uploadFs(unsigned int size,
 		              char * data_ptr);
 
-} /* Moglk */
+}; /* Moglk */
 
 #endif /* #ifndef _MOGLK_H */

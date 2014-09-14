@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2010 Raphaël Doursenaud <rdoursenaud@free.fr>
+ Copyright (C) 2010-2014 Raphaël Doursenaud <rdoursenaud@free.fr>
 
  This file is part of libmoglk
  a Matrix Orbital Graphical Displays Protocol Library
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	char port[] = "/dev/ttyUSB0";
 	unsigned long int baudrate = 19200;
 
-	moglk lcd;
+	Moglk lcd;
 	lcd.init(port,baudrate);
 	int * file_ptr;
 	lcd.downloadFile(0,1,file_ptr);
